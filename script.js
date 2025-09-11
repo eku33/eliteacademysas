@@ -1,16 +1,9 @@
-// =======================
-// Preloader
-// =======================
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
         if (preloader) preloader.classList.add('hidden');
     }, 1500);
 });
-
-// =======================
-// Sticky Header
-// =======================
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     if (!header) return;
@@ -20,20 +13,12 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
-
-// =======================
-// Mobile Menu Toggle
-// =======================
 const menuBtn = document.querySelector('.fa-bars');
 if (menuBtn) {
     menuBtn.addEventListener('click', () => {
         document.querySelector('nav ul').classList.toggle('show');
     });
 }
-
-// =======================
-// Scroll Animation
-// =======================
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -51,10 +36,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section, .fade-in').forEach(section => {
     observer.observe(section);
 });
-
-// =======================
-// Toggle course details
-// =======================
 function toggleCourse(element) {
     const courseBody = element.nextElementSibling;
     const icon = element.querySelector('.fa-chevron-down');
@@ -63,10 +44,6 @@ function toggleCourse(element) {
     icon.classList.toggle('fa-chevron-down');
     icon.classList.toggle('fa-chevron-up');
 }
-
-// =======================
-// Location selector
-// =======================
 document.querySelectorAll('.location-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const location = btn.getAttribute('data-location');
@@ -80,10 +57,6 @@ document.querySelectorAll('.location-btn').forEach(btn => {
         document.getElementById(`${location}-content`).classList.add('active');
     });
 });
-
-// =======================
-// Testimonial Modal
-// =======================
 function openTestimonialModal() {
     document.getElementById('testimonialModal').style.display = 'flex';
 }
@@ -92,10 +65,6 @@ function closeTestimonialModal() {
     document.getElementById('testimonialForm').reset();
     resetRating();
 }
-
-// =======================
-// Rating system
-// =======================
 function setRating(rating) {
     const stars = document.querySelectorAll('.star');
     stars.forEach((star, index) => {
@@ -112,10 +81,6 @@ function resetRating() {
     stars.forEach(star => star.classList.remove('selected'));
     document.getElementById('testimonialForm').removeAttribute('data-rating');
 }
-
-// =======================
-// Admin panel
-// =======================
 function openAdminPanel() {
     document.getElementById('adminPanel').style.display = 'block';
 }
@@ -136,7 +101,6 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         document.getElementById(`${tab}Tab`).classList.add('active');
     });
 });
-
 function loginAdmin() {
     const password = document.getElementById('adminPassword').value;
     if (password === 'elite2025') {
@@ -148,9 +112,3 @@ function loginAdmin() {
         alert('Contraseña incorrecta');
     }
 }
-
-// =======================
-// Inscription & Testimonials
-// =======================
-// (todo lo demás lo dejé igual que tenías: loadInscriptions, loadTestimonials, delete, export, etc.)
-// Asegúrate de que solo esté UNA VEZ en el archivo
