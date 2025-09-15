@@ -1386,7 +1386,32 @@ footer {
     }
     
     .course-grid {
-        grid-template-columns: 1fr; /* Asegúrate de que esté así */
-        justify-items: center; /* AÑADE ESTA LÍNEA */
+        grid-template
+        /* Mejora la visualización en móviles para cursos */
+@media (max-width: 767px) {
+    .course-card {
+        max-width: 100%;
+        margin-bottom: 25px;
+        width: 100%;
+    }
+    
+    .course-body.expanded {
+        margin-bottom: 15px;
+    }
+    
+    .course-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
     }
 }
+
+/* Asegurar que todos los elementos sean visibles */
+.course-card {
+    animation: none !important;
+}
+
+#courses {
+    min-height: auto !important;
+}
+
+/* Fin del CSS */
