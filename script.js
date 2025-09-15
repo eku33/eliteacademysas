@@ -1,3 +1,4 @@
+// ===== FUNCIONES DE CIERRE DE MODALES =====
 function closeViewModal() {
     document.getElementById('viewInscriptionModal').style.display = 'none';
 }
@@ -16,12 +17,18 @@ function closeAdminPanel() {
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('adminPassword').value = '';
 }
+
+// ===== FUNCIONALIDADES GENERALES =====
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
         if (preloader) preloader.classList.add('hidden');
     }, 1500);
+    
+    // Mostrar testimonios al cargar la página
+    displayTestimonials();
 });
+
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     if (!header) return;
@@ -31,12 +38,16 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// Menú móvil
 const menuBtn = document.querySelector('.fa-bars');
 if (menuBtn) {
     menuBtn.addEventListener('click', () => {
         document.querySelector('nav ul').classList.toggle('show');
     });
 }
+
+// Animaciones de aparición
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -54,6 +65,8 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section, .fade-in').forEach(section => {
     observer.observe(section);
 });
+
+// Acordeón de cursos
 function toggleCourse(element) {
     const courseBody = element.nextElementSibling;
     const icon = element.querySelector('.fa-chevron-down');
@@ -62,6 +75,8 @@ function toggleCourse(element) {
     icon.classList.toggle('fa-chevron-down');
     icon.classList.toggle('fa-chevron-up');
 }
+
+// Selector de ubicación
 document.querySelectorAll('.location-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const location = btn.getAttribute('data-location');
@@ -75,6 +90,10 @@ document.querySelectorAll('.location-btn').forEach(btn => {
         document.getElementById(`${location}-content`).classList.add('active');
     });
 });
+
+// ===== SISTEMA DE TESTIMONIOS =====
+let currentRating = 0;
+
 function openTestimonialModal() {
     document.getElementById('testimonialModal').style.display = 'flex';
 }
@@ -88,14 +107,16 @@ function setRating(rating) {
             star.classList.remove('selected');
         }
     });
-    document.getElementById('testimonialForm').setAttribute('data-rating', rating);
+    currentRating = rating;
 }
 
 function resetRating() {
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => star.classList.remove('selected'));
-    document.getElementById('testimonialForm').removeAttribute('data-rating');
+    currentRating = 0;
 }
+
+// ===== ADMIN PANEL =====
 function openAdminPanel() {
     document.getElementById('adminPanel').style.display = 'block';
 }
@@ -113,6 +134,8 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         document.getElementById(`${tab}Tab`).classList.add('active');
     });
 });
+
+// ===== ALMACENAMIENTO Y GESTIÓN DE DATOS =====
 let inscriptions = JSON.parse(localStorage.getItem('inscriptions')) || [];
 let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
 const ADMIN_PASSWORD = "elite2025";
@@ -131,6 +154,8 @@ function loginAdmin() {
 
 function loadInscriptions() {
     const table = document.getElementById('inscriptionsTable');
+    if (!table) return;
+    
     table.innerHTML = '';
     
     inscriptions.forEach((inscription, index) => {
@@ -153,6 +178,8 @@ function loadInscriptions() {
 
 function loadTestimonials() {
     const table = document.getElementById('testimonialsTable');
+    if (!table) return;
+    
     table.innerHTML = '';
     
     testimonials.forEach((testimonial, index) => {
@@ -210,7 +237,15 @@ function viewTestimonial(index) {
         <h3>Testimonio</h3>
         <p>${testimonial.text}</p>
         
-        ${testimonial.video ? `<p><strong>Video:</strong> <a href="${testimonial.video}" target="_blank">Ver video</a></p>` : ''}
+        ${testimonial.video ? `
+        <h3>Video</h3>
+        <div class="testimonial-video-preview">
+            <video controls>
+                <source src="${testimonial.video}" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+        </div>
+        ` : ''}
         
         <p><strong>Fecha:</strong> ${new Date(testimonial.date).toLocaleString()}</p>
     `;
@@ -232,6 +267,7 @@ function deleteTestimonial(index) {
         testimonials.splice(index, 1);
         localStorage.setItem('testimonials', JSON.stringify(testimonials));
         loadTestimonials();
+        displayTestimonials(); // Actualizar la visualización de testimonios
     }
 }
 
@@ -255,9 +291,9 @@ function exportTestimonialsToCSV() {
         return;
     }
     
-    let csv = 'Nombre,Curso,Calificación,Fecha,Testimonio\n';
+    let csv = 'Nombre,Curso,Calificación,Fecha,Testimonio,Video\n';
     testimonials.forEach(testimonial => {
-        csv += `"${testimonial.name}",${testimonial.course},${testimonial.rating},${new Date(testimonial.date).toLocaleDateString()},"${testimonial.text.replace(/"/g, '""')}"\n`;
+        csv += `"${testimonial.name}",${testimonial.course},${testimonial.rating},${new Date(testimonial.date).toLocaleDateString()},"${testimonial.text.replace(/"/g, '""')}","${testimonial.video || ''}"\n`;
     });
     
     downloadCSV(csv, 'testimonios_elite_academy.csv');
@@ -291,64 +327,94 @@ function clearAllTestimonials() {
         testimonials = [];
         localStorage.setItem('testimonials', JSON.stringify(testimonials));
         loadTestimonials();
+        displayTestimonials(); // Actualizar la visualización
         alert('Todos los testimonios han sido eliminados');
     }
 }
-document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const inscription = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        cedula: document.getElementById('cedula').value,
-        birthdate: document.getElementById('birthdate').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        province: document.getElementById('province').value,
-        canton: document.getElementById('canton').value,
-        parish: document.getElementById('parish').value,
-        neighborhood: document.getElementById('neighborhood').value,
-        course: document.getElementById('course').value,
-        message: document.getElementById('message').value,
-        date: new Date().toISOString()
-    };
-    
-    inscriptions.push(inscription);
-    localStorage.setItem('inscriptions', JSON.stringify(inscriptions));
-    
-    alert('¡Inscripción enviada con éxito! Nos comunicaremos contigo pronto.');
-    this.reset();
+
+// ===== FORMULARIOS =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Formulario de inscripción
+    const inscriptionForm = document.getElementById('inscriptionForm');
+    if (inscriptionForm) {
+        inscriptionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const inscription = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                cedula: document.getElementById('cedula').value,
+                birthdate: document.getElementById('birthdate').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                province: document.getElementById('province').value,
+                canton: document.getElementById('canton').value,
+                parish: document.getElementById('parish').value,
+                neighborhood: document.getElementById('neighborhood').value,
+                course: document.getElementById('course').value,
+                message: document.getElementById('message').value,
+                date: new Date().toISOString()
+            };
+            
+            inscriptions.push(inscription);
+            localStorage.setItem('inscriptions', JSON.stringify(inscriptions));
+            
+            alert('¡Inscripción enviada con éxito! Nos comunicaremos contigo pronto.');
+            this.reset();
+        });
+    }
+
+    // Formulario de testimonios
+    const testimonialForm = document.getElementById('testimonialForm');
+    if (testimonialForm) {
+        testimonialForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const testimonial = {
+                name: document.getElementById('testimonialName').value,
+                course: document.getElementById('testimonialCourse').value,
+                text: document.getElementById('testimonialText').value,
+                rating: currentRating,
+                video: document.getElementById('testimonialVideo').value,
+                date: new Date().toISOString()
+            };
+            
+            // Validar que tenga al menos una calificación
+            if (currentRating === 0) {
+                alert('Por favor, califica el curso con al menos una estrella');
+                return;
+            }
+            
+            testimonials.push(testimonial);
+            localStorage.setItem('testimonials', JSON.stringify(testimonials));
+            
+            alert('¡Testimonio enviado con éxito! Gracias por compartir tu experiencia.');
+            this.reset();
+            resetRating();
+            closeTestimonialModal();
+            displayTestimonials();
+        });
+    }
 });
 
-let currentRating = 0;
-
-document.getElementById('testimonialForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const testimonial = {
-        name: document.getElementById('testimonialName').value,
-        course: document.getElementById('testimonialCourse').value,
-        text: document.getElementById('testimonialText').value,
-        rating: currentRating,
-        video: document.getElementById('testimonialVideo').value,
-        date: new Date().toISOString()
-    };
-    
-    testimonials.push(testimonial);
-    localStorage.setItem('testimonials', JSON.stringify(testimonials));
-    
-    alert('¡Testimonio enviado con éxito! Gracias por compartir tu experiencia.');
-    this.reset();
-    setRating(0);
-    closeTestimonialModal();
-    displayTestimonials();
-});
+// ===== VISUALIZACIÓN DE TESTIMONIOS =====
 function displayTestimonials() {
     const testimonialGrid = document.getElementById('testimonialGrid');
     if (!testimonialGrid) return;
     
     testimonialGrid.innerHTML = '';
     
+    // Si no hay testimonios, mostrar un mensaje
+    if (testimonials.length === 0) {
+        testimonialGrid.innerHTML = `
+            <div class="no-testimonials">
+                <p>No hay testimonios aún. ¡Sé el primero en compartir tu experiencia!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Mostrar los testimonios
     testimonials.forEach(testimonial => {
         const testimonialHTML = `
             <div class="testimonial fade-in">
@@ -379,6 +445,3 @@ function displayTestimonials() {
         testimonialGrid.innerHTML += testimonialHTML;
     });
 }
-document.addEventListener('DOMContentLoaded', function() {
-    displayTestimonials();
-});
