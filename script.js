@@ -85,28 +85,17 @@ document.querySelectorAll('section, .fade-in').forEach(section => {
     observer.observe(section);
 });
 
-// Acordeón de cursos - VERSIÓN CORREGIDA
+// Acordeón de cursos
 function toggleCourse(element) {
-    if (!element || !element.nextElementSibling) return;
-    
     const courseBody = element.nextElementSibling;
-    const icon = element.querySelector('.fa-chevron-down') || element.querySelector('.fa-chevron-up');
-    
-    if (!courseBody || !icon) return;
-    
-    // Alternar la clase expanded
+    const icon = element.querySelector('.fa-chevron-down');
+
     courseBody.classList.toggle('expanded');
-    
-    // Alternar icono entre chevron-down y chevron-up
-    if (courseBody.classList.contains('expanded')) {
-        icon.classList.remove('fa-chevron-down');
-        icon.classList.add('fa-chevron-up');
-    } else {
-        icon.classList.remove('fa-chevron-up');
-        icon.classList.add('fa-chevron-down');
-    }
+    icon.classList.toggle('fa-chevron-down');
+    icon.classList.toggle('fa-chevron-up');
 }
 
+// Selector de ubicación
 document.querySelectorAll('.location-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const location = btn.getAttribute('data-location');
@@ -480,13 +469,13 @@ function displayTestimonials() {
                         </div>
                     </div>
                     ${testimonial.video ? `
-                    <div class="testimonial-video">
-                        <video controls>
-                            <source src="${testimonial.video}" type="video/mp4">
-                            Tu navegador no soporta videos.
-                        </video>
-                    </div>
-                    ` : ''}
+<div class="testimonial-video">
+    <iframe src="${testimonial.video}" 
+            frameborder="0" 
+            allowfullscreen>
+    </iframe>
+</div>
+` : ''}
                 </div>
             </div>
         `;
