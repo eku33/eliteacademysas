@@ -1,3 +1,21 @@
+function closeViewModal() {
+    document.getElementById('viewInscriptionModal').style.display = 'none';
+}
+
+function closeTestimonialViewModal() {
+    document.getElementById('viewTestimonialModal').style.display = 'none';
+}
+
+function closeTestimonialModal() {
+    document.getElementById('testimonialModal').style.display = 'none';
+    document.getElementById('testimonialForm').reset();
+    resetRating();
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminPassword').value = '';
+}
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
@@ -44,7 +62,6 @@ function toggleCourse(element) {
     icon.classList.toggle('fa-chevron-down');
     icon.classList.toggle('fa-chevron-up');
 }
-
 document.querySelectorAll('.location-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const location = btn.getAttribute('data-location');
@@ -58,14 +75,8 @@ document.querySelectorAll('.location-btn').forEach(btn => {
         document.getElementById(`${location}-content`).classList.add('active');
     });
 });
-
 function openTestimonialModal() {
     document.getElementById('testimonialModal').style.display = 'flex';
-}
-function closeTestimonialModal() {
-    document.getElementById('testimonialModal').style.display = 'none';
-    document.getElementById('testimonialForm').reset();
-    resetRating();
 }
 
 function setRating(rating) {
@@ -79,18 +90,14 @@ function setRating(rating) {
     });
     document.getElementById('testimonialForm').setAttribute('data-rating', rating);
 }
+
 function resetRating() {
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => star.classList.remove('selected'));
     document.getElementById('testimonialForm').removeAttribute('data-rating');
 }
-
-
 function openAdminPanel() {
     document.getElementById('adminPanel').style.display = 'block';
-}
-function closeAdminPanel() {
-    document.getElementById('adminPanel').style.display = 'none';
 }
 
 document.querySelectorAll('.admin-tab-btn').forEach(btn => {
@@ -106,21 +113,8 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         document.getElementById(`${tab}Tab`).classList.add('active');
     });
 });
-function loginAdmin() {
-    const password = document.getElementById('adminPassword').value;
-    if (password === 'elite2025') {
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminContent').style.display = 'block';
-        loadInscriptions();
-        loadTestimonials();
-    } else {
-        alert('Contraseña incorrecta');
-    }
-}
-
 let inscriptions = JSON.parse(localStorage.getItem('inscriptions')) || [];
 let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-
 const ADMIN_PASSWORD = "elite2025";
 
 function loginAdmin() {
@@ -177,6 +171,7 @@ function loadTestimonials() {
         table.innerHTML += row;
     });
 }
+
 function viewInscription(index) {
     const inscription = inscriptions[index];
     const details = `
@@ -299,8 +294,6 @@ function clearAllTestimonials() {
         alert('Todos los testimonios han sido eliminados');
     }
 }
-
-
 document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -329,14 +322,6 @@ document.getElementById('inscriptionForm').addEventListener('submit', function(e
 
 let currentRating = 0;
 
-function setRating(rating) {
-    currentRating = rating;
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
-        star.classList.toggle('selected', index < rating);
-    });
-}
-
 document.getElementById('testimonialForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -358,7 +343,6 @@ document.getElementById('testimonialForm').addEventListener('submit', function(e
     closeTestimonialModal();
     displayTestimonials();
 });
-
 function displayTestimonials() {
     const testimonialGrid = document.getElementById('testimonialGrid');
     if (!testimonialGrid) return;
@@ -397,19 +381,4 @@ function displayTestimonials() {
 }
 document.addEventListener('DOMContentLoaded', function() {
     displayTestimonials();
-function closeViewModal() {
-    document.getElementById('viewInscriptionModal').style.display = 'none';
-}
-function closeTestimonialViewModal() {
-    document.getElementById('viewTestimonialModal').style.display = 'none';
-}
-function closeTestimonialModal() {
-    document.getElementById('testimonialModal').style.display = 'none';
-}
-
-function closeAdminPanel() {
-    document.getElementById('adminPanel').style.display = 'none';
-    document.getElementById('adminPassword').value = '';
-}
 });
-
