@@ -1,16 +1,9 @@
-// =======================
-// Preloader
-// =======================
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
         if (preloader) preloader.classList.add('hidden');
     }, 1500);
 });
-
-// =======================
-// Sticky Header
-// =======================
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     if (!header) return;
@@ -20,20 +13,12 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
-
-// =======================
-// Mobile Menu Toggle
-// =======================
 const menuBtn = document.querySelector('.fa-bars');
 if (menuBtn) {
     menuBtn.addEventListener('click', () => {
         document.querySelector('nav ul').classList.toggle('show');
     });
 }
-
-// =======================
-// Scroll Animation
-// =======================
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -51,10 +36,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section, .fade-in').forEach(section => {
     observer.observe(section);
 });
-
-// =======================
-// Toggle course details
-// =======================
 function toggleCourse(element) {
     const courseBody = element.nextElementSibling;
     const icon = element.querySelector('.fa-chevron-down');
@@ -431,3 +412,4 @@ function closeAdminPanel() {
     document.getElementById('adminPassword').value = '';
 }
 });
+
