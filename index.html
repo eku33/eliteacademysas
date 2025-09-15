@@ -926,9 +926,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="testimonialVideo">Enlace a video (Opcional)</label>
-                    <input type="url" id="testimonialVideo" placeholder="https://...">
-                </div>
+    <label for="testimonialVideo">Enlace de YouTube (Opcional)</label>
+    <input type="url" id="testimonialVideo" 
+           placeholder="https://youtube.com/embed/..." 
+           pattern="https://.*youtube\.com/embed/.*">
+    <small>Ejemplo: https://youtube.com/embed/ABCD1234</small>
+</div>
                 <div style="display: flex; justify-content: space-between; margin-top: 20px;">
                     <button type="button" class="btn" onclick="closeTestimonialModal()">Cancelar</button>
                     <button type="submit" class="btn">Enviar Testimonio</button>
