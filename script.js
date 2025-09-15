@@ -27,6 +27,25 @@ window.addEventListener('load', () => {
     
     // Mostrar testimonios al cargar la página
     displayTestimonials();
+    
+    // Añadir event listeners para los botones de cerrar
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+    });
+    
+    // Cerrar admin panel al hacer clic fuera
+    const adminPanel = document.getElementById('adminPanel');
+    if (adminPanel) {
+        adminPanel.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminPanel();
+            }
+        });
+    }
 });
 
 window.addEventListener('scroll', () => {
@@ -66,17 +85,28 @@ document.querySelectorAll('section, .fade-in').forEach(section => {
     observer.observe(section);
 });
 
-// Acordeón de cursos
+// Acordeón de cursos - VERSIÓN CORREGIDA
 function toggleCourse(element) {
+    if (!element || !element.nextElementSibling) return;
+    
     const courseBody = element.nextElementSibling;
-    const icon = element.querySelector('.fa-chevron-down');
-
+    const icon = element.querySelector('.fa-chevron-down') || element.querySelector('.fa-chevron-up');
+    
+    if (!courseBody || !icon) return;
+    
+    // Alternar la clase expanded
     courseBody.classList.toggle('expanded');
-    icon.classList.toggle('fa-chevron-down');
-    icon.classList.toggle('fa-chevron-up');
+    
+    // Alternar icono entre chevron-down y chevron-up
+    if (courseBody.classList.contains('expanded')) {
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    } else {
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    }
 }
 
-// Selector de ubicación
 document.querySelectorAll('.location-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const location = btn.getAttribute('data-location');
@@ -140,6 +170,24 @@ let inscriptions = JSON.parse(localStorage.getItem('inscriptions')) || [];
 let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
 const ADMIN_PASSWORD = "elite2025";
 
+// Mapeo de nombres de cursos para mostrar correctamente
+const courseNames = {
+    "farmacia": "Auxiliar de Farmacia",
+    "enfermeria": "Auxiliar de Enfermería",
+    "parvularia": "Parvularia o Educación Inicial",
+    "belleza": "Técnico en Belleza integral",
+    "contabilidad": "Gestión administrativa y contabilidad",
+    "cocteleria": "Técnico en Coctelería",
+    "automotriz": "Técnico en Mecánica Automotriz",
+    "motos": "Técnico en Mecánica de Motos",
+    "fisioterapia": "Auxiliar de fisioterapia",
+    "soldadura": "Técnico en Soldadura",
+    "electricidad": "Técnico en Electricidad",
+    "uñas": "Técnico en Uñas",
+    "forense": "Auxiliar forense",
+    "Celulares": "Mantenimiento de celulares y computadoras"
+};
+
 function loginAdmin() {
     const password = document.getElementById('adminPassword').value;
     if (password === ADMIN_PASSWORD) {
@@ -164,7 +212,7 @@ function loadInscriptions() {
                 <td>${inscription.firstName} ${inscription.lastName}</td>
                 <td>${inscription.email}</td>
                 <td>${inscription.phone}</td>
-                <td>${inscription.course}</td>
+                <td>${courseNames[inscription.course] || inscription.course}</td>
                 <td>${new Date(inscription.date).toLocaleDateString()}</td>
                 <td class="admin-actions">
                     <button class="admin-btn view-btn" onclick="viewInscription(${index})">Ver</button>
@@ -186,7 +234,7 @@ function loadTestimonials() {
         const row = `
             <tr>
                 <td>${testimonial.name}</td>
-                <td>${testimonial.course}</td>
+                <td>${courseNames[testimonial.course] || testimonial.course}</td>
                 <td>${'★'.repeat(testimonial.rating)}${'☆'.repeat(5-testimonial.rating)}</td>
                 <td>${new Date(testimonial.date).toLocaleDateString()}</td>
                 <td class="admin-actions">
@@ -216,7 +264,7 @@ function viewInscription(index) {
         <p><strong>Barrio:</strong> ${inscription.neighborhood}</p>
         
         <h3>Curso Seleccionado</h3>
-        <p><strong>Programa:</strong> ${inscription.course}</p>
+        <p><strong>Programa:</strong> ${courseNames[inscription.course] || inscription.course}</p>
         ${inscription.message ? `<p><strong>Mensaje:</strong> ${inscription.message}</p>` : ''}
         
         <p><strong>Fecha de inscripción:</strong> ${new Date(inscription.date).toLocaleString()}</p>
@@ -231,7 +279,7 @@ function viewTestimonial(index) {
     const details = `
         <h3>Información del Estudiante</h3>
         <p><strong>Nombre:</strong> ${testimonial.name}</p>
-        <p><strong>Curso:</strong> ${testimonial.course}</p>
+        <p><strong>Curso:</strong> ${courseNames[testimonial.course] || testimonial.course}</p>
         <p><strong>Calificación:</strong> ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5-testimonial.rating)}</p>
         
         <h3>Testimonio</h3>
@@ -279,7 +327,7 @@ function exportToCSV() {
     
     let csv = 'Nombre,Email,Teléfono,Curso,Fecha\n';
     inscriptions.forEach(inscription => {
-        csv += `"${inscription.firstName} ${inscription.lastName}",${inscription.email},${inscription.phone},${inscription.course},${new Date(inscription.date).toLocaleDateString()}\n`;
+        csv += `"${inscription.firstName} ${inscription.lastName}",${inscription.email},${inscription.phone},"${courseNames[inscription.course] || inscription.course}",${new Date(inscription.date).toLocaleDateString()}\n`;
     });
     
     downloadCSV(csv, 'inscripciones_elite_academy.csv');
@@ -293,7 +341,7 @@ function exportTestimonialsToCSV() {
     
     let csv = 'Nombre,Curso,Calificación,Fecha,Testimonio,Video\n';
     testimonials.forEach(testimonial => {
-        csv += `"${testimonial.name}",${testimonial.course},${testimonial.rating},${new Date(testimonial.date).toLocaleDateString()},"${testimonial.text.replace(/"/g, '""')}","${testimonial.video || ''}"\n`;
+        csv += `"${testimonial.name}","${courseNames[testimonial.course] || testimonial.course}",${testimonial.rating},${new Date(testimonial.date).toLocaleDateString()},"${testimonial.text.replace(/"/g, '""')}","${testimonial.video || ''}"\n`;
     });
     
     downloadCSV(csv, 'testimonios_elite_academy.csv');
@@ -425,7 +473,7 @@ function displayTestimonials() {
                     <div class="testimonial-author">
                         <div class="author-info">
                             <h4>${testimonial.name}</h4>
-                            <p>Estudiante de ${testimonial.course}</p>
+                            <p>Estudiante de ${courseNames[testimonial.course] || testimonial.course}</p>
                             <div class="rating">
                                 ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5-testimonial.rating)}
                             </div>
