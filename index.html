@@ -11,45 +11,36 @@
 </head>
 <body>
     <div class="preloader">
-        <div class="preloader-spinner"></div>
+        <div class="loader"></div>
     </div>
-    
     <div class="admin-access" onclick="openAdminPanel()">
         <i class="fas fa-lock"></i>
     </div>
-    
     <a href="https://wa.me/c/593960755054" class="floating-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    
     <header id="header">
-        <div class="header-container">
-            <div class="logo">
-                <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy">
-                <h1>Elite <span>Academy</span></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">Inicio</a></li>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#courses">Cursos</a></li>
-                    <li><a href="#testimonials">Testimonios</a></li>
-                    <li><a href="#inscription">Inscripción</a></li>
-                    <li><a href="#contact">Contactos</a></li>
-                </ul>
-                <i class="fas fa-bars"></i>
-            </nav>
+        <div class="logo-container">
+            <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy">
+            <a href="#" class="logo-text">Elite Academy</a>
         </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#courses">Cursos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#inscription">Inscripción</a></li>
+                <li><a href="#contact">Contactos</a></li>
+            </ul>
+            <div class="fas fa-bars"></div>
+        </nav>
     </header>
-    
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Formación de <span>Élite</span> para Futuros Líderes</h2>
-            <p>Elite Academy es una institución comprometida con la excelencia educativa y la formación de profesionales de clase mundial.</p>
-            <div>
-                <a href="#inscription" class="btn">Inscribirse Ahora</a>
-                <a href="#courses" class="btn btn-outline">Ver Cursos</a>
-            </div>
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1 class="fade-in">Formación de <span style="color: var(--accent);">Élite</span> para el Futuro</h1>
+            <p class="fade-in">Elite Academy es una institución privada dedicada a la formación de profesionales en diversas áreas técnicas y de desarrollo humano. Nuestros programas están diseñados para brindar conocimientos prácticos y competencias laborales de alto nivel.</p>
+            <a href="#inscription" class="cta-button">¡Inscríbete Ahora!</a>
             
             <div class="home-stats">
                 <div class="stat-item">
@@ -67,419 +58,793 @@
             </div>
         </div>
     </section>
-    
-    <section id="product" class="product">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Objetivos</h2>
-                <p>Buscamos formar profesionales competentes con los más altos estándares de calidad educativa</p>
+    <section class="product" id="product">
+        <h1 class="heading">Nuestros Objetivos</h1>
+        <p class="section-subtitle">Buscamos formar profesionales competentes con los más altos estándares de calidad educativa</p>
+        
+        <div class="box-container">
+            <div class="box fade-in">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Formación de Calidad</h3>
+                <p>Brindamos educación práctica y profesional para preparar a nuestros estudiantes para el mundo laboral.</p>
             </div>
-            
-            <div class="box-container">
-                <div class="box fade-in">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Formación de Calidad</h3>
-                    <p>Brindamos educación práctica y profesional para preparar a nuestros estudiantes para el mundo laboral.</p>
-                </div>
-                <div class="box fade-in">
-                    <i class="fas fa-book"></i>
-                    <h3>Aprendizaje Integral</h3>
-                    <p>Nuestros cursos combinan teoría y práctica, fomentando el desarrollo de habilidades completas.</p>
-                </div>
-                <div class="box fade-in">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Innovación y Tecnología</h3>
-                    <p>Incorporamos herramientas tecnológicas modernas para garantizar un aprendizaje actualizado y relevante.</p>
-                </div>
+            <div class="box fade-in">
+                <i class="fas fa-book"></i>
+                <h3>Aprendizaje Integral</h3>
+                <p>Nuestros cursos combinan teoría y práctica, fomentando el desarrollo de habilidades completas.</p>
+            </div>
+            <div class="box fade-in">
+                <i class="fas fa-cogs"></i>
+                <h3>Innovación y Tecnología</h3>
+                <p>Incorporamos herramientas tecnológicas modernas para garantizar un aprendizaje actualizado y relevante.</p>
             </div>
         </div>
     </section>
-    
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nosotros</h2>
-                <p>Conoce más sobre nuestra institución y nuestra misión educativa</p>
+    <section class="about" id="about">
+        <h1 class="heading">Nosotros</h1>
+        <p class="section-subtitle">Conoce más sobre nuestra institución y nuestra misión educativa</p>
+        
+        <div class="row">
+            <div class="image fade-in">
+                <img src="images/nosotros.jpg" alt="Elite Academy">
             </div>
-            
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <h3>Quiénes somos</h3>
-                    <p>Elite Academy S.A.S. es una institución reconocida legalmente, dedicada a capacitar personal en distintas áreas técnicas y humanas, con énfasis en competencias prácticas y preparación profesional.</p>
-                    <p>Nuestro objetivo es formar profesionales competentes, responsables y listos para enfrentar los retos laborales actuales. Contamos con instalaciones modernas, equipos de última generación y un equipo docente altamente calificado.</p>
-                </div>
-                <div class="about-image fade-in">
-                    <img src="images/nosotros.jpg" alt="Elite Academy">
-                </div>
+            <div class="content fade-in">
+                <h3 class="title">Quiénes somos</h3>
+                <p>Elite Academy S.A.S. es una institución reconocida legalmente, dedicada a capacitar personal en distintas áreas técnicas y humanas, сon énfasis en competencias prácticas y preparación profesional.</p>
+                <p>Nuestro objetivo es formar profesionales competentes, responsables y listos para enfrentar los retos laborales actuales. Contamos con instalaciones modernas, equipos de última generación y un equipo docente altamente calificado.</p>
             </div>
         </div>
     </section>
-    
-    <section id="courses" class="courses">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Cursos</h2>
-                <p>Formación profesional con certificación avalada a nivel nacional e internacional</p>
-            </div>
-            
-            <div class="course-list">
-                <!-- Curso 1: Auxiliar de Farmacia -->
-                <div class="course-item fade-in">
-                    <div class="course-header" onclick="toggleCourse(this)">
-                        <h3>Auxiliar de Farmacia</h3>
-                        <i class="fas fa-chevron-down"></i>
+    <section id="courses">
+        <h1 class="heading">Nuestros Cursos</h1>
+        <p class="section-subtitle">Formación profesional con certificación avalada a nivel nacional e internacional</p>
+        <div class="course-grid">
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/farmacia.jpg" alt="Farmacia">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-pills"></i></div>
+                        <h3 class="course-title">Auxiliar de Farmacia</h3>
                     </div>
-                    <div class="course-body">
-                        <div class="course-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>Duración: 6 meses (24 clases)</span>
-                        </div>
-                        <div class="course-detail">
-                            <i class="fas fa-certificate"></i>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 6 meses (24 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
                             <span>Certificación Universitaria</span>
                         </div>
-                        <div class="course-pricing">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con practicas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
                             <div class="original-price">$1200</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
                             <div class="promo-price">$640</div>
                         </div>
+                    </div>
+                    <div class="course-info">
                         <p>Curso completo de Auxiliar de Farmacia que te capacita para trabajar en el sector farmacéutico. Aprende sobre medicamentos, dosificación, dispensación y atención al cliente.</p>
                         <a href="#inscription" class="btn">Inscribirse ahora</a>
                     </div>
                 </div>
-                
-                <!-- Curso 2: Auxiliar de Enfermería -->
-                <div class="course-item fade-in">
-                    <div class="course-header" onclick="toggleCourse(this)">
-                        <h3>Auxiliar de Enfermería</h3>
-                        <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/enfermeria.jpg" alt="Enfermería">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-user-md"></i></div>
+                        <h3 class="course-title">Enfermería</h3>
                     </div>
-                    <div class="course-body">
-                        <div class="course-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>Duración: 12 meses (48 clases)</span>
-                        </div>
-                        <div class="course-detail">
-                            <i class="fas fa-certificate"></i>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 12 meses (48 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
                             <span>Certificación Universitaria</span>
                         </div>
-                        <div class="course-pricing">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con practicas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
                             <div class="original-price">$2000</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
                             <div class="promo-price">$1050</div>
                         </div>
-                        <p>Formación especializada como auxiliar de enfermería para trabajar en el sector salud. Aprenderás técnicas de cuidado al paciente, primeros auxilios, administración de medicamentos y más.</p>
+                    </div>
+                    <div class="course-info">
+                        <p>Formación especializada en enfermería para trabajar en el sector salud. Aprenderás técnicas de cuidado paciente, primeros auxilios, administración de medicamentos y más.</p>
                         <a href="#inscription" class="btn">Inscribirse ahora</a>
                     </div>
                 </div>
-                
-                <!-- Los demás cursos seguirían el mismo patrón -->
-                <!-- Solo muestro 2 como ejemplo, pero debes agregar todos los cursos de la misma manera -->
-                
             </div>
-            
-            <div class="btn-center">
-                <a href="#contact" class="btn">Más Información</a>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/parvularia.jpg" alt="Parvularia">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-child"></i></div>
+                        <h3 class="course-title">Parvularia</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 8 meses (32 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Ministerio de trabaja con visualización de senescyt</span>
+                        </div>
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Validación internacional</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1500</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$800</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Formación especializada en educación infantil para trabajar en guarderías, centros de desarrollo infantil y educación inicial.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/tecnica_belleza.jpg" alt="Belleza Integral">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-spa"></i></div>
+                        <h3 class="course-title">Belleza Integral</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 6 meses (48 clases)(sábados y domingos)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación del ministerio del trabajo</span>
+                        </div>
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación regulada por el ministerio de educación</span>
+                        </div>
+                         <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Validación internacional</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1200</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$650</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Aprende técnicas de estética, maquillaje, cuidado de la piel, manicure, pedicure y más. Conviértete en un profesional de la belleza integral.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/contabilidad.jpg" alt="Contabilidad">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-calculator"></i></div>
+                        <h3 class="course-title">Gestión administrativa y contabilidad</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 5 meses (20 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación ministerio de trabajo con certificación del senescyt</span>
+                        </div>
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificado de practicas</span>
+                        </div>
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Validación internacional</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1200</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$550</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Domina los principios contables, elaboración de estados financieros, manejo de impuestos y software contable. Ideal para gestión administrativa.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/cocteleria.jpg" alt="Coctelería">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-cocktail"></i></div>
+                        <h3 class="course-title">Coctelería</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 3 meses (12 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$800</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$450</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Aprende a preparar los mejores cócteles clásicos y modernos, técnicas de mixología, presentación y servicio al cliente en bares y restaurantes.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/mecanica_automotriz.jpg" alt="Mecánica Automotriz">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-car"></i></div>
+                        <h3 class="course-title">Mecánica Automotriz</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 5 meses (20 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1800</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$950</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Curso completo de mecánica automotriz que cubre motores, sistemas eléctricos, frenos, suspensión y diagnóstico de fallas.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/mecanica_motos.jpg" alt="Mecánica de Motos">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-motorcycle"></i></div>
+                        <h3 class="course-title">Mecánica de Motos</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 3 meses (12 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1200</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$650</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Especialízate en la reparación y mantenimiento de motocicletas. Aprende sobre motores, transmisión, sistemas eléctricos y más.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/fisioterapia.jpg" alt="Fisioterapia y Masajes">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-hands"></i></div>
+                        <h3 class="course-title">Auxiliar y fisioterapia</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 9 meses (36 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación Universitaria</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1600</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$950</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Aprende técnicas de masoterapia, rehabilitación, quiropraxia y fisioterapia para aliviar dolencias y mejorar la calidad de vida de tus pacientes.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/soldadura.jpg" alt="Soldadura">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-tools"></i></div>
+                        <h3 class="course-title">Técnico en Soldadura</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 6 meses (24 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación del ministerio de trabajo con visualización de senescyt</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1300</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$700</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Domina las técnicas de soldadura MIG, TIG, arco eléctrico y oxiacetilénica. Prepara para trabajar en construcción, industria metalmecánica y más.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/electri.jpg" alt="Electricidad">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-bolt"></i></div>
+                        <h3 class="course-title">Electricidad</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 5 meses (20 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1200</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$650</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Aprende instalaciones eléctricas residenciales e industriales, lectura de planos, normas de seguridad y mantenimiento eléctrico.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/uñitas.jpg" alt="Uñas">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-hand-sparkles"></i></div>
+                        <h3 class="course-title">Uñas</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 6 meses (24 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$900</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$570</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Especialízate en técnicas de manicure, pedicure, uñas acrílicas, esculpidas, gel y esmaltado semipermanente.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/forense.jpg" alt="Ciencias Forenses">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-search"></i></div>
+                        <h3 class="course-title">Auxiliar Forense</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 6 meses (24 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <span>Certificación con Prácticas</span>
+                        </div>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1400</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$750</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Introducción a las ciencias forenses: criminalística, dactiloscopia, balística, hematología y técnicas de investigación criminal.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card fade-in">
+                <div class="course-image">
+                    <img src="images/celulares.jpg" alt="Mantenimiento Celulares y Computadoras">
+                </div>
+                <div class="course-header" onclick="toggleCourse(this)">
+                    <div>
+                        <div class="course-icon"><i class="fas fa-search"></i></div>
+                        <h3 class="course-title">Mantenimiento de Celulares y Computadoras</h3>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="course-body">
+                    <div class="course-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Duración: 5 meses (20 clases)</span>
+                    </div>
+                    <div class="course-detail">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificación del ministerio de trabajo</span>
+                    </div>
+                    <div class="course-pricing">
+                        <div class="price-column">
+                            <div class="price-label">Beca-Completa</div>
+                            <div class="original-price">$1000</div>
+                        </div>
+                        <div class="price-column">
+                            <div class="price-label">MediaBeca</div>
+                            <div class="promo-price">$500</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p>Introducción al mantenimiento de celulares y computadoras: diagnóstico y reparación de hardware, software, sistemas operativos, redes básicas y técnicas de optimización tecnológica.</p>
+                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="btn-center">
+            <a href="#contact" class="btn">Más Información</a>
+        </div>
     </section>
-    
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Testimonios</h2>
-                <p>Conoce las experiencias de nuestros estudiantes graduados</p>
-            </div>
-            
+    <section class="testimonials" id="testimonials">
+        <h1 class="heading">Testimonios</h1>
+        <p class="section-subtitle">Conoce las experiencias de nuestros estudiantes graduados</p>
+        <div class="testimonial-container">
             <div class="testimonial-grid" id="testimonialGrid">
-                <!-- Los testimonios se cargarán dinámicamente con JavaScript -->
             </div>
             
-            <div style="text-align: center; margin-top: 40px;">
-                <button class="btn" onclick="openTestimonialModal()">Agregar Testimonio</button>
+            <div class="add-testimonial">
+                <a href="#" class="btn" onclick="openTestimonialModal()">Agregar tu Testimonio</a>
             </div>
         </div>
     </section>
-    
-    <section id="inscription" class="inscription">
-        <div class="container">
-            <div class="section-title">
-                <h2>Formulario de Inscripción</h2>
-                <p>Completa el formulario para reservar tu cupo en nuestros cursos</p>
-            </div>
-            
-            <form id="inscriptionForm" class="inscription-form">
+    <section class="inscription" id="inscription">
+        <h1 class="heading">Formulario de Inscripción</h1>
+        <p class="section-subtitle">Completa el formulario para reservar tu cupo en nuestros cursos</p>
+        <div class="inscription-form fade-in">
+            <form id="inscriptionForm">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">Nombres *</label>
-                        <input type="text" id="firstName" class="form-control" required>
+                        <input type="text" id="firstName" name="firstName" required>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Apellidos *</label>
-                        <input type="text" id="lastName" class="form-control" required>
+                        <input type="text" id="lastName" name="lastName" required>
                     </div>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cedula">Cédula de Identidad *</label>
-                        <input type="text" id="cedula" class="form-control" required>
+                        <input type="text" id="cedula" name="cedula" required>
                     </div>
                     <div class="form-group">
                         <label for="birthdate">Fecha de Nacimiento *</label>
-                        <input type="date" id="birthdate" class="form-control" required>
+                        <input type="date" id="birthdate" name="birthdate" required>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="phone">Teléfono/Celular *</label>
-                        <input type="tel" id="phone" class="form-control" required>
+                        <input type="tel" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Correo Electrónico *</label>
-                        <input type="email" id="email" class="form-control" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="province">Provincia *</label>
-                        <input type="text" id="province" class="form-control" required>
+                        <input type="text" id="province" name="province" required>
                     </div>
                     <div class="form-group">
                         <label for="canton">Cantón *</label>
-                        <input type="text" id="canton" class="form-control" required>
+                        <input type="text" id="canton" name="canton" required>
                     </div>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="parish">Parroquia *</label>
-                        <input type="text" id="parish" class="form-control" required>
+                        <input type="text" id="parish" name="parish" required>
                     </div>
                     <div class="form-group">
                         <label for="neighborhood">Barrio o Comunidad *</label>
-                        <input type="text" id="neighborhood" class="form-control" required>
+                        <input type="text" id="neighborhood" name="neighborhood" required>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label for="course">Programa de Estudio *</label>
-                    <select id="course" class="form-control" required>
+                    <select id="course" name="course" required>
                         <option value="">Selecciona un curso</option>
-                        <option value="farmacia">Auxiliar de Farmacia</option>
-                        <option value="enfermeria">Auxiliar de Enfermería</option>
-                        <option value="parvularia">Parvularia o Educación Inicial</option>
-                        <option value="belleza">Técnico en Belleza Integral</option>
+                        <option value="farmacia">Farmacia</option>
+                        <option value="enfermeria">Enfermería</option>
+                        <option value="parvularia">Parvularia</option>
+                        <option value="belleza">Belleza Integral</option>
                         <option value="contabilidad">Gestión administrativa y contabilidad</option>
-                        <option value="cocteleria">Técnico en Coctelería</option>
-                        <option value="automotriz">Técnico en Mecánica Automotriz</option>
-                        <option value="motos">Técnico en Mecánica de Motos</option>
+                        <option value="cocteleria">Coctelería</option>
+                        <option value="automotriz">Mecánica Automotriz</option>
+                        <option value="motos">Mecánica de Motos</option>
                         <option value="fisioterapia">Auxiliar de fisioterapia</option>
-                        <option value="soldadura">Técnico en Soldadura</option>
-                        <option value="electricidad">Técnico en Electricidad</option>
+                        <option value="soldadura">Soldadura</option>
+                        <option value="electricidad">Electricidad</option>
                         <option value="uñas">Uñas</option>
                         <option value="forense">Auxiliar Forense</option>
-                        <option value="Celulares">Mantenimiento y reparación de celulares y computadoras</option>
+                        <option value="Celulares">Mantenimiento y reparación de celulares y computadoras </option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="message">Mensaje Adicional (Opcional)</label>
-                    <textarea id="message" class="form-control" rows="4"></textarea>
+                    <textarea id="message" name="message" rows="4"></textarea>
                 </div>
-                
-                <div style="text-align: center;">
+                <div class="btn-center">
                     <button type="submit" class="btn">Enviar Inscripción</button>
                 </div>
             </form>
         </div>
     </section>
-    
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contactos</h2>
-                <p>Estamos aquí para responder todas tus preguntas</p>
+    <section class="contact" id="contact">
+        <h1 class="heading">Contactos</h1>
+        <p class="section-subtitle">Estamos aquí para responder todas tus preguntas</p>
+        <div class="location-selector">
+            <div class="location-toggle">
+                <button class="location-btn active" data-location="puyo">Puyo</button>
+                <button class="location-btn" data-location="tena">Tena</button>
             </div>
-            
-            <div class="location-selector">
-                <div class="location-toggle">
-                    <button class="location-btn active" data-location="puyo">Puyo</button>
-                    <button class="location-btn" data-location="tena">Tena</button>
+        </div>
+        <div class="location-content active" id="puyo-content">
+            <div class="box-container">
+                <div class="box fade-in">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>Av. Ceslao Marín y Juan de Velazco, Puyo</p>
+                </div>
+                <div class="box fade-in">
+                    <i class="fas fa-phone"></i>
+                    <h3>Teléfono</h3>
+                    <p>098 202 1366</p>
+                </div>
+                <div class="box fade-in">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>eliteacademy2023@outlook.com</p>
                 </div>
             </div>
-            
-            <div class="location-content active" id="puyo-content">
-                <div class="box-container">
-                    <div class="box fade-in">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Dirección</h3>
-                        <p>Av. Ceslao Marín y Juan de Velazco, Puyo</p>
-                    </div>
-                    <div class="box fade-in">
-                        <i class="fas fa-phone"></i>
-                        <h3>Teléfono</h3>
-                        <p>098 202 1366</p>
-                    </div>
-                    <div class="box fade-in">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p>eliteacademy2023@outlook.com</p>
-                    </div>
+        </div>
+        <div class="location-content" id="tena-content">
+            <div class="box-container">
+                <div class="box fade-in">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>GARCIA MORENO, Y, Tena 150101</p>
                 </div>
-            </div>
-            
-            <div class="location-content" id="tena-content">
-                <div class="box-container">
-                    <div class="box fade-in">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Dirección</h3>
-                        <p>GARCIA MORENO, Y, Tena 150101</p>
-                    </div>
-                    <div class="box fade-in">
-                        <i class="fas fa-phone"></i>
-                        <h3>Teléfono</h3>
-                        <p>098 202 1366</p>
-                    </div>
-                    <div class="box fade-in">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p>eliteacademy.edu.ec@gmail.com</p>
-                    </div>
+                <div class="box fade-in">
+                    <i class="fas fa-phone"></i>
+                    <h3>Teléfono</h3>
+                    <p>098 202 1366</p>
+                </div>
+                <div class="box fade-in">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>eliteacademy.edu.ec@gmail.com</p>
                 </div>
             </div>
         </div>
     </section>
-    
     <section class="social-media">
-        <div class="container">
-            <h3>Síguenos en Redes Sociales</h3>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/profile.php?id=100094075730436&locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/oficialeliteacademy" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@eliteacademyoficial?lang=es" target="_blank"><i class="fab fa-tiktok"></i></a>
-            </div>
+        <h3>Síguenos en Redes Sociales</h3>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100094075730436&locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/oficialeliteacademy" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@eliteacademyoficial?lang=es" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
-    
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Elite Academy</h3>
-                <p>Formando líderes para un futuro mejor.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#courses">Cursos</a></li>
-                    <li><a href="#testimonials">Testimonios</a></li>
-                    <li><a href="#inscription">Inscripción</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <p>&copy; 2023 Elite Academy S.A.S. - Todos los derechos reservados</p>
-            </div>
-        </div>
+        <p>&copy; 2023 Elite Academy S.A.S. - Todos los derechos reservados</p>
     </footer>
-    
-    <!-- Modales -->
-    <div id="testimonialModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeTestimonialModal()">&times;</span>
-            <h2>Agregar Testimonio</h2>
-            <form id="testimonialForm">
-                <div class="form-group">
-                    <label for="testimonialName">Nombre Completo *</label>
-                    <input type="text" id="testimonialName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="testimonialCourse">Curso Realizado *</label>
-                    <select id="testimonialCourse" class="form-control" required>
-                        <option value="">Selecciona un curso</option>
-                        <option value="farmacia">Auxiliar de Farmacia</option>
-                        <option value="enfermeria">Auxiliar de Enfermería</option>
-                        <option value="parvularia">Parvularia o Educación Inicial</option>
-                        <option value="belleza">Técnico en Belleza Integral</option>
-                        <option value="contabilidad">Gestión administrativa y contabilidad</option>
-                        <option value="cocteleria">Técnico en Coctelería</option>
-                        <option value="automotriz">Técnico en Mecánica Automotriz</option>
-                        <option value="motos">Técnico en Mecánica de Motos</option>
-                        <option value="fisioterapia">Auxiliar de fisioterapia</option>
-                        <option value="soldadura">Técnico en Soldadura</option>
-                        <option value="electricidad">Técnico en Electricidad</option>
-                        <option value="uñas">Uñas</option>
-                        <option value="forense">Auxiliar Forense</option>
-                        <option value="Celulares">Mantenimiento y reparación de celulares y computadoras</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="testimonialText">Tu Experiencia *</label>
-                    <textarea id="testimonialText" class="form-control" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Calificación (1-5 estrellas)</label>
-                    <div class="star-rating">
-                        <span class="star" onclick="setRating(1)">★</span>
-                        <span class="star" onclick="setRating(2)">★</span>
-                        <span class="star" onclick="setRating(3)">★</span>
-                        <span class="star" onclick="setRating(4)">★</span>
-                        <span class="star" onclick="setRating(5)">★</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="testimonialVideo">Enlace a video (Opcional)</label>
-                    <input type="url" id="testimonialVideo" class="form-control">
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                    <button type="button" class="btn" onclick="closeTestimonialModal()">Cancelar</button>
-                    <button type="submit" class="btn">Enviar Testimonio</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <div id="viewInscriptionModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeViewModal()">&times;</span>
-            <h2>Detalles de Inscripción</h2>
-            <div id="inscriptionDetails"></div>
-        </div>
-    </div>
-    
-    <div id="viewTestimonialModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeTestimonialViewModal()">&times;</span>
-            <h2>Detalles de Testimonio</h2>
-            <div id="testimonialDetails"></div>
-        </div>
-    </div>
-    
-    <div id="adminPanel" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeAdminPanel()">&times;</span>
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-content">
+            <span class="close-admin" onclick="closeAdminPanel()">&times;</span>
             <h2>Panel de Administración</h2>
-            
-            <div id="adminLogin">
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="inscriptions">Inscripciones</button>
+                <button class="admin-tab-btn" data-tab="testimonials">Testimonios</button>
+            </div>
+            <div id="adminLogin" style="display: block;">
+                <h3>Iniciar Sesión</h3>
                 <div class="form-group">
                     <label for="adminPassword">Contraseña:</label>
-                    <input type="password" id="adminPassword" class="form-control">
+                    <input type="password" id="adminPassword" placeholder="Ingresa la contraseña de administración">
                 </div>
-                <button class="btn" onclick="loginAdmin()">Ingresar</button>
+                <button class="btn" onclick="loginAdmin()">Acceder</button>
             </div>
-            
             <div id="adminContent" style="display: none;">
-                <div class="admin-tabs">
-                    <button class="admin-tab-btn active" data-tab="inscriptions">Inscripciones</button>
-                    <button class="admin-tab-btn" data-tab="testimonials">Testimonios</button>
-                </div>
-                
                 <div id="inscriptionsTab" class="admin-tab-content active">
-                    <button class="btn" onclick="exportToCSV()" style="margin-bottom: 20px;">Exportar a CSV</button>
-                    <button class="btn" onclick="clearAllInscriptions()" style="margin-bottom: 20px; background: var(--accent-red);">Eliminar Todos</button>
-                    
+                    <div class="admin-actions">
+                        <button class="btn" onclick="exportToCSV()">Exportar a CSV</button>
+                        <button class="btn" onclick="clearAllInscriptions()" style="background: #e74c3c;">Eliminar Todas</button>
+                    </div>
                     <table class="admin-table">
                         <thead>
                             <tr>
@@ -491,14 +856,15 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="inscriptionsTable"></tbody>
+                        <tbody id="inscriptionsTable">
+                        </tbody>
                     </table>
                 </div>
-                
                 <div id="testimonialsTab" class="admin-tab-content">
-                    <button class="btn" onclick="exportTestimonialsToCSV()" style="margin-bottom: 20px;">Exportar a CSV</button>
-                    <button class="btn" onclick="clearAllTestimonials()" style="margin-bottom: 20px; background: var(--accent-red);">Eliminar Todos</button>
-                    
+                    <div class="admin-actions">
+                        <button class="btn" onclick="exportTestimonialsToCSV()">Exportar a CSV</button>
+                        <button class="btn" onclick="clearAllTestimonials()" style="background: #e74c3c;">Eliminar Todos</button>
+                    </div>
                     <table class="admin-table">
                         <thead>
                             <tr>
@@ -509,13 +875,83 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="testimonialsTable"></tbody>
+                        <tbody id="testimonialsTable">
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    
+    <div id="testimonialModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTestimonialModal()">&times;</span>
+            <h2>Agregar Testimonio</h2>
+            <form id="testimonialForm">
+                <div class="form-group">
+                    <label for="testimonialName">Nombre Completo *</label>
+                    <input type="text" id="testimonialName" required>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialCourse">Curso Realizado *</label>
+                    <select id="testimonialCourse" required>
+                        <option value="">Selecciona un curso</option>
+                        <option value="farmacia">Farmacia</option>
+                        <option value="enfermeria">Enfermería</option>
+                        <option value="parvularia">Parvularia</option>
+                        <option value="belleza">Belleza Integral</option>
+                        <option value="contabilidad">Gestión administrativa y contabilidad</option>
+                        <option value="cocteleria">Coctelería</option>
+                        <option value="automotriz">Mecánica Automotriz</option>
+                        <option value="motos">Mecánica de Motos</option>
+                        <option value="fisioterapia">Auxiliar de fisioterapia</option>
+                        <option value="soldadura">Soldadura</option>
+                        <option value="electricidad">Electricidad</option>
+                        <option value="uñas">Uñas</option>
+                        <option value="forense">Auxiliar Forense</option>
+                        <option value="Celulares">Mantenimiento y reparación de celulares y computadoras</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialText">Tu Experiencia *</label>
+                    <textarea id="testimonialText" rows="4" placeholder="Comparte tu experiencia en el curso..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialRating">Calificación (1-5 estrellas)</label>
+                    <div class="rating">
+                        <span class="star" onclick="setRating(1)">★</span>
+                        <span class="star" onclick="setRating(2)">★</span>
+                        <span class="star" onclick="setRating(3)">★</span>
+                        <span class="star" onclick="setRating(4)">★</span>
+                        <span class="star" onclick="setRating(5)">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialVideo">Enlace a video (Opcional)</label>
+                    <input type="url" id="testimonialVideo" placeholder="https://...">
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                    <button type="button" class="btn" onclick="closeTestimonialModal()">Cancelar</button>
+                    <button type="submit" class="btn">Enviar Testimonio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="viewInscriptionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeViewModal()">&times;</span>
+            <h2>Detalles de Inscripción</h2>
+            <div id="inscriptionDetails">
+            </div>
+        </div>
+    </div>
+    <div id="viewTestimonialModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTestimonialViewModal()">&times;</span>
+            <h2>Detalles de Testimonio</h2>
+            <div id="testimonialDetails">
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
