@@ -17,15 +17,10 @@ const courseNames = {
     "barberia": "Barber Shop Profesional",
     "podologia": "Auxiliar de Podología"
 };
-
-// Inicializar almacenamiento
 let inscriptions = JSON.parse(localStorage.getItem('inscriptions')) || [];
 let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
 let currentRating = 0;
-
-// ===== FUNCIONES DE INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Cerrar todos los cursos al cargar en móviles
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 if (isMobile) {
     document.querySelectorAll('.course-body').forEach(body => {
@@ -43,26 +38,12 @@ if (isMobile) {
         const preloader = document.querySelector('.preloader');
         if (preloader) preloader.classList.add('hidden');
     }, 1500);
-    
-    // Inicializar animaciones
     initAnimations();
-    
-    // Inicializar menú móvil
     initMobileMenu();
-    
-    // Inicializar formularios
     initForms();
-    
-    // Inicializar testimonios
     displayTestimonials();
-    
-    // Inicializar tabs de administración
     initAdminTabs();
-    
-    // Inicializar selector de ubicación
     initLocationSelector();
-    
-    // Inicializar cierre de modales al hacer clic fuera
     initModalClose();
 });
 
@@ -75,10 +56,7 @@ function initModalClose() {
         });
     });
 }
-
-// ===== ANIMACIONES Y EFECTOS VISUALES =====
 function initAnimations() {
-    // Observer para animaciones de aparición
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -92,13 +70,9 @@ function initAnimations() {
             }
         });
     }, observerOptions);
-
-    // Observar secciones y elementos con clase fade-in
     document.querySelectorAll('section, .fade-in').forEach(element => {
         observer.observe(element);
     });
-
-    // Efecto de header al hacer scroll
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
         if (header) {
@@ -110,8 +84,6 @@ function initAnimations() {
         }
     });
 }
-
-// ===== MENÚ MÓVIL =====
 function initMobileMenu() {
     const menuBtn = document.querySelector('.fa-bars');
     if (menuBtn) {
@@ -122,8 +94,6 @@ function initMobileMenu() {
             }
         });
     }
-    
-    // Cerrar menú al hacer clic en enlaces
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.addEventListener('click', () => {
             const navMenu = document.querySelector('nav ul');
@@ -133,20 +103,14 @@ function initMobileMenu() {
         });
     });
 }
-
-// ===== FUNCIONALIDAD DE CURSOS =====
-// ===== FUNCIONALIDAD DE CURSOS =====
 function toggleCourse(element) {
-    // Verificar si estamos en móvil (usando CSS media query)
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     
     if (isMobile) {
-        // En móvil, permitir que se cierren los cursos manualmente
         const courseBody = element.nextElementSibling;
         const icon = element.querySelector('.fa-chevron-down, .fa-chevron-up');
         
         if (courseBody.classList.contains('expanded')) {
-            // Cerrar el curso
             courseBody.classList.remove('expanded');
             courseBody.style.maxHeight = '0';
             courseBody.style.padding = '0 25px';
@@ -155,7 +119,6 @@ function toggleCourse(element) {
                 icon.classList.add('fa-chevron-down');
             }
         } else {
-            // Abrir el curso
             courseBody.classList.add('expanded');
             courseBody.style.maxHeight = '1000px';
             courseBody.style.padding = '20px 25px';
@@ -165,11 +128,8 @@ function toggleCourse(element) {
             }
         }
     } else {
-        // Comportamiento normal para desktop/tablet
         const courseBody = element.nextElementSibling;
         const icon = element.querySelector('.fa-chevron-down, .fa-chevron-up');
-        
-        // Cerrar todos los demás cursos abiertos
         document.querySelectorAll('.course-body.expanded').forEach(expandedBody => {
             if (expandedBody !== courseBody) {
                 expandedBody.classList.remove('expanded');
@@ -183,8 +143,6 @@ function toggleCourse(element) {
                 }
             }
         });
-        
-        // Alternar el curso actual
         if (courseBody.classList.contains('expanded')) {
             courseBody.classList.remove('expanded');
             courseBody.style.maxHeight = '0';
@@ -204,26 +162,17 @@ function toggleCourse(element) {
         }
     }
 }
-// ===== SELECTOR DE UBICACIÓN =====
 function initLocationSelector() {
     document.querySelectorAll('.location-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const location = this.getAttribute('data-location');
-            
-            // Quitar clase active de todos los botones
             document.querySelectorAll('.location-btn').forEach(b => {
                 b.classList.remove('active');
             });
-            
-            // Añadir clase active al botón clickeado
             this.classList.add('active');
-            
-            // Ocultar todos los contenidos de ubicación
             document.querySelectorAll('.location-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
-            // Mostrar el contenido correspondiente
             const contentToShow = document.getElementById(`${location}-content`);
             if (contentToShow) {
                 contentToShow.classList.add('active');
@@ -231,8 +180,6 @@ function initLocationSelector() {
         });
     });
 }
-
-// ===== SISTEMA DE TESTIMONIOS =====
 function openTestimonialModal() {
     document.getElementById('testimonialModal').style.display = 'flex';
 }
@@ -302,16 +249,11 @@ function displayTestimonials() {
         testimonialGrid.innerHTML += testimonialHTML;
     });
 }
-
-// ===== FORMULARIOS =====
 function initForms() {
-    // Formulario de inscripción
     const inscriptionForm = document.getElementById('inscriptionForm');
     if (inscriptionForm) {
         inscriptionForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validar campos requeridos
             const requiredFields = this.querySelectorAll('[required]');
             let isValid = true;
             
@@ -328,8 +270,6 @@ function initForms() {
                 alert('Por favor, completa todos los campos obligatorios.');
                 return;
             }
-            
-            // Crear objeto de inscripción
             const inscription = {
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
@@ -345,12 +285,8 @@ function initForms() {
                 message: document.getElementById('message').value,
                 date: new Date().toISOString()
             };
-            
-            // Guardar inscripción
             inscriptions.push(inscription);
             localStorage.setItem('inscriptions', JSON.stringify(inscriptions));
-            
-            // Mensaje de éxito y reset
             alert('¡Inscripción enviada con éxito! Nos comunicaremos contigo pronto.');
             this.reset();
             
