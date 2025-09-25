@@ -13,34 +13,47 @@
     <div class="preloader">
         <div class="loader"></div>
     </div>
-    <div class="admin-access" onclick="openAdminPanel()">
+    
+    <div class="admin-access" id="adminButton">
         <i class="fas fa-lock"></i>
     </div>
+    
     <a href="https://wa.me/c/593960755054" class="floating-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
     <header id="header">
         <div class="logo-container">
-            <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
-            <a href="#" class="logo-text">Elite Academy</a>
+            <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy" class="header-logo">
+            <a href="#home" class="logo-text">Elite Academy</a>
         </div>
         <nav class="navbar">
-            <ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="active">Inicio</a></li>
                 <li><a href="#about">Nosotros</a></li>
-                <li><a href="#courses">Cursos</a></li>
+                <li><a href="#courses">Programas de estudio</a></li>
                 <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#certificacion">Certificaciones</a></li>
+                <li><a href="#validacion">Validación</a></li>
                 <li><a href="#inscription">Inscripción</a></li>
                 <li><a href="#contact">Contactos</a></li>
             </ul>
-            <div class="fas fa-bars"></div>
         </nav>
     </header>
+
     <section class="home" id="home">
         <div class="home-content">
+            <div class="logo-home">
+                <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
+            </div>
             <h1 class="fade-in">Formación de <span style="color: var(--accent);">Élite</span> para el Futuro</h1>
             <p class="fade-in">Elite Academy es una institución privada dedicada a la formación de profesionales en diversas áreas técnicas y de desarrollo humano. Nuestros programas están diseñados para brindar conocimientos prácticos y competencias laborales de alto nivel.</p>
-            <a href="#inscription" class="cta-button">¡Inscríbete Ahora!</a>
+            <a href="#inscription" class="cta-button btn-inscribirse">¡Inscríbete Ahora!</a>
             
             <div class="home-stats">
                 <div class="stat-item">
@@ -58,6 +71,7 @@
             </div>
         </div>
     </section>
+
     <section class="product" id="product">
         <h1 class="heading">Nuestros Objetivos</h1>
         <p class="section-subtitle">Buscamos formar profesionales competentes con los más altos estándares de calidad educativa</p>
@@ -80,6 +94,7 @@
             </div>
         </div>
     </section>
+
     <section class="about" id="about">
         <h1 class="heading">Nosotros</h1>
         <p class="section-subtitle">Conoce más sobre nuestra institución y nuestra misión educativa</p>
@@ -89,16 +104,22 @@
                 <img src="images/nosotros.jpg" alt="Elite Academy" loading="lazy">
             </div>
             <div class="content fade-in">
+                <div class="logo-section">
+                    <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
+                </div>
                 <h3 class="title">Quiénes somos</h3>
                 <p class="justified-text">Elite Academy S.A.S. es una institución reconocida legalmente, dedicada a capacitar personal en distintas áreas técnicas y humanas, con énfasis en competencias prácticas y preparación profesional.</p>
                 <p class="justified-text">Nuestro objetivo es formar profesionales competentes, responsables y listos para enfrentar los retos laborales actuales. Contamos con instalaciones modernas, equipos de última generación y un equipo docente altamente calificado.</p>
             </div>
         </div>
     </section>
+
     <section id="courses">
-        <h1 class="heading">Nuestros Cursos</h1>
+        <h1 class="heading">Nuestros Programas de Estudio</h1>
         <p class="section-subtitle">Formación profesional con certificación avalada a nivel nacional e internacional</p>
         <div class="course-grid">
+            
+            <!-- Curso 1: Auxiliar de Farmacia -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/farmacia.jpg" alt="Farmacia" loading="lazy">
@@ -117,13 +138,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Universitaria</span>
-                        </div>
+                        <span>Certificación Universitaria</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con practicas</span>
-                        </div>
+                        <span>Certificación con practicas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -137,10 +154,12 @@
                     </div>
                     <div class="course-info">
                         <p>Curso completo de Auxiliar de Farmacia que te capacita para trabajar en el sector farmacéutico. Aprende sobre medicamentos, dosificación, dispensación y atención al cliente.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 2: Auxiliar de Enfermería -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/enfermeria.jpg" alt="Enfermería" loading="lazy">
@@ -159,13 +178,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Universitaria</span>
-                        </div>
+                        <span>Certificación Universitaria</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con practicas</span>
-                        </div>
+                        <span>Certificación con practicas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -179,10 +194,12 @@
                     </div>
                     <div class="course-info">
                         <p>Formación especializada en enfermería para trabajar en el sector salud. Aprenderás técnicas de cuidado paciente, primeros auxilios, administración de medicamentos y más.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 3: Parvularia o Educación Inicial -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/parvularia.jpg" alt="Parvularia" loading="lazy">
@@ -201,13 +218,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>+Visualización en la senescyt</span>
-                        </div>
+                        <span>+Visualización en la senescyt</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Validación internacional</span>
-                        </div>
+                        <span>Validación internacional</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -221,10 +234,12 @@
                     </div>
                     <div class="course-info">
                         <p>Formación especializada en educación infantil para trabajar en guarderías, centros de desarrollo infantil y educación inicial.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 4: Técnico en Belleza Integral -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/belleza.jpg" alt="Belleza Integral" loading="lazy">
@@ -244,13 +259,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación del ministerio del trabajo y ministerio de educación</span>
-                        </div>
-                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Validación internacional</span>
-                        </div>
+                        <span>Certificación del ministerio del trabajo y ministerio de educación</span>
+                        <i class="fas fa-certificate"></i>
+                        <span>Validación internacional</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -264,10 +275,12 @@
                     </div>
                     <div class="course-info">
                         <p>Aprende técnicas de estética, maquillaje, cuidado de la piel, manicure, pedicure y más. Conviértete en un profesional de la belleza integral.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 5: Gestión administrativa y contabilidad -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/contabilidad.jpg" alt="Contabilidad" loading="lazy">
@@ -286,13 +299,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación ministerio de trabajo</span>
-                        </div>
+                        <span>Certificación ministerio de trabajo</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificado de practicas y visualización en la senescyt</span>
-                        </div>
+                        <span>Certificado de practicas y visualización en la senescyt</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -306,10 +315,12 @@
                     </div>
                     <div class="course-info">
                         <p>Domina los principios contables, elaboración de estados financieros, manejo de impuestos y software contable. Ideal para gestión administrativa.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 6: Técnico en Coctelería -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/cocteleria.jpg" alt="Coctelería" loading="lazy">
@@ -328,9 +339,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Ministerial con Validación internacional</span>
-                        </div>
+                        <span>Certificación Ministerial con Validación internacional</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -344,10 +353,12 @@
                     </div>
                     <div class="course-info">
                         <p>Aprende a preparar los mejores cócteles clásicos y modernos, técnicas de mixología, presentación y servicio al cliente en bares y restaurantes.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 7: Técnico en Mecánica Automotriz -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/mecanica_automotriz.jpg" alt="Mecánica Automotriz" loading="lazy">
@@ -366,9 +377,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -382,10 +391,12 @@
                     </div>
                     <div class="course-info">
                         <p>Curso completo de mecánica automotriz que cubre motores, sistemas eléctricos, frenos, suspensión y diagnóstico de fallas.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 8: Técnico en Mecánica de Motos -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/mecanica_motos.jpg" alt="Mecánica de Motos" loading="lazy">
@@ -404,9 +415,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Ministerial</span>
-                        </div>
+                        <span>Certificación Ministerial</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -420,10 +429,12 @@
                     </div>
                     <div class="course-info">
                         <p>Especialízate en la reparación y mantenimiento de motocicletas. Aprende sobre motores, transmisión, sistemas eléctricos y más.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 9: Auxiliar de Fisioterapia -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/fisioterapia.jpg" alt="Fisioterapia y Masajes" loading="lazy">
@@ -442,13 +453,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Universitaria</span>
-                        </div>
+                        <span>Certificación Universitaria</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -462,10 +469,12 @@
                     </div>
                     <div class="course-info">
                         <p>Aprende masoterapia, rehabilitación, quiropraxia y fisioterapia general y deportiva para transformar vidas con tus manos.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 10: Técnico en Soldadura -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/soldadura.jpg" alt="Soldadura" loading="lazy">
@@ -484,9 +493,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación del ministerio de trabajo con visualización de senescyt</span>
-                        </div>
+                        <span>Certificación del ministerio de trabajo con visualización de senescyt</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -500,10 +507,12 @@
                     </div>
                     <div class="course-info">
                         <p>Domina las técnicas de soldadura MIG, TIG, arco eléctrico y oxiacetilénica. Prepara para trabajar en construcción, industria metalmecánica y más.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 11: Técnico en Electricidad -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/electri.jpg" alt="Electricidad" loading="lazy">
@@ -522,9 +531,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Ministerial</span>
-                        </div>
+                        <span>Certificación Ministerial</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -538,10 +545,12 @@
                     </div>
                     <div class="course-info">
                         <p>Aprende instalaciones eléctricas residenciales e industriales, lectura de planos, normas de seguridad y mantenimiento eléctrico.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 12: Técnico en Uñas -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/uñitas.jpg" alt="Uñas" loading="lazy">
@@ -560,9 +569,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -576,10 +583,12 @@
                     </div>
                     <div class="course-info">
                         <p>Especialízate en técnicas de manicure, pedicure, uñas acrílicas, esculpidas, gel y esmaltado semipermanente.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 13: Auxiliar Forense -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/forense.jpg" alt="Ciencias Forenses" loading="lazy">
@@ -598,9 +607,7 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -614,10 +621,12 @@
                     </div>
                     <div class="course-info">
                         <p>Introducción a las ciencias forenses: criminalística, dactiloscopia, balística, hematología y técnicas de investigación criminal.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 14: Mantenimiento de celulares y computadoras -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/celulares.jpg" alt="Mantenimiento Celulares y Computadoras" loading="lazy">
@@ -650,10 +659,12 @@
                     </div>
                     <div class="course-info">
                         <p>Introducción al mantenimiento de celulares y computadoras: diagnóstico y reparación de hardware, software, sistemas operativos, redes básicas y técnicas de optimización tecnológica.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 15: Barber Shop Profesional -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/barber.jpg" alt="Barber Shop" loading="lazy">
@@ -672,13 +683,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Ministerial</span>
-                        </div>
+                        <span>Certificación Ministerial</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -692,10 +699,12 @@
                     </div>
                     <div class="course-info">
                         <p>Aprende las técnicas más modernas de barbería profesional: cortes de cabello, diseño de barba, rasurado tradicional, tratamientos capilares y atención al cliente.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Curso 16: Auxiliar de Podología -->
             <div class="course-card fade-in">
                 <div class="course-image">
                     <img src="images/podologia.jpg" alt="Podología" loading="lazy">
@@ -714,13 +723,9 @@
                     </div>
                     <div class="course-detail">
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación Universitaria</span>
-                        </div>
+                        <span>Certificación Universitaria</span>
                         <i class="fas fa-certificate"></i>
-                        <div>
-                            <span>Certificación con Prácticas</span>
-                        </div>
+                        <span>Certificación con Prácticas</span>
                     </div>
                     <div class="course-pricing">
                         <div class="price-column">
@@ -734,15 +739,17 @@
                     </div>
                     <div class="course-info">
                         <p>Formación especializada en el cuidado de los pies: anatomía podológica, tratamientos de uñas, quiropodia, ortopodología y atención a pacientes con afecciones podológicas.</p>
-                        <a href="#inscription" class="btn">Inscribirse ahora</a>
+                        <a href="#inscription" class="btn btn-inscribirse">Inscribirse ahora</a>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="btn-center">
-            <a href="#contact" class="btn">Más Información</a>
+            <a href="#contact" class="btn btn-info">Más Información</a>
         </div>
     </section>
+
     <section class="testimonials" id="testimonials">
         <h1 class="heading">Testimonios</h1>
         <p class="section-subtitle">Conoce las experiencias de nuestros estudiantes graduados</p>
@@ -751,10 +758,106 @@
             </div>
             
             <div class="add-testimonial">
-                <a href="#" class="btn" onclick="openTestimonialModal()">Agregar tu Testimonio</a>
+                <a href="#" class="btn btn-testimonio" id="openTestimonialBtn">
+                    <i class="fas fa-plus"></i> Agregar tu Testimonio
+                </a>
             </div>
         </div>
     </section>
+
+    <!-- ===== NUEVA SECCIÓN: VALIDACIÓN DE CERTIFICADOS INTERNACIONALES ===== -->
+    <section class="certificate-validation" id="validacion">
+        <h1 class="heading">Validación de Certificados</h1>
+        <p class="section-subtitle">Verifica la autenticidad de tus certificados en las plataformas oficiales</p>
+        
+        <div class="validation-grid">
+            <div class="validation-card fade-in">
+                <div class="validation-icon">
+                    <img src="images/1.png" alt="MDT Perfil OC" loading="lazy">
+                </div>
+                <h3>Certificados MDT-Perfil-OC</h3>
+                <p>Verifica tus certificados en el portal oficial del Ministerio del Trabajo</p>
+                <a href="https://portal.trabajo.gob.ec/setec-portal-web/pages/personasCapacitadasOperadores.jsf" 
+                   class="btn btn-validation" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Validar Certificado
+                </a>
+            </div>
+            
+            <div class="validation-card fade-in">
+                <div class="validation-icon">
+                    <img src="images/1.png" alt="MDT Perfil OEC" loading="lazy">
+                </div>
+                <h3>Certificados MDT-Perfil-OEC</h3>
+                <p>Consulta la legitimidad de tu certificación en el sistema oficial</p>
+                <a href="https://portal.trabajo.gob.ec/setec-portal-web/pages/legitimidadCertificacion.jsf" 
+                   class="btn btn-validation" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Validar Certificado
+                </a>
+            </div>
+            
+            <div class="validation-card fade-in">
+                <div class="validation-icon">
+                    <img src="images/logo-senescyt.jpg" alt="SENESCYT" loading="lazy">
+                </div>
+                <h3>SENESCYT</h3>
+                <p>Consulta tus títulos y certificados en el sistema de educación superior</p>
+                <a href="https://www.senescyt.gob.ec/consulta-titulos-web/faces/vista/consulta/consulta.xhtml;jsessionid=rzfmtEdly1Rf-hvcUfbt267uRVBjMdc6MD41QyqF.srvprouioct26" 
+                   class="btn btn-validation" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Validar Certificado
+                </a>
+            </div>
+            
+            <div class="validation-card fade-in">
+                <div class="validation-icon">
+                    <img src="images/LOGO-ULEAM-300x216.png" alt="ULEAM" loading="lazy">
+                </div>
+                <h3>ULEAM</h3>
+                <p>Certificaciones en convenio con la Universidad Laica Eloy Alfaro de Manabí</p>
+                <a href="https://uleam-epec.gob.ec/certificaciones-elite-academy" 
+                   class="btn btn-validation" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Validar Certificado
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN: CERTIFICACIONES ELITE ACADEMY ===== -->
+    <section class="elite-certifications" id="certificacion">
+        <h1 class="heading">Certificaciones Elite Academy</h1>
+        <p class="section-subtitle">Consulta tu certificado ingresando tu número de cédula</p>
+        
+        <div class="certification-container">
+            <div class="certification-logo">
+                <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
+                <h3>Sistema de Verificación de Certificados</h3>
+            </div>
+            
+            <div class="certification-search">
+                <div class="search-box">
+                    <input type="text" id="cedulaSearch" placeholder="Ingresa tu número de cédula" maxlength="10">
+                    <button id="searchCertificateBtn" class="btn btn-search">
+                        <i class="fas fa-search"></i> Buscar Certificado
+                    </button>
+                </div>
+                <p class="search-note">Ejemplo: 1234567890 (sin guiones ni espacios)</p>
+            </div>
+            
+            <div class="certification-results" id="certificationResults">
+                <div class="results-placeholder">
+                    <i class="fas fa-certificate"></i>
+                    <p>Ingresa tu número de cédula para consultar tu certificado</p>
+                </div>
+            </div>
+            
+            <div class="certification-info">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Si tienes problemas para encontrar tu certificado, contacta con nuestra administración</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="inscription" id="inscription">
         <h1 class="heading">Formulario de Inscripción</h1>
         <p class="section-subtitle">Completa el formulario para reservar tu cupo en nuestros cursos</p>
@@ -814,7 +917,7 @@
                 <div class="form-group">
                     <label for="course">Programa de Estudio *</label>
                     <select id="course" name="course" required>
-                        <option value="">Selecciona un curso</option>
+                        <option value="">Selecciona un programa</option>
                         <option value="farmacia">Auxiliar de Farmacia</option>
                         <option value="enfermeria">Auxiliar de Enfermería</option>
                         <option value="parvularia">Parvularia o Educación Inicial</option>
@@ -838,20 +941,23 @@
                     <textarea id="message" name="message" rows="4"></textarea>
                 </div>
                 <div class="btn-center">
-                    <button type="submit" class="btn">Enviar Inscripción</button>
+                    <button type="submit" class="btn btn-inscribirse">Enviar Inscripción</button>
                 </div>
             </form>
         </div>
     </section>
+
     <section class="contact" id="contact">
         <h1 class="heading">Contactos</h1>
         <p class="section-subtitle">Estamos aquí para responder todas tus preguntas</p>
+        
         <div class="location-selector">
             <div class="location-toggle">
-                <button class="location-btn active" data-location="puyo">Puyo</button>
-                <button class="location-btn" data-location="tena">Tena</button>
+                <button class="location-btn active" id="btn-puyo" data-location="puyo">Puyo</button>
+                <button class="location-btn" id="btn-tena" data-location="tena">Tena</button>
             </div>
         </div>
+        
         <div class="location-content active" id="puyo-content">
             <div class="box-container">
                 <div class="box fade-in">
@@ -871,6 +977,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="location-content" id="tena-content">
             <div class="box-container">
                 <div class="box fade-in">
@@ -886,43 +993,64 @@
                 <div class="box fade-in">
                     <i class="fas fa-envelope"></i>
                     <h3>Email</h3>
-                    <p>eliteacademy.edu.ec@gmail.com</p>
+                    <p>eliteacademy2023@outlook.com</p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="social-media">
-        <h3>Síguenos en Redes Sociales</h3>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=100094075730436&locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/oficialeliteacademy" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@eliteacademyoficial?lang=es" target="_blank"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </section>
+
     <footer>
-        <p>&copy; 2023 Elite Academy S.A.S. - Todos los derechos reservados</p>
-    </footer>
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
-            <span class="close-admin" onclick="closeAdminPanel()">&times;</span>
-            <h2>Panel de Administración</h2>
-            <div class="admin-tabs">
-                <button class="admin-tab-btn active" data-tab="inscriptions">Inscripciones</button>
-                <button class="admin-tab-btn" data-tab="testimonials">Testimonios</button>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
+                <span>Elite Academy</span>
             </div>
-            <div id="adminLogin" style="display: block;">
-                <h3>Iniciar Sesión</h3>
+            
+            <div class="social-media">
+                <h3>Síguenos en Redes Sociales</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=100094075730436&locale=es_LA" target="_blank" class="red-social facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/oficialeliteacademy" target="_blank" class="red-social instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@eliteacademyoficial?lang=es" target="_blank" class="red-social tiktok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <p>&copy; 2023 Elite Academy S.A.S. - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Administrador con Contraseña -->
+    <div id="modal-admin" class="modal admin-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAdmin">&times;</span>
+            <div id="adminLogin">
+                <h2>Acceso de Administrador</h2>
                 <div class="form-group">
                     <label for="adminPassword">Contraseña:</label>
-                    <input type="password" id="adminPassword" placeholder="Ingresa la contraseña de administración">
+                    <input type="password" id="adminPassword" placeholder="Ingresa la contraseña">
                 </div>
-                <button class="btn" onclick="loginAdmin()">Acceder</button>
+                <button class="btn btn-admin" id="adminLoginBtn">Acceder</button>
             </div>
-            <div id="adminContent" style="display: none;">
+            
+            <div id="adminPanel" style="display: none;">
+                <h2>Panel de Administración</h2>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="inscriptionsTab">Inscripciones</button>
+                    <button class="tab-btn" data-tab="testimonialsTab">Testimonios</button>
+                    <button class="tab-btn" data-tab="certificationsTab">Certificaciones</button>
+                </div>
+                
                 <div id="inscriptionsTab" class="admin-tab-content active">
                     <div class="admin-actions">
-                        <button class="btn" onclick="exportToCSV()">Exportar a CSV</button>
-                        <button class="btn" onclick="clearAllInscriptions()" style="background: #e74c3c;">Eliminar Todas</button>
+                        <button class="btn btn-admin" id="exportInscriptionsBtn">Exportar a CSV</button>
+                        <button class="btn btn-admin btn-danger" id="clearInscriptionsBtn">Eliminar Todas</button>
                     </div>
                     <table class="admin-table">
                         <thead>
@@ -930,7 +1058,7 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
-                                <th>Curso</th>
+                                <th>Programa</th>
                                 <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
@@ -939,16 +1067,17 @@
                         </tbody>
                     </table>
                 </div>
+                
                 <div id="testimonialsTab" class="admin-tab-content">
                     <div class="admin-actions">
-                        <button class="btn" onclick="exportTestimonialsToCSV()">Exportar a CSV</button>
-                        <button class="btn" onclick="clearAllTestimonials()" style="background: #e74c3c;">Eliminar Todos</button>
+                        <button class="btn btn-admin" id="exportTestimonialsBtn">Exportar a CSV</button>
+                        <button class="btn btn-admin btn-danger" id="clearTestimonialsBtn">Eliminar Todos</button>
                     </div>
                     <table class="admin-table">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Curso</th>
+                                <th>Programa</th>
                                 <th>Calificación</th>
                                 <th>Fecha</th>
                                 <th>Acciones</th>
@@ -958,24 +1087,56 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div id="adminContent" style="display: none;">
+                
+                <div id="certificationsTab" class="admin-tab-content">
+                    <div class="admin-actions">
+                        <button class="btn btn-admin" id="uploadExcelBtn">Subir Excel de Certificaciones</button>
+                        <button class="btn btn-admin" id="exportCertificationsBtn">Exportar Certificaciones</button>
+                    </div>
+                    <div class="excel-upload-area" id="excelUploadArea">
+                        <i class="fas fa-file-excel"></i>
+                        <p>Arrastra tu archivo Excel aquí o haz clic para seleccionar</p>
+                        <input type="file" id="excelFileInput" accept=".xlsx, .xls" style="display: none;">
+                        <small>Formato requerido: Cédula | Nombre | Programa | Fecha de emisión | Tiempo de validez</small>
+                    </div>
+                    <div id="certificationsTableContainer">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Cédula</th>
+                                    <th>Nombre</th>
+                                    <th>Programa</th>
+                                    <th>Fecha emisión</th>
+                                    <th>Tiempo de validez</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="certificationsTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div id="testimonialModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeTestimonialModal()">&times;</span>
-            <h2>Agregar Testimonio</h2>
+
+    <!-- Modal de Testimonios Centrado -->
+    <div id="testimonialModal" class="modal">
+        <div class="modal-content testimonial-modal-content">
+            <span class="close-modal" id="closeTestimonial">&times;</span>
+            <h2>Comparte tu Experiencia</h2>
+            
             <form id="testimonialForm">
                 <div class="form-group">
                     <label for="testimonialName">Nombre Completo *</label>
                     <input type="text" id="testimonialName" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="testimonialCourse">Curso Realizado *</label>
+                    <label for="testimonialCourse">Programa Realizado *</label>
                     <select id="testimonialCourse" required>
-                        <option value="">Selecciona un curso</option>
+                        <option value="">Selecciona un programa</option>
                         <option value="farmacia">Auxiliar de Farmacia</option>
                         <option value="enfermeria">Auxiliar de Enfermería</option>
                         <option value="parvularia">Parvularia o Educación Inicial</option>
@@ -994,50 +1155,91 @@
                         <option value="podologia">Auxiliar de Podología</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
-                    <label for="testimonialText">Tu Experiencia *</label>
-                    <textarea id="testimonialText" rows="4" placeholder="Comparte tu experiencia en el curso..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="testimonialRating">Calificación (1-5 estrellas)</label>
-                    <div class="rating">
-                        <span class="star" onclick="setRating(1)">★</span>
-                        <span class="star" onclick="setRating(2)">★</span>
-                        <span class="star" onclick="setRating(3)">★</span>
-                        <span class="star" onclick="setRating(4)">★</span>
-                        <span class="star" onclick="setRating(5)">★</span>
+                    <label>Calificación (1-5 estrellas) *</label>
+                    <div class="rating" id="testimonialRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
                     </div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="testimonialVideo">Enlace de YouTube (Opcional)</label>
-                    <input type="url" id="testimonialVideo" 
-                           placeholder="https://youtube.com/embed/..." 
-                           pattern="https://.*youtube\.com/embed/.*">
-                    <small>Ejemplo: https://youtube.com/embed/ABCD1234</small>
+                    <label for="testimonialText">Tu Experiencia *</label>
+                    <textarea id="testimonialText" rows="4" placeholder="Comparte tu experiencia en el programa..." required></textarea>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                    <button type="button" class="btn" onclick="closeTestimonialModal()">Cancelar</button>
-                    <button type="submit" class="btn">Enviar Testimonio</button>
+                
+                <div class="form-group">
+                    <label for="testimonialMedia">Foto o Video (Opcional)</label>
+                    <input type="file" id="testimonialMedia" accept="image/*,video/*">
+                    <small>Puedes subir una foto o video de tu experiencia (máx. 10MB)</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel" id="cancelTestimonialBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-testimonio">Enviar Testimonio</button>
                 </div>
             </form>
         </div>
     </div>
-    <div id="viewInscriptionModal" class="modal" style="display: none;">
+    <div id="viewInscriptionModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeViewModal()">&times;</span>
+            <span class="close-modal" id="closeViewModal">&times;</span>
             <h2>Detalles de Inscripción</h2>
-            <div id="inscriptionDetails">
-            </div>
+            <div id="inscriptionDetails"></div>
         </div>
     </div>
-    <div id="viewTestimonialModal" class="modal" style="display: none;">
+
+    <div id="viewTestimonialModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeTestimonialViewModal()">&times;</span>
+            <span class="close-modal" id="closeTestimonialViewModal">&times;</span>
             <h2>Detalles de Testimonio</h2>
-            <div id="testimonialDetails">
+            <div id="testimonialDetails"></div>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar certificado -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content certificate-modal-content">
+            <span class="close-modal" id="closeCertificateModal">&times;</span>
+            <div id="certificateContent">
+                <div class="certificate-header">
+                    <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy">
+                    <h2>Certificado de Finalización</h2>
+                </div>
+                <div class="certificate-body">
+                    <p>Se otorga el presente certificado a:</p>
+                    <h3 id="certificateStudentName">[Nombre del Estudiante]</h3>
+                    <p>Por haber completado satisfactoriamente el programa de:</p>
+                    <h4 id="certificateProgram">[Nombre del Programa]</h4>
+                    <p>Con cédula de identidad: <strong id="certificateCedula">[Cédula]</strong></p>
+                    <p>Fecha de emisión: <strong id="certificateIssueDate">[Fecha]</strong></p>
+                    <p>Tiempo de validez: <strong id="certificateExpiryDate">[Fecha]</strong></p>
+                    <div class="certificate-signatures">
+                        <div class="signature">
+                            <p>_________________________</p>
+                            <p>Director Académico</p>
+                            <p>Elite Academy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="certificate-actions">
+                <button class="btn btn-primary" id="printCertificateBtn">
+                    <i class="fas fa-print"></i> Imprimir Certificado
+                </button>
+                <button class="btn btn-secondary" id="downloadPdfBtn">
+                    <i class="fas fa-download"></i> Descargar PDF
+                </button>
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
