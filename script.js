@@ -1,2716 +1,2106 @@
-/* === VARIABLES CSS MEJORADAS === */
-:root {
-    --primary: #1a4b8c;
-    --primary-light: #2c6cb0;
-    --primary-dark: #153a6b;
-    --secondary: #e74c3c;
-    --secondary-light: #ff6b6b;
-    --secondary-dark: #c0392b;
-    --accent: #f39c12;
-    --accent-light: #f1c40f;
-    --accent-dark: #e67e22;
-    --dark: #2c3e50;
-    --darker: #1a252f;
-    --light: #ffffff;
-    --lighter: #f8f9fa;
-    --text: #2d3748;
-    --text-light: #4a5568;
-    --gray: #718096;
-    --gray-light: #a0aec0;
-    --success: #27ae60;
-    --success-light: #2ecc71;
-    --warning: #f39c12;
-    --warning-light: #f1c40f;
-    --border-radius: 12px;
-    --border-radius-lg: 20px;
-    --border-radius-xl: 30px;
-    --box-shadow: 0 8px 30px rgba(26, 75, 140, 0.12);
-    --box-shadow-lg: 0 20px 50px rgba(26, 75, 140, 0.18);
-    --box-shadow-xl: 0 25px 60px rgba(26, 75, 140, 0.25);
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-fast: all 0.3s ease;
-    --transition-slow: all 0.6s ease;
-}
-
-/* === RESET Y ESTILOS GENERALES MEJORADOS === */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.7;
-    color: var(--text);
-    background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-    overflow-x: hidden;
-}
-
-/* === HEADER MEJORADO - PROBLEMA 1 SOLUCIONADO === */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 30px;
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.98) 0%, rgba(44, 108, 176, 0.98) 100%);
-    backdrop-filter: blur(20px);
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
-    transition: var(--transition);
-    border-bottom: 3px solid var(--secondary);
-}
-
-header.scrolled {
-    padding: 8px 30px;
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.99) 0%, rgba(44, 108, 176, 0.99) 100%);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-    min-width: 200px;
-}
-
-.logo-container img {
-    height: 45px;
-    border-radius: 12px;
-    transition: var(--transition);
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
-    filter: brightness(1.1);
-}
-
-.logo-container img:hover {
-    transform: scale(1.1) rotate(3deg);
-    border-color: var(--secondary);
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
-    filter: brightness(1.2);
-}
-
-header a.logo-text {
-    font-size: 20px;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    white-space: nowrap;
-    letter-spacing: 0.5px;
-    transition: var(--transition);
-}
-
-header a.logo-text:hover {
-    text-shadow: 0 0 15px rgba(255,255,255,0.5);
-}
-
-/* === NAVBAR CORREGIDO - PROBLEMA 1 SOLUCIONADO === */
-.navbar {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-.nav-menu {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-.nav-menu li {
-    position: relative;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    transition: var(--transition);
-    padding: 10px 16px;
-    border-radius: 25px;
-    position: relative;
-    font-size: 13px;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    overflow: hidden;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    display: block;
-    text-align: center;
-    min-width: 80px;
-}
-
-.nav-menu li a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s;
-}
-
-.nav-menu li a:hover::before {
-    left: 100%;
-}
-
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background: var(--secondary);
-    transition: var(--transition);
-    transform: translateX(-50%);
-}
-
-.nav-menu li a:hover::after,
-.nav-menu li a.active::after {
-    width: 70%;
-}
-
-.nav-menu li a:hover,
-.nav-menu li a.active {
-    background: rgba(255, 255, 255, 0.2);
-    text-shadow: 0 0 10px rgba(255,255,255,0.8);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* === MENÚ HAMBURGUESA MEJORADO - PROBLEMA 2 SOLUCIONADO === */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 1001;
-    background: rgba(255,255,255,0.15);
-    border-radius: 10px;
-    transition: var(--transition);
-    border: 2px solid rgba(255,255,255,0.3);
-}
-
-.menu-toggle:hover {
-    background: rgba(255,255,255,0.25);
-    transform: scale(1.05);
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin: 3px 0;
-    transition: var(--transition);
-    border-radius: 2px;
-}
-
-.menu-toggle.active .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-    background: var(--secondary);
-}
-
-.menu-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-    background: var(--secondary);
-}
-
-/* === PRELOADER MÁS MODERNO === */
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--darker) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-.preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.loader {
-    width: 80px;
-    height: 80px;
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    border-top: 4px solid var(--secondary);
-    border-right: 4px solid var(--secondary-light);
-    animation: spin 1.5s linear infinite;
-    box-shadow: 0 0 30px rgba(231, 76, 60, 0.6);
-    position: relative;
-}
-
-.loader::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top: 2px solid var(--primary);
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* === SECCIONES MEJORADAS CON EFECTOS === */
-section {
-    padding: 120px 50px;
-    position: relative;
-}
-
-section h1.heading {
-    text-align: center;
-    font-size: 3.5rem;
-    margin-bottom: 40px;
-    color: var(--dark);
-    position: relative;
-    padding-bottom: 25px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-section h1.heading::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 6px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-    border-radius: 10px;
-    animation: gradientShift 3s ease infinite;
-    background-size: 200% 200%;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--text-light);
-    max-width: 800px;
-    margin: 0 auto 60px;
-    font-weight: 500;
-    line-height: 1.8;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-}
-
-/* === HOME SECTION MEJORADA - PROBLEMA 2 SOLUCIONADO === */
-.home {
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.95) 0%, rgba(44, 108, 176, 0.9) 100%), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.home::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-    background-size: 100% 100%;
-    animation: float 6s ease-in-out infinite;
-}
-
-.home-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-    padding: 0 20px;
-}
-
-.logo-home {
-    text-align: center;
-    margin-bottom: 40px;
-    animation: float 3s ease-in-out infinite;
-}
-
-.logo-home img {
-    height: 100px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    border: 4px solid white;
-    transition: var(--transition);
-    filter: brightness(1.1);
-}
-
-.logo-home img:hover {
-    transform: scale(1.08) rotate(3deg);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
-    filter: brightness(1.2);
-}
-
-.home-content h1 {
-    font-size: 4rem;
-    margin-bottom: 30px;
-    color: #fff;
-    text-shadow: 3px 3px 20px rgba(0,0,0,0.5);
-    font-weight: 900;
-    line-height: 1.2;
-    animation: fadeInUp 1s ease;
-    background: linear-gradient(135deg, #fff 0%, var(--secondary-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.home-content p {
-    font-size: 1.5rem;
-    margin-bottom: 50px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    font-weight: 300;
-    animation: fadeInUp 1.2s ease;
-    line-height: 1.6;
-    opacity: 0.95;
-}
-
-.home-stats {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-top: 80px;
-    animation: fadeInUp 1.4s ease;
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    text-align: center;
-    background: rgba(255,255,255,0.15);
-    padding: 35px 30px;
-    border-radius: var(--border-radius-xl);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255,255,255,0.3);
-    transition: var(--transition);
-    min-width: 220px;
-    position: relative;
-    overflow: hidden;
-}
-
-.stat-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.8s;
-}
-
-.stat-item:hover::before {
-    left: 100%;
-}
-
-.stat-item:hover {
-    transform: translateY(-12px) scale(1.05);
-    background: rgba(255,255,255,0.25);
-    border-color: var(--secondary);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-}
-
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--secondary);
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    position: relative;
-}
-
-.stat-text {
-    font-size: 1.3rem;
-    opacity: 0.95;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.cta-button {
-    margin-top: 50px;
-    padding: 22px 50px;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
-    color: #fff;
-    border: none;
-    border-radius: 60px;
-    font-size: 1.3rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: var(--transition);
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.5);
-    position: relative;
-    overflow: hidden;
-    animation: fadeInUp 1.6s ease;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s;
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
-.cta-button:hover {
-    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 30px 60px rgba(231, 76, 60, 0.7);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(60px);
+// ===== CONFIGURACIÓN Y CONSTANTES =====
+const ADMIN_PASSWORD = "elite2024"; // Contraseña del administrador
+const CONFIG = {
+    animationDuration: 400,
+    scrollOffset: 100,
+    storageKeys: {
+        inscriptions: 'eliteInscriptions',
+        testimonials: 'eliteTestimonials',
+        certifications: 'eliteCertifications'
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+};
+
+// ===== ESTADO GLOBAL DE LA APLICACIÓN =====
+const AppState = {
+    currentTestimonialRating: 0,
+    currentUploadRating: 0,
+    testimonialMediaFile: null,
+    isAdminAuthenticated: false,
+    activeLocation: 'puyo',
+    certificationsData: []
+};
+
+// ===== INICIALIZACIÓN DE LA APLICACIÓN =====
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApplication();
+});
+
+function initializeApplication() {
+    try {
+        // Preloader
+        handlePreloader();
+        
+        // Event listeners globales
+        setupGlobalEventListeners();
+        
+        // Inicializar componentes
+        initializeComponents();
+        
+        // Cargar datos existentes
+        loadExistingData();
+        
+        // CARGAR EXCEL AUTOMÁTICAMENTE AL INICIAR
+        loadExcelDataAutomatically();
+        
+        console.log('✅ Aplicación inicializada correctamente');
+    } catch (error) {
+        console.error('❌ Error en inicialización:', error);
+        showNotification('Error al inicializar la aplicación', 'error');
     }
 }
 
-/* === BOTÓN ADMIN ACCESS MEJORADO - PROBLEMA 3 SOLUCIONADO === */
-.admin-access {
-    position: fixed;
-    bottom: 140px;
-    right: 30px;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 15px 35px rgba(231, 76, 60, 0.5);
-    transition: var(--transition);
-    font-size: 28px;
-    border: 3px solid white;
-    animation: pulse 2s infinite;
-}
-
-.admin-access:hover {
-    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
-    transform: scale(1.15) rotate(15deg);
-    box-shadow: 0 20px 45px rgba(231, 76, 60, 0.7);
-    animation: none;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* === WHATSAPP FLOTANTE MEJORADO === */
-.floating-whatsapp {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 32px;
-    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
-    z-index: 999;
-    transition: var(--transition);
-    border: 3px solid white;
-    animation: pulse 2s infinite;
-}
-
-.floating-whatsapp:hover {
-    transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 20px 45px rgba(37, 211, 102, 0.7);
-    animation: none;
-}
-
-/* === BOX CONTAINER MEJORADO CON EFECTOS === */
-.box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-}
-
-.box {
-    background: white;
-    padding: 50px 40px;
-    text-align: center;
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--box-shadow-lg);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    border: 3px solid transparent;
-}
-
-.box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-    animation: gradientShift 3s ease infinite;
-    background-size: 200% 200%;
-}
-
-.box:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: var(--box-shadow-xl);
-    border-color: var(--primary);
-}
-
-.box i {
-    font-size: 60px;
-    color: var(--primary);
-    margin-bottom: 30px;
-    transition: var(--transition);
-    position: relative;
-}
-
-.box:hover i {
-    color: var(--secondary);
-    transform: scale(1.2) rotate(10deg);
-}
-
-.box h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    color: var(--dark);
-    font-weight: 700;
-    position: relative;
-}
-
-.box p {
-    font-size: 17px;
-    color: var(--text-light);
-    line-height: 1.8;
-    font-weight: 500;
-}
-
-/* === ABOUT SECTION MEJORADA - PROBLEMA 3 SOLUCIONADO === */
-.about .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 60px;
-    margin-top: 40px;
-}
-
-.about .image {
-    flex: 1 1 450px;
-    border-radius: var(--border-radius-xl);
-    overflow: hidden;
-    box-shadow: var(--box-shadow-xl);
-    position: relative;
-}
-
-.about .image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(26,75,140,0.1), rgba(231,76,60,0.1));
-    z-index: 1;
-}
-
-.about .image img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.8s ease;
-    filter: brightness(1.05);
-}
-
-.about .image:hover img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
-}
-
-.about .content {
-    flex: 1 1 550px;
-}
-
-.logo-section {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.logo-section img {
-    height: 80px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border: 3px solid var(--primary);
-    filter: brightness(1.1);
-    transition: var(--transition);
-}
-
-.logo-section img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
-
-.about .content p {
-    margin: 25px 0;
-    line-height: 1.9;
-    font-size: 18px;
-    color: var(--text);
-    font-weight: 500;
-}
-
-/* === CURSOS - CUADRÍCULA 4x4 MEJORADA === */
-.course-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.course-card {
-    background: white;
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    transition: var(--transition);
-    position: relative;
-    border: 3px solid transparent;
-}
-
-.course-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--box-shadow-xl);
-    border-color: var(--primary);
-}
-
-.course-image {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-}
-
-.course-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(26,75,140,0.3), rgba(231,76,60,0.3));
-    z-index: 1;
-}
-
-.course-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-    filter: brightness(1.05);
-}
-
-.course-card:hover .course-image img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
-}
-
-.course-header {
-    padding: 25px 20px 15px;
-    border-bottom: 2px solid #f0f2f5;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    transition: var(--transition);
-}
-
-.course-header:hover {
-    background: #f8f9fa;
-}
-
-.course-icon {
-    font-size: 40px;
-    color: var(--primary);
-    margin-bottom: 10px;
-    transition: var(--transition);
-}
-
-.course-header:hover .course-icon {
-    color: var(--secondary);
-    transform: scale(1.1);
-}
-
-.course-title {
-    font-size: 20px;
-    color: var(--dark);
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.course-body {
-    padding: 0 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s ease, padding 0.6s ease;
-}
-
-.course-body.expanded {
-    padding: 20px;
-    max-height: 1200px;
-}
-
-.course-detail {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    font-size: 14px;
-}
-
-.course-detail i {
-    width: 24px;
-    color: var(--primary);
-    margin-right: 12px;
-    font-size: 16px;
-}
-
-.course-pricing {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
-    padding: 15px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 12px;
-    border: 2px solid #e4e6eb;
-}
-
-.price-column {
-    text-align: center;
-}
-
-.price-label {
-    font-size: 12px;
-    color: var(--gray);
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.original-price {
-    text-decoration: line-through;
-    color: var(--gray);
-    font-size: 16px;
-}
-
-.promo-price {
-    color: var(--secondary);
-    font-weight: 800;
-    font-size: 18px;
-}
-
-.course-info {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 2px solid #f0f2f5;
-}
-
-.course-info p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-/* === BOTONES MÁS ATRACTIVOS === */
-.btn-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-}
-
-.btn {
-    padding: 15px 35px;
-    border: none;
-    border-radius: 50px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: var(--transition);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-inscribirse {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
-    color: white;
-    border: 3px solid transparent;
-    font-size: 15px;
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
-}
-
-.btn-inscribirse:hover {
-    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(231, 76, 60, 0.6);
-}
-
-.btn-info {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    border: 3px solid transparent;
-    font-weight: 700;
-    box-shadow: 0 8px 25px rgba(26, 75, 140, 0.4);
-}
-
-.btn-info:hover {
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(26, 75, 140, 0.6);
-}
-
-.btn-testimonio {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-    color: white;
-    border: 3px solid transparent;
-    font-weight: 700;
-    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
-}
-
-.btn-testimonio:hover {
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dark) 100%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(243, 156, 18, 0.6);
-}
-
-/* === TESTIMONIOS MEJORADOS CON GRID RESPONSIVO === */
-.testimonial-container {
-    margin-top: 40px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.testimonial-card {
-    background: white;
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
-    border: 2px solid #e4e6eb;
-    transition: var(--transition);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.testimonial-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--primary), var(--secondary));
-}
-
-.testimonial-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--box-shadow-xl);
-    border-color: var(--primary);
-}
-
-.testimonial-header {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border-bottom: 2px solid #f0f2f5;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    flex-shrink: 0;
-}
-
-.author-avatar {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    flex-shrink: 0;
-}
-
-.author-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.author-info h4 {
-    margin: 0;
-    color: var(--dark);
-    font-size: 16px;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.testimonial-course {
-    color: var(--primary);
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.testimonial-rating {
-    color: #ffc107;
-    font-size: 16px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    flex-shrink: 0;
-}
-
-.testimonial-content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.testimonial-text {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    color: var(--text);
-    font-size: 15px;
-    position: relative;
-    padding-left: 20px;
-    flex: 1;
-}
-
-.testimonial-text::before {
-    content: '"';
-    font-size: 60px;
-    color: var(--primary);
-    position: absolute;
-    left: -15px;
-    top: -20px;
-    opacity: 0.2;
-    font-family: Georgia, serif;
-}
-
-.testimonial-date {
-    color: var(--gray);
-    font-size: 12px;
-    text-align: right;
-    font-style: italic;
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px solid #f0f2f5;
-}
-
-.testimonial-media {
-    margin: 15px 0;
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 100%;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.testimonial-media img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    filter: brightness(1.05);
-}
-
-.testimonial-media img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
-
-.add-testimonial {
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* === VALIDACIÓN DE CERTIFICADOS MEJORADA - PROBLEMA 8 SOLUCIONADO === */
-.certificate-validation {
-    padding: 100px 50px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-
-.validation-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-top: 50px;
-}
-
-.validation-card {
-    background: white;
-    padding: 35px 25px;
-    border-radius: var(--border-radius-lg);
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    border: 3px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-.validation-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-.validation-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: var(--box-shadow-lg);
-    border-color: var(--primary);
-}
-
-.validation-icon {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 15px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
-}
-
-.validation-icon img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    filter: brightness(1.2);
-    object-fit: contain;
-}
-
-.validation-card h3 {
-    color: var(--dark);
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.validation-card p {
-    color: var(--gray);
-    margin-bottom: 20px;
-    line-height: 1.5;
-    font-size: 14px;
-}
-
-.btn-validation {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(26, 75, 140, 0.3);
-}
-
-.btn-validation:hover {
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 75, 140, 0.4);
-}
-
-/* === CERTIFICACIONES ELITE ACADEMY MEJORADA - PROBLEMA 6 SOLUCIONADO === */
-.elite-certifications {
-    padding: 100px 50px;
-    background: white;
-}
-
-.certification-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.certification-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.certification-header h3 {
-    color: var(--primary);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.certification-search {
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.search-box {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-#cedulaSearch {
-    padding: 15px 20px;
-    border: 3px solid #e4e6eb;
-    border-radius: 50px;
-    font-size: 16px;
-    width: 300px;
-    max-width: 100%;
-    transition: var(--transition);
-    background: white;
-}
-
-#cedulaSearch:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
-    outline: none;
-    transform: translateY(-2px);
-}
-
-.btn-search {
-    background: linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
-}
-
-.btn-search:hover {
-    background: linear-gradient(135deg, var(--success-light) 0%, #229954 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
-}
-
-.search-note {
-    color: var(--gray);
-    font-size: 14px;
-    font-style: italic;
-    text-align: center;
-    width: 100%;
-}
-
-.certification-results {
-    min-height: 200px;
-    background: #f8f9fa;
-    border-radius: var(--border-radius-lg);
-    padding: 40px;
-    margin-bottom: 30px;
-    border: 2px dashed #e4e6eb;
-    transition: var(--transition);
-}
-
-.results-placeholder {
-    color: var(--gray);
-    text-align: center;
-}
-
-.results-placeholder i {
-    font-size: 48px;
-    margin-bottom: 15px;
-    color: #ddd;
-}
-
-.certification-info {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-    padding: 20px;
-    border-radius: 15px;
-    border-left: 4px solid var(--warning);
-    text-align: center;
-}
-
-.info-box {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: var(--dark);
-    justify-content: center;
-}
-
-.info-box i {
-    color: var(--warning);
-    font-size: 20px;
-}
-
-/* === INSCRIPCIÓN MEJORADA === */
-.inscription-form {
-    max-width: 1000px;
-    margin: 0 auto;
-    background: white;
-    padding: 50px;
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--box-shadow-xl);
-    border: 3px solid #f0f2f5;
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700;
-    color: var(--dark);
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 15px 18px;
-    border: 3px solid #e4e6eb;
-    border-radius: var(--border-radius);
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    transition: var(--transition);
-    background: white;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
-    outline: none;
-    transform: translateY(-2px);
-}
-
-.form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-}
-
-.form-row .form-group {
-    flex: 1;
-}
-
-/* === CONTACTO MEJORADO === */
-.contact .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.contact .box {
-    background: white;
-    padding: 40px 30px;
-    text-align: center;
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    border: 3px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact .box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-.contact .box:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: var(--box-shadow-lg);
-    border-color: var(--primary);
-}
-
-.contact .box i {
-    font-size: 45px;
-    margin-bottom: 20px;
-    color: var(--primary);
-    transition: var(--transition);
-}
-
-.contact .box:hover i {
-    color: var(--secondary);
-    transform: scale(1.2) rotate(10deg);
-}
-
-.contact .box p {
-    font-size: 16px;
-    text-align: center;
-    color: var(--text);
-    font-weight: 600;
-}
-
-.location-toggle {
-    display: inline-flex;
-    background: white;
-    padding: 8px;
-    border-radius: 50px;
-    box-shadow: var(--box-shadow);
-    border: 2px solid #e4e6eb;
-    margin-bottom: 40px;
-}
-
-.location-btn {
-    padding: 12px 30px;
-    border: none;
-    background: transparent;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: var(--transition);
-    color: var(--gray);
-    font-size: 14px;
-}
-
-.location-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    box-shadow: 0 3px 10px rgba(26, 75, 140, 0.3);
-}
-
-.location-btn:hover:not(.active) {
-    background: #f8f9fa;
-    color: var(--primary);
-    transform: translateY(-1px);
-}
-
-.location-content {
-    display: none;
-    animation: fadeIn 0.6s ease;
-}
-
-.location-content.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* === FOOTER MEJORADO === */
-footer {
-    background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
-    color: white;
-    text-align: center;
-    padding: 50px 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.footer-logo img {
-    height: 70px;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    border: 3px solid white;
-    filter: brightness(1.1);
-}
-
-.footer-logo span {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-}
-
-.social-media {
-    margin: 40px 0;
-}
-
-.social-media h3 {
-    font-size: 22px;
-    margin-bottom: 25px;
-    color: white;
-    font-weight: 700;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.red-social {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: var(--transition);
-    font-size: 22px;
-    border: 3px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-.red-social::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-}
-
-.red-social:hover::before {
-    left: 100%;
-}
-
-.red-social.facebook {
-    background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%);
-    color: white;
-    box-shadow: 0 6px 20px rgba(59, 89, 152, 0.4);
-}
-
-.red-social.instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white;
-    box-shadow: 0 6px 20px rgba(188, 24, 136, 0.4);
-}
-
-.red-social.tiktok {
-    background: linear-gradient(135deg, #000000 0%, #333333 100%);
-    color: white;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.red-social:hover {
-    transform: scale(1.12) rotate(5deg);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-footer p {
-    margin-top: 30px;
-    font-size: 15px;
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-/* === MODALES MEJORADOS === */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(8px);
-}
-
-.modal-content {
-    background: white;
-    border-radius: var(--border-radius-xl);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    border: 3px solid var(--primary);
-    animation: modalAppear 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@keyframes modalAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+// ===== NUEVA FUNCIÓN: CARGAR EXCEL AUTOMÁTICAMENTE =====
+async function loadExcelDataAutomatically() {
+    try {
+        console.log('📂 Intentando cargar archivo Excel automáticamente...');
+        
+        // Intentar cargar desde el archivo Excel en el servidor
+        const response = await fetch('certificados_elite_academy.xlsx');
+        
+        if (response.ok) {
+            const arrayBuffer = await response.arrayBuffer();
+            const data = new Uint8Array(arrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+            
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            
+            if (jsonData.length > 0) {
+                const certifications = convertExcelToCertifications(jsonData);
+                AppState.certificationsData = certifications;
+                localStorage.setItem(CONFIG.storageKeys.certifications, JSON.stringify(certifications));
+                console.log(`✅ Excel cargado automáticamente: ${certifications.length} certificados`);
+                showNotification('Base de datos de certificados actualizada ✅', 'success');
+            } else {
+                console.warn('⚠️ El archivo Excel está vacío');
+                loadBackupCertifications();
+            }
+        } else {
+            console.warn('⚠️ No se pudo cargar el archivo Excel, usando datos de respaldo');
+            loadBackupCertifications();
+        }
+    } catch (error) {
+        console.error('❌ Error cargando Excel automáticamente:', error);
+        loadBackupCertifications();
     }
 }
 
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--gray);
-    background: #f8f9fa;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    z-index: 10001;
+// ===== FUNCIÓN MEJORADA: CARGAR CERTIFICADOS DE RESPALDO =====
+function loadBackupCertifications() {
+    try {
+        const savedData = localStorage.getItem(CONFIG.storageKeys.certifications);
+        
+        if (savedData) {
+            AppState.certificationsData = JSON.parse(savedData);
+            console.log('✅ Certificaciones cargadas desde localStorage');
+        } else {
+            // Datos de ejemplo como respaldo
+            AppState.certificationsData = [
+                {
+                    "cedula": "1234567890",
+                    "nombre": "MARÍA FERNANDA GÓMEZ LÓPEZ",
+                    "curso": "Auxiliar de Enfermería",
+                    "fecha": "2024-01-15",
+                    "fechaExpiracion": "2026-01-15"
+                },
+                {
+                    "cedula": "0987654321",
+                    "nombre": "CARLOS ANDRÉS MARTÍNEZ RÍOS",
+                    "curso": "Técnico en Mecánica Automotriz",
+                    "fecha": "2024-02-20",
+                    "fechaExpiracion": "2026-02-20"
+                }
+            ];
+            console.log('✅ Usando certificados de respaldo');
+        }
+    } catch (error) {
+        console.error('Error cargando certificaciones de respaldo:', error);
+    }
 }
 
-.close-modal:hover {
-    background: var(--secondary);
-    color: white;
-    transform: rotate(90deg);
+// ===== PRELOADER =====
+function handlePreloader() {
+    setTimeout(() => {
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    }, 1500);
 }
 
-/* === RATING SYSTEM - CORREGIDO === */
-.rating {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin: 15px 0;
+// ===== EVENT LISTENERS GLOBALES =====
+function setupGlobalEventListeners() {
+    // Scroll effects
+    window.addEventListener('scroll', handleScrollEffects);
+    
+    // Cerrar modales al hacer clic fuera - CORREGIDO
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            closeAllModals();
+        }
+    });
+    
+    // Cerrar modales con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
 }
 
-.star {
-    font-size: 30px;
-    color: #ddd;
-    cursor: pointer;
-    transition: var(--transition);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-.star:hover {
-    transform: scale(1.3) rotate(10deg);
-    color: #ffc107;
-}
-
-.star.selected {
-    color: #ffc107;
-    text-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
-    animation: starPop 0.4s ease;
-}
-
-@keyframes starPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-    100% { transform: scale(1.3); }
-}
-
-/* === PANEL ADMINISTRADOR - MEJORADO Y RESPONSIVE === */
-.admin-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-}
-
-.admin-modal.active {
-    display: flex;
-}
-
-.admin-modal .modal-content {
-    background: white;
-    border-radius: var(--border-radius-xl);
-    width: 95%;
-    max-width: 1200px;
-    max-height: 90vh;
-    overflow: hidden;
-    position: relative;
-    border: 4px solid var(--primary);
-    z-index: 10001;
-}
-
-#adminLogin {
-    padding: 40px;
-    text-align: center;
-}
-
-#adminLogin h2 {
-    color: var(--primary);
-    margin-bottom: 30px;
-    font-size: 28px;
-}
-
-#adminLogin .form-group {
-    margin-bottom: 25px;
-}
-
-#adminLogin input {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.admin-tabs {
-    display: flex;
-    border-bottom: 3px solid #e4e6eb;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.admin-tabs::-webkit-scrollbar {
-    display: none;
-}
-
-.tab-btn {
-    padding: 18px 35px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--gray);
-    border-bottom: 4px solid transparent;
-    transition: var(--transition);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.tab-btn.active {
-    color: var(--primary);
-    border-bottom-color: var(--primary);
-    background: white;
-}
-
-.tab-btn:hover:not(.active) {
-    color: var(--primary);
-    background: rgba(26, 75, 140, 0.1);
-}
-
-.admin-tab-content {
-    padding: 25px;
-    display: none;
-    animation: fadeIn 0.5s ease;
-    max-height: 60vh;
-    overflow-y: auto;
-}
-
-.admin-tab-content.active {
-    display: block;
-}
-
-/* === TABLAS RESPONSIVE PARA ADMIN === */
-.admin-table-container {
-    overflow-x: auto;
-    margin-top: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-.admin-table th,
-.admin-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 2px solid #f0f2f5;
-    font-size: 14px;
-    white-space: nowrap;
-}
-
-.admin-table th {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.admin-table tr:hover {
-    background: #f8f9fa;
-    transform: scale(1.01);
-    transition: var(--transition);
-}
-
-/* === ESTILOS PARA CERTIFICADO HORIZONTAL - PROBLEMAS 1, 4, 5, 7 SOLUCIONADOS === */
-.certificado-horizontal {
-    width: 29.7cm;
-    height: 21cm;
-    background: url('images/certificado_fondo.jpg') no-repeat center center;
-    background-size: cover;
-    border: 15px solid var(--primary);
-    position: relative;
-    margin: 0 auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    padding: 1.5cm;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    page-break-inside: avoid;
-}
-
-.certificado-borde {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    border: 2px solid var(--secondary);
-    pointer-events: none;
-}
-
-.certificado-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #e4e6eb;
-}
-
-.logo-left, .logo-right {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.escudo-ecuador, .logo-academia {
-    max-width: 100%;
-    max-height: 100%;
-    border: 2px solid var(--primary-light);
-    border-radius: 8px;
-    padding: 8px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.titulo-centro {
-    text-align: center;
-    flex: 1;
-    margin: 0 20px;
-}
-
-.titulo-centro h1 {
-    font-size: 18px;
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.titulo-centro h2 {
-    font-size: 16px;
-    color: var(--dark);
-    font-weight: 600;
-    font-style: italic;
-}
-
-.certificado-body {
-    text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 20px;
-}
-
-.certificado-titulo h3 {
-    font-size: 32px;
-    color: var(--secondary);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
-    font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-.certificado-titulo p {
-    font-size: 18px;
-    color: var(--dark);
-    margin-bottom: 30px;
-    font-weight: 500;
-}
-
-.nombre-estudiante {
-    font-size: 24px;
-    color: var(--primary);
-    font-weight: 700;
-    margin: 15px 0;
-    text-transform: uppercase;
-    border-bottom: 2px solid #e4e6eb;
-    padding-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.cedula-estudiante {
-    font-size: 16px;
-    color: var(--text);
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.mensaje-certificado p {
-    font-size: 18px;
-    color: var(--text);
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.programa-estudiante {
-    font-size: 22px;
-    color: var(--primary);
-    font-weight: 700;
-    margin: 15px 0;
-    padding: 12px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-left: 4px solid var(--secondary);
-    border-radius: 8px;
-}
-
-.fecha-certificacion {
-    font-size: 16px;
-    color: var(--text);
-    margin-top: 30px;
-    font-style: italic;
-    font-weight: 500;
-}
-
-.certificado-firmas {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px solid #e4e6eb;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.firma-item {
-    text-align: center;
-    width: 45%;
-    margin-bottom: 10px;
-    min-width: 200px;
-}
-
-.linea-firma {
-    border-top: 2px solid var(--dark);
-    width: 80%;
-    margin: 0 auto 10px;
-    padding-top: 5px;
-}
-
-.nombre-firma {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 3px;
-    line-height: 1.2;
-}
-
-.cargo-firma {
-    font-size: 10px;
-    color: var(--text);
-    margin-bottom: 2px;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-.institucion-firma {
-    font-size: 9px;
-    color: var(--gray);
-    font-style: italic;
-    line-height: 1.2;
-}
-
-.certificado-footer {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #e4e6eb;
-}
-
-.qr-validation {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-}
-
-.qr-code {
-    width: 80px;
-    height: 80px;
-    background: #f8f9fa;
-    border: 2px solid #e4e6eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: var(--gray);
-    text-align: center;
-    padding: 5px;
-    border-radius: 8px;
-    font-weight: 600;
-}
-
-.texto-validacion {
-    font-size: 10px;
-    color: var(--gray);
-    text-align: right;
-    font-style: italic;
-}
-
-/* === ESTILOS PARA IMPRESIÓN - PROBLEMA 4 SOLUCIONADO === */
-@media print {
-    body * {
-        visibility: hidden;
+function handleScrollEffects() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
     }
     
-    .certificate-modal-content,
-    .certificate-modal-content * {
-        visibility: visible;
+    animateOnScroll();
+}
+
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.fade-in');
+    const windowHeight = window.innerHeight;
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+// ===== INICIALIZACIÓN DE COMPONENTES =====
+function initializeComponents() {
+    initializeMobileMenu();
+    initializeCourses();
+    initializeForms();
+    initializeLocationTabs();
+    initializeModals();
+    initializeIntersectionObserver();
+    initializeCertificationSystem();
+    initializeRatingSystem();
+    initializeMediaUpload();
+}
+
+// ===== MENÚ MÓVIL MEJORADO - PROBLEMA 2 SOLUCIONADO =====
+function initializeMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (menuToggle && navMenu) {
+        // CORREGIDO: Usar evento click directo
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = this.classList.contains('active');
+            
+            // Cerrar todos los menús primero
+            document.querySelectorAll('.menu-toggle').forEach(toggle => {
+                toggle.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-menu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+            
+            // Abrir/cerrar menú actual
+            if (!isActive) {
+                this.classList.add('active');
+                navMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                this.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Cerrar menú al hacer clic en enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Cerrar menú al hacer clic fuera - MEJORADO
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+}
+
+// ===== SISTEMA DE CURSOS - CORREGIDO =====
+function initializeCourses() {
+    const courseHeaders = document.querySelectorAll('.course-header');
+    
+    courseHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleCourse(this);
+        });
+        
+        header.style.cursor = 'pointer';
+    });
+}
+
+function toggleCourse(header) {
+    const courseBody = header.nextElementSibling;
+    const isExpanded = courseBody.classList.contains('expanded');
+    const icon = header.querySelector('.fa-chevron-down');
+    
+    // Cerrar todos los cursos primero
+    document.querySelectorAll('.course-body').forEach(body => {
+        body.classList.remove('expanded');
+        if (body.previousElementSibling) {
+            body.previousElementSibling.classList.remove('active');
+        }
+    });
+    
+    document.querySelectorAll('.course-header .fa-chevron-down').forEach(chevron => {
+        chevron.style.transform = 'rotate(0deg)';
+    });
+    
+    // Abrir el curso clickeado si no estaba expandido
+    if (!isExpanded) {
+        courseBody.classList.add('expanded');
+        header.classList.add('active');
+        if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+        }
+    }
+}
+
+// ===== FORMULARIOS =====
+function initializeForms() {
+    // Formulario de inscripción
+    const inscriptionForm = document.getElementById('inscriptionForm');
+    if (inscriptionForm) {
+        inscriptionForm.addEventListener('submit', handleInscriptionSubmit);
     }
     
-    .certificate-modal-content {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        box-shadow: none;
-        background: white;
+    // Formulario de testimonios
+    const testimonialForm = document.getElementById('testimonialForm');
+    if (testimonialForm) {
+        testimonialForm.addEventListener('submit', handleTestimonialSubmit);
     }
     
-    .certificado-horizontal {
-        width: 29.7cm !important;
-        height: 21cm !important;
-        border: 15px solid var(--primary) !important;
-        box-shadow: none !important;
-        margin: 0 !important;
-        padding: 1.5cm !important;
-        page-break-inside: avoid;
-        break-inside: avoid;
+    // Botón abrir testimonio
+    const openTestimonialBtn = document.getElementById('openTestimonialBtn');
+    if (openTestimonialBtn) {
+        openTestimonialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openTestimonialModal();
+        });
+    }
+}
+
+// ===== SISTEMA DE SUBIDA DE ARCHIVOS PARA TESTIMONIOS =====
+function initializeMediaUpload() {
+    const mediaInput = document.getElementById('testimonialMedia');
+    if (mediaInput) {
+        mediaInput.addEventListener('change', function(e) {
+            handleMediaUpload(e);
+        });
+    }
+}
+
+function handleMediaUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const maxSize = 50 * 1024 * 1024; // 50MB
+    if (file.size > maxSize) {
+        showNotification('El archivo es demasiado grande. Máximo 50MB.', 'error');
+        e.target.value = '';
+        return;
     }
     
-    .certificate-actions {
-        display: none !important;
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'video/avi', 'video/mov', 'video/webm'];
+    if (!validTypes.includes(file.type)) {
+        showNotification('Formato de archivo no válido. Use imágenes (JPG, PNG, GIF) o videos (MP4, AVI, MOV, WEBM).', 'error');
+        e.target.value = '';
+        return;
     }
     
-    .modal-content {
-        box-shadow: none;
-        border: none;
-        max-width: none !important;
-        max-height: none !important;
+    AppState.testimonialMediaFile = file;
+    showNotification(`Archivo "${file.name}" listo para subir ✅ (${(file.size / (1024*1024)).toFixed(1)}MB)`, 'success');
+}
+
+// ===== SISTEMA DE RATING - CORREGIDO Y MEJORADO =====
+function initializeRatingSystem() {
+    // Rating para testimonio modal
+    const stars = document.querySelectorAll('#testimonialRating .star');
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            setRating(rating);
+        });
+        
+        star.addEventListener('mouseover', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            highlightStars(rating);
+        });
+        
+        star.addEventListener('mouseout', function() {
+            updateRatingStars('testimonialRating', AppState.currentTestimonialRating);
+        });
+    });
+}
+
+function setRating(rating) {
+    AppState.currentTestimonialRating = rating;
+    updateRatingStars('testimonialRating', rating);
+}
+
+function highlightStars(rating) {
+    const stars = document.querySelectorAll('#testimonialRating .star');
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.style.color = '#ffc107';
+            star.style.transform = 'scale(1.2)';
+        } else {
+            star.style.color = '#ddd';
+            star.style.transform = 'scale(1)';
+        }
+    });
+}
+
+function updateRatingStars(containerId, rating) {
+    const stars = document.querySelectorAll(`#${containerId} .star`);
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('selected');
+            star.style.color = '#ffc107';
+            star.style.transform = 'scale(1.2)';
+        } else {
+            star.classList.remove('selected');
+            star.style.color = '#ddd';
+            star.style.transform = 'scale(1)';
+        }
+    });
+}
+
+function resetTestimonialRating() {
+    AppState.currentTestimonialRating = 0;
+    updateRatingStars('testimonialRating', 0);
+}
+
+// ===== INSCRIPCIONES =====
+function handleInscriptionSubmit(e) {
+    e.preventDefault();
+    
+    try {
+        const formData = {
+            id: Date.now(),
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName: document.getElementById('lastName').value.trim(),
+            cedula: document.getElementById('cedula').value.trim(),
+            birthdate: document.getElementById('birthdate').value,
+            phone: document.getElementById('phone').value.trim(),
+            email: document.getElementById('email').value.trim().toLowerCase(),
+            province: document.getElementById('province').value.trim(),
+            canton: document.getElementById('canton').value.trim(),
+            parish: document.getElementById('parish').value.trim(),
+            neighborhood: document.getElementById('neighborhood').value.trim(),
+            course: document.getElementById('course').value,
+            message: document.getElementById('message').value.trim(),
+            date: new Date().toLocaleString('es-EC'),
+            timestamp: Date.now()
+        };
+        
+        if (!validateInscription(formData)) {
+            return;
+        }
+        
+        saveInscription(formData);
+        showNotification('¡Inscripción enviada correctamente! 🎉', 'success');
+        e.target.reset();
+        
+    } catch (error) {
+        console.error('Error en inscripción:', error);
+        showNotification('Error al enviar la inscripción', 'error');
+    }
+}
+
+function validateInscription(data) {
+    const required = ['firstName', 'lastName', 'cedula', 'birthdate', 'phone', 'email', 'course'];
+    
+    for (let field of required) {
+        if (!data[field]) {
+            showNotification(`Por favor completa el campo: ${getFieldName(field)}`, 'error');
+            return false;
+        }
     }
     
-    @page {
-        size: landscape;
-        margin: 0;
-    }
-}
-
-/* === RESPONSIVE DESIGN MEJORADO === */
-@media (max-width: 1200px) {
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: repeat(3, 1fr);
+    if (!/^\d{10}$/.test(data.cedula)) {
+        showNotification('La cédula debe tener exactamente 10 dígitos numéricos', 'error');
+        return false;
     }
     
-    .certificado-horizontal {
-        width: 100%;
-        height: auto;
-        padding: 1.5cm;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+        showNotification('Por favor ingresa un email válido', 'error');
+        return false;
     }
     
-    .nav-menu {
-        gap: 12px;
+    return true;
+}
+
+function getFieldName(field) {
+    const names = {
+        'firstName': 'Nombres',
+        'lastName': 'Apellidos',
+        'cedula': 'Cédula',
+        'birthdate': 'Fecha de Nacimiento',
+        'phone': 'Teléfono',
+        'email': 'Email',
+        'course': 'Curso'
+    };
+    return names[field] || field;
+}
+
+function saveInscription(inscription) {
+    try {
+        let inscriptions = JSON.parse(localStorage.getItem(CONFIG.storageKeys.inscriptions)) || [];
+        inscriptions.push(inscription);
+        localStorage.setItem(CONFIG.storageKeys.inscriptions, JSON.stringify(inscriptions));
+    } catch (error) {
+        console.error('Error guardando inscripción:', error);
+        throw error;
+    }
+}
+
+function loadInscriptions() {
+    try {
+        return JSON.parse(localStorage.getItem(CONFIG.storageKeys.inscriptions)) || [];
+    } catch (error) {
+        console.error('Error cargando inscripciones:', error);
+        return [];
+    }
+}
+
+// ===== SISTEMA DE TESTIMONIOS =====
+async function handleTestimonialSubmit(e) {
+    e.preventDefault();
+    
+    try {
+        const testimonialData = {
+            id: Date.now(),
+            name: document.getElementById('testimonialName').value.trim(),
+            course: document.getElementById('testimonialCourse').value,
+            rating: AppState.currentTestimonialRating,
+            text: document.getElementById('testimonialText').value.trim(),
+            date: new Date().toLocaleDateString('es-EC'),
+            timestamp: Date.now(),
+            hasMedia: false,
+            mediaType: null,
+            mediaUrl: null
+        };
+        
+        if (!validateTestimonial(testimonialData)) {
+            return;
+        }
+        
+        if (AppState.testimonialMediaFile) {
+            try {
+                const mediaInfo = await processMediaFile(AppState.testimonialMediaFile);
+                testimonialData.hasMedia = true;
+                testimonialData.mediaType = mediaInfo.type;
+                testimonialData.mediaUrl = mediaInfo.url;
+            } catch (error) {
+                console.error('Error procesando archivo multimedia:', error);
+                showNotification('Error al procesar el archivo multimedia', 'error');
+                return;
+            }
+        }
+        
+        saveTestimonial(testimonialData);
+        showNotification('¡Testimonio publicado correctamente! 🌟', 'success');
+        closeTestimonialModal();
+        e.target.reset();
+        resetTestimonialRating();
+        resetMediaUpload();
+        
+    } catch (error) {
+        console.error('Error en testimonio:', error);
+        showNotification('Error al publicar el testimonio', 'error');
+    }
+}
+
+async function processMediaFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            resolve({
+                type: file.type.startsWith('image/') ? 'image' : 'video',
+                url: e.target.result,
+                name: file.name,
+                size: file.size
+            });
+        };
+        
+        reader.onerror = function(error) {
+            reject(error);
+        };
+        
+        reader.readAsDataURL(file);
+    });
+}
+
+function resetMediaUpload() {
+    AppState.testimonialMediaFile = null;
+    const mediaInput = document.getElementById('testimonialMedia');
+    if (mediaInput) mediaInput.value = '';
+}
+
+function validateTestimonial(data) {
+    if (!data.name || !data.course || !data.text) {
+        showNotification('Por favor completa todos los campos obligatorios', 'error');
+        return false;
     }
     
-    .nav-menu li a {
-        padding: 8px 14px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 992px) {
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: repeat(2, 1fr);
+    if (AppState.currentTestimonialRating === 0) {
+        showNotification('Por favor selecciona una calificación con las estrellas', 'error');
+        return false;
     }
     
-    .certificado-header {
-        flex-direction: column;
-        gap: 20px;
+    return true;
+}
+
+function saveTestimonial(testimonial) {
+    try {
+        let testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+        testimonials.push(testimonial);
+        localStorage.setItem(CONFIG.storageKeys.testimonials, JSON.stringify(testimonials));
+        loadTestimonials();
+    } catch (error) {
+        console.error('Error guardando testimonio:', error);
+        throw error;
+    }
+}
+
+function loadTestimonials() {
+    try {
+        const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+        const grid = document.getElementById('testimonialGrid');
+        
+        if (!grid) return;
+        
+        if (testimonials.length === 0) {
+            grid.innerHTML = `
+                <div class="no-testimonials" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                    <i class="fas fa-comments" style="font-size: 4rem; color: #ccc; margin-bottom: 20px;"></i>
+                    <h3 style="color: #666; margin-bottom: 10px;">No hay testimonios aún</h3>
+                    <p style="color: #999;">Sé el primero en compartir tu experiencia</p>
+                </div>
+            `;
+            return;
+        }
+        
+        testimonials.sort((a, b) => b.timestamp - a.timestamp);
+        
+        grid.innerHTML = testimonials.map(testimonial => `
+            <div class="testimonial-card fade-in visible">
+                <div class="testimonial-header">
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            ${testimonial.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="author-info">
+                            <h4>${escapeHTML(testimonial.name)}</h4>
+                            <span class="testimonial-course">${getCourseName(testimonial.course)}</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    ${testimonial.hasMedia ? `
+                        <div class="testimonial-media">
+                            ${testimonial.mediaType === 'image' ? 
+                                `<img src="${testimonial.mediaUrl}" alt="Testimonio de ${escapeHTML(testimonial.name)}" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'">` : 
+                                `<video controls style="width: 100%; max-height: 300px; border-radius: 8px; background: #000;" onerror="this.style.display='none'">
+                                    <source src="${testimonial.mediaUrl}" type="video/mp4">
+                                    <source src="${testimonial.mediaUrl}" type="video/avi">
+                                    <source src="${testimonial.mediaUrl}" type="video/mov">
+                                    Tu navegador no soporta el elemento de video.
+                                </video>`
+                            }
+                        </div>
+                    ` : ''}
+                    <div class="testimonial-text">
+                        <p>${escapeHTML(testimonial.text)}</p>
+                    </div>
+                    <div class="testimonial-date">
+                        ${testimonial.date}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('Error cargando testimonios:', error);
+    }
+}
+
+// ===== SISTEMA DE UBICACIÓN (PUYO/TENA) =====
+function initializeLocationTabs() {
+    const locationBtns = document.querySelectorAll('.location-btn');
+    
+    locationBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const location = this.getAttribute('data-location');
+            switchLocation(location, this);
+        });
+    });
+}
+
+function switchLocation(location, clickedBtn) {
+    document.querySelectorAll('.location-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.location-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    clickedBtn.classList.add('active');
+    
+    const content = document.getElementById(`${location}-content`);
+    if (content) {
+        content.classList.add('active');
     }
     
-    .logo-left, .logo-right {
-        width: 100px;
-        height: 100px;
+    AppState.activeLocation = location;
+}
+
+// ===== SISTEMA DE MODALES - CORREGIDO =====
+function initializeModals() {
+    // Modal de administrador - PROBLEMA 3 SOLUCIONADO
+    const adminButton = document.getElementById('adminButton');
+    const closeAdmin = document.getElementById('closeAdmin');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    
+    if (adminButton) {
+        adminButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openAdminModal();
+        });
     }
     
-    .nav-menu {
-        gap: 10px;
+    if (closeAdmin) {
+        closeAdmin.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeAdminModal();
+        });
     }
     
-    .nav-menu li a {
-        padding: 7px 12px;
-        font-size: 11px;
+    if (adminLoginBtn) {
+        adminLoginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            checkAdminPassword();
+        });
     }
     
-    header {
-        padding: 10px 25px;
+    // Modal de testimonios
+    const closeTestimonial = document.getElementById('closeTestimonial');
+    const cancelTestimonialBtn = document.getElementById('cancelTestimonialBtn');
+    
+    if (closeTestimonial) closeTestimonial.addEventListener('click', closeTestimonialModal);
+    if (cancelTestimonialBtn) cancelTestimonialBtn.addEventListener('click', closeTestimonialModal);
+    
+    // Modales de visualización
+    const closeViewModal = document.getElementById('closeViewModal');
+    const closeTestimonialViewModal = document.getElementById('closeTestimonialViewModal');
+    
+    if (closeViewModal) closeViewModal.addEventListener('click', closeViewInscriptionModal);
+    if (closeTestimonialViewModal) closeTestimonialViewModal.addEventListener('click', closeViewTestimonialModal);
+    
+    // Tabs de administrador
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            openAdminTab(tabName, this);
+        });
+    });
+    
+    // Botones de administrador
+    const exportInscriptionsBtn = document.getElementById('exportInscriptionsBtn');
+    const clearInscriptionsBtn = document.getElementById('clearInscriptionsBtn');
+    const exportTestimonialsBtn = document.getElementById('exportTestimonialsBtn');
+    const clearTestimonialsBtn = document.getElementById('clearTestimonialsBtn');
+    
+    if (exportInscriptionsBtn) exportInscriptionsBtn.addEventListener('click', exportToCSV);
+    if (clearInscriptionsBtn) clearInscriptionsBtn.addEventListener('click', clearAllInscriptions);
+    if (exportTestimonialsBtn) exportTestimonialsBtn.addEventListener('click', exportTestimonialsToCSV);
+    if (clearTestimonialsBtn) clearTestimonialsBtn.addEventListener('click', clearAllTestimonials);
+    
+    // Botones de certificaciones
+    const uploadExcelBtn = document.getElementById('uploadExcelBtn');
+    const exportCertificationsBtn = document.getElementById('exportCertificationsBtn');
+    
+    if (uploadExcelBtn) uploadExcelBtn.addEventListener('click', handleExcelUpload);
+    if (exportCertificationsBtn) exportCertificationsBtn.addEventListener('click', exportCertificationsToCSV);
+    
+    // Botones de certificado - PROBLEMA 4 SOLUCIONADO
+    const printCertificateBtn = document.getElementById('printCertificateBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const closeCertificateModal = document.getElementById('closeCertificateModal');
+    
+    if (printCertificateBtn) printCertificateBtn.addEventListener('click', printCertificate);
+    if (downloadPdfBtn) downloadPdfBtn.addEventListener('click', downloadCertificatePDF);
+    if (closeCertificateModal) closeCertificateModal.addEventListener('click', closeCertificateModalFunc);
+    
+    // Configurar input de Excel
+    const excelFileInput = document.getElementById('excelFileInput');
+    if (excelFileInput) {
+        excelFileInput.addEventListener('change', handleExcelFileSelect);
     }
     
-    header.scrolled {
-        padding: 6px 25px;
-    }
+    // Inicializar eventos de certificado
+    initializeCertificateEventListeners();
 }
 
-@media (max-width: 768px) {
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .certificado-horizontal {
-        padding: 1cm;
-        border-width: 10px;
+// ===== SISTEMA DE CERTIFICACIONES INTEGRADO =====
+function initializeCertificationSystem() {
+    const searchBtn = document.getElementById('searchCertificateBtn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', searchCertificate);
     }
     
-    .certificado-firmas {
-        flex-direction: column;
-        gap: 30px;
+    const cedulaSearch = document.getElementById('cedulaSearch');
+    if (cedulaSearch) {
+        cedulaSearch.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCertificate();
+            }
+        });
+        
+        cedulaSearch.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^\d]/g, '').slice(0, 10);
+        });
+    }
+}
+
+// ===== FUNCIÓN MEJORADA: BUSCAR CERTIFICADO =====
+function searchCertificate() {
+    const cedulaInput = document.getElementById('cedulaSearch');
+    const resultsContainer = document.getElementById('certificationResults');
+    
+    if (!cedulaInput || !resultsContainer) return;
+    
+    const cedula = cedulaInput.value.trim();
+    
+    if (!cedula) {
+        showNotification('Por favor ingresa un número de cédula', 'warning');
+        return;
     }
     
-    .firma-item {
-        width: 100%;
+    if (!/^\d{10}$/.test(cedula)) {
+        showNotification('La cédula debe tener exactamente 10 dígitos numéricos', 'error');
+        return;
     }
     
-    .certificado-titulo h3 {
-        font-size: 28px;
+    resultsContainer.innerHTML = `
+        <div class="loading-results">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Buscando certificado...</p>
+        </div>
+    `;
+    
+    setTimeout(() => {
+        const certificado = AppState.certificationsData.find(cert => cert.cedula === cedula);
+        
+        if (certificado) {
+            const fechaEmision = formatDisplayDate(certificado.fecha);
+            const fechaExpiracion = certificado.fechaExpiracion ? formatDisplayDate(certificado.fechaExpiracion) : 'No expira';
+            const estado = checkCertificateStatus(certificado.fechaExpiracion);
+            
+            resultsContainer.innerHTML = `
+                <div class="certificate-found">
+                    <div class="certificate-header">
+                        <i class="fas fa-certificate" style="color: #27ae60; font-size: 48px;"></i>
+                        <h3 style="color: var(--success); margin: 15px 0;">¡Certificado Encontrado!</h3>
+                    </div>
+                    <div class="certificate-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Cédula:</span>
+                            <span class="detail-value">${certificado.cedula}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Nombre:</span>
+                            <span class="detail-value">${escapeHTML(certificado.nombre)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Programa:</span>
+                            <span class="detail-value">${escapeHTML(certificado.curso)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Fecha de Emisión:</span>
+                            <span class="detail-value">${fechaEmision}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Fecha de Expiración:</span>
+                            <span class="detail-value">${fechaExpiracion}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Estado:</span>
+                            <span class="detail-value ${estado === 'VÁLIDO' ? 'status-valid' : 'status-expired'}">${estado}</span>
+                        </div>
+                    </div>
+                    <div class="certificate-actions">
+                        <button class="btn btn-success" onclick="openCertificateModal('${cedula}')">
+                            <i class="fas fa-print"></i> Ver e Imprimir Certificado
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else {
+            resultsContainer.innerHTML = `
+                <div class="certificate-not-found">
+                    <i class="fas fa-search" style="color: #e74c3c; font-size: 48px;"></i>
+                    <h3 style="color: var(--accent); margin: 15px 0;">Certificado No Encontrado</h3>
+                    <p>No se encontró ningún certificado asociado a la cédula: <strong>${cedula}</strong></p>
+                    <p class="help-text">Verifica que el número de cédula sea correcto o contacta con la administración.</p>
+                </div>
+            `;
+        }
+    }, 800);
+}
+
+// ===== NUEVA FUNCIÓN: VERIFICAR ESTADO DEL CERTIFICADO =====
+function checkCertificateStatus(fechaExpiracion) {
+    if (!fechaExpiracion) return 'VÁLIDO';
+    
+    try {
+        const fechaExp = new Date(fechaExpiracion);
+        const hoy = new Date();
+        
+        if (fechaExp < hoy) {
+            return 'EXPIRADO';
+        }
+        
+        const diffTime = fechaExp.getTime() - hoy.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays <= 30) {
+            return `VÁLIDO (Expira en ${diffDays} días)`;
+        }
+        
+        return 'VÁLIDO';
+    } catch (error) {
+        return 'VÁLIDO';
+    }
+}
+
+// ===== FUNCIÓN AUXILIAR: FORMATEAR FECHA PARA MOSTRAR =====
+function formatDisplayDate(dateString) {
+    try {
+        if (!isNaN(dateString) && dateString > 25569) {
+            const excelDate = new Date((dateString - 25569) * 86400 * 1000);
+            return excelDate.toLocaleDateString('es-EC', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        const date = new Date(dateString);
+        if (!isNaN(date.getTime())) {
+            return date.toLocaleDateString('es-EC', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        return dateString;
+    } catch (error) {
+        return dateString;
+    }
+}
+
+// ===== SISTEMA DE CERTIFICADOS - PROBLEMAS 1, 4, 5 SOLUCIONADOS =====
+function openCertificateModal(cedula) {
+    const certificado = AppState.certificationsData.find(cert => cert.cedula === cedula);
+    if (!certificado) {
+        showNotification('Certificado no encontrado', 'error');
+        return;
     }
     
-    .nombre-estudiante {
-        font-size: 24px;
+    const modal = document.getElementById('certificateModal');
+    if (!modal) {
+        showNotification('Error: Modal no encontrado', 'error');
+        return;
     }
     
-    /* MENÚ HAMBURGUESA - PROBLEMA 2 SOLUCIONADO */
-    .menu-toggle {
-        display: flex;
+    try {
+        const studentNameElem = document.getElementById('certificateStudentName');
+        const programElem = document.getElementById('certificateProgram');
+        const cedulaElem = document.getElementById('certificateCedula');
+        const issueDateElem = document.getElementById('certificateIssueDate');
+        
+        if (studentNameElem) studentNameElem.textContent = certificado.nombre;
+        if (programElem) programElem.textContent = certificado.curso;
+        if (cedulaElem) cedulaElem.textContent = `Cédula: ${certificado.cedula}`;
+        if (issueDateElem) {
+            issueDateElem.textContent = `Fecha de certificación: ${formatDisplayDate(certificado.fecha)}`;
+        }
+        
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'flex-start';
+        modal.style.paddingTop = '20px';
+        modal.style.paddingBottom = '20px';
+        document.body.style.overflow = 'hidden';
+        
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.maxHeight = '90vh';
+            modalContent.style.overflowY = 'auto';
+        }
+        
+    } catch (error) {
+        console.error('Error abriendo modal de certificado:', error);
+        showNotification('Error al mostrar el certificado', 'error');
+    }
+}
+
+// ===== FUNCIÓN MEJORADA: IMPRIMIR CERTIFICADO - PROBLEMA 4 SOLUCIONADO =====
+function printCertificate() {
+    try {
+        const certificadoContent = document.querySelector('.certificado-horizontal');
+        if (!certificadoContent) {
+            showNotification('Error: Contenido del certificado no encontrado', 'error');
+            return;
+        }
+        
+        // Crear una ventana de impresión optimizada
+        const printWindow = window.open('', '_blank', 'width=1200,height=800');
+        
+        // Estilos optimizados para impresión centrada
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Certificado Elite Academy</title>
+                <style>
+                    @page {
+                        size: landscape;
+                        margin: 0;
+                    }
+                    body { 
+                        margin: 0; 
+                        padding: 0; 
+                        font-family: 'Arial', sans-serif;
+                        background: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                    }
+                    .certificado-horizontal { 
+                        width: 29.7cm;
+                        height: 21cm;
+                        border: 15px solid #1a4b8c;
+                        padding: 30px;
+                        background: url('images/certificado_fondo.jpg') no-repeat center center;
+                        background-size: cover;
+                        position: relative;
+                        box-shadow: none;
+                        margin: 0 auto;
+                    }
+                    .certificado-header { 
+                        display: flex; 
+                        justify-content: space-between; 
+                        align-items: center;
+                        margin-bottom: 40px;
+                        padding-bottom: 20px;
+                        border-bottom: 2px solid #e4e6eb;
+                    }
+                    .logo-left, .logo-right { 
+                        width: 120px;
+                        height: 120px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .escudo-ecuador, .logo-academia { 
+                        max-width: 100%;
+                        max-height: 100%;
+                        border: 2px solid #1a4b8c;
+                        border-radius: 8px;
+                        padding: 8px;
+                        background: white;
+                    }
+                    .titulo-centro { 
+                        text-align: center; 
+                        flex: 1;
+                        margin: 0 20px;
+                    }
+                    .titulo-centro h1 { 
+                        font-size: 18px; 
+                        margin: 0; 
+                        color: #1a4b8c;
+                        font-weight: bold;
+                    }
+                    .titulo-centro h2 { 
+                        font-size: 16px; 
+                        margin: 5px 0 0 0;
+                        color: #2c3e50;
+                        font-style: italic;
+                    }
+                    .certificado-body {
+                        text-align: center;
+                        padding: 0 20px;
+                    }
+                    .certificado-titulo h3 {
+                        font-size: 32px;
+                        color: #e74c3c;
+                        text-transform: uppercase;
+                        letter-spacing: 3px;
+                        margin-bottom: 8px;
+                        font-weight: 800;
+                    }
+                    .nombre-estudiante { 
+                        font-size: 24px; 
+                        font-weight: bold; 
+                        margin: 20px 0;
+                        color: #1a4b8c;
+                        text-transform: uppercase;
+                        border-bottom: 2px solid #e4e6eb;
+                        padding-bottom: 10px;
+                    }
+                    .programa-estudiante { 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin: 15px 0;
+                        color: #1a4b8c;
+                        padding: 12px;
+                        background: #f8f9fa;
+                        border-left: 4px solid #e74c3c;
+                        border-radius: 8px;
+                    }
+                    .certificado-firmas { 
+                        display: flex; 
+                        justify-content: space-around; 
+                        margin-top: 50px;
+                        padding-top: 20px;
+                        border-top: 2px solid #e4e6eb;
+                    }
+                    .firma-item { 
+                        text-align: center; 
+                        width: 45%;
+                    }
+                    .linea-firma { 
+                        border-top: 2px solid #000; 
+                        width: 200px; 
+                        margin: 0 auto 10px;
+                    }
+                    .nombre-firma {
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: #2c3e50;
+                        margin-bottom: 3px;
+                    }
+                    .cargo-firma {
+                        font-size: 10px;
+                        color: #4a5568;
+                        margin-bottom: 2px;
+                    }
+                    .institucion-firma {
+                        font-size: 9px;
+                        color: #718096;
+                        font-style: italic;
+                    }
+                    @media print {
+                        body { margin: 0; }
+                        .certificado-horizontal { 
+                            border-width: 20px;
+                            box-shadow: none;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                ${certificadoContent.outerHTML}
+                <script>
+                    window.onload = function() {
+                        window.print();
+                        setTimeout(() => {
+                            window.close();
+                        }, 1000);
+                    }
+                <\/script>
+            </body>
+            </html>
+        `);
+        
+        printWindow.document.close();
+        showNotification('Preparando impresión...', 'info');
+        
+    } catch (error) {
+        console.error('Error imprimiendo certificado:', error);
+        showNotification('Error al imprimir el certificado', 'error');
+    }
+}
+
+// ===== FUNCIÓN MEJORADA: DESCARGAR PDF - PROBLEMA 5 SOLUCIONADO =====
+function downloadCertificatePDF() {
+    try {
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) {
+            showNotification('Error: Librería PDF no disponible', 'error');
+            return;
+        }
+        
+        const certificado = AppState.certificationsData.find(cert => 
+            cert.cedula === document.getElementById('certificateCedula')?.textContent?.replace('Cédula: ', '')
+        );
+        
+        if (!certificado) {
+            showNotification('No se pudo obtener la información del certificado', 'error');
+            return;
+        }
+        
+        // Crear PDF en orientación horizontal
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        // Configuración
+        doc.setFont('helvetica');
+        
+        // Fondo del certificado (bordes decorativos)
+        doc.setDrawColor(26, 75, 140);
+        doc.setLineWidth(15);
+        doc.rect(7.5, 7.5, 277, 190);
+        
+        // Borde interior decorativo
+        doc.setDrawColor(231, 76, 60);
+        doc.setLineWidth(2);
+        doc.rect(20, 20, 252, 165);
+        
+        // Encabezado con logos
+        doc.setFontSize(16);
+        doc.setTextColor(26, 75, 140);
+        doc.text('ACADEMIA DE CAPACITACIÓN & INNOVACIÓN', 148, 35, { align: 'center' });
+        doc.setFontSize(14);
+        doc.text('"ELITE ACADEMY" S.A.S.', 148, 45, { align: 'center' });
+        
+        // Título del certificado
+        doc.setFontSize(28);
+        doc.setTextColor(231, 76, 60);
+        doc.text('CERTIFICADO', 148, 70, { align: 'center' });
+        
+        // Contenido principal
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0);
+        doc.text('Se otorga el presente certificado a:', 148, 90, { align: 'center' });
+        
+        // Nombre del estudiante
+        doc.setFontSize(18);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(26, 75, 140);
+        doc.text(certificado.nombre.toUpperCase(), 148, 110, { align: 'center' });
+        
+        // Cédula
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Cédula: ${certificado.cedula}`, 148, 125, { align: 'center' });
+        
+        // Programa
+        doc.text('Por haber aprobado con éxito el programa de formación', 148, 140, { align: 'center' });
+        doc.setFontSize(16);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(26, 75, 140);
+        doc.text(certificado.curso.toUpperCase(), 148, 155, { align: 'center' });
+        
+        // Fecha
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Fecha de certificación: ${formatDisplayDate(certificado.fecha)}`, 148, 175, { align: 'center' });
+        
+        // Firmas - MEJORADAS PARA CABER MEJOR
+        doc.setFontSize(10);
+        const firmaY = 200;
+        
+        // Firma izquierda
+        doc.text('_________________________', 80, firmaY, { align: 'center' });
+        doc.text('Ing. Esín Maldonado Edison R.', 80, firmaY + 8, { align: 'center' });
+        doc.text('Gerente General', 80, firmaY + 14, { align: 'center' });
+        doc.text('Elite Academy S.A.S.', 80, firmaY + 20, { align: 'center' });
+        
+        // Firma derecha
+        doc.text('_________________________', 216, firmaY, { align: 'center' });
+        doc.text('Tnlga. López Tapia Evelyn Cristina', 216, firmaY + 8, { align: 'center' });
+        doc.text('Coordinación Académica', 216, firmaY + 14, { align: 'center' });
+        doc.text('Elite Academy', 216, firmaY + 20, { align: 'center' });
+        
+        // Pie de página
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text('Válido mediante código QR o en www.eliteacademy.edu.ec/validar', 148, 280, { align: 'center' });
+        
+        // Guardar PDF
+        const fileName = `certificado_${certificado.cedula}_${new Date().toISOString().split('T')[0]}.pdf`;
+        doc.save(fileName);
+        showNotification('Certificado descargado en PDF ✅', 'success');
+        
+    } catch (error) {
+        console.error('Error generando PDF:', error);
+        showNotification('Error al generar el PDF del certificado', 'error');
+    }
+}
+
+// ===== FUNCIÓN MEJORADA: CERRAR MODAL DE CERTIFICADO =====
+function closeCertificateModalFunc() {
+    const modal = document.getElementById('certificateModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        modal.style.alignItems = 'center';
+        modal.style.paddingTop = '0';
+        
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.maxHeight = 'none';
+            modalContent.style.overflowY = 'visible';
+        }
+    }
+}
+
+// ===== INICIALIZACIÓN DE EVENT LISTENERS PARA CERTIFICADO =====
+function initializeCertificateEventListeners() {
+    const printBtn = document.getElementById('printCertificateBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const closeCertificateModal = document.getElementById('closeCertificateModal');
+    
+    if (printBtn) printBtn.addEventListener('click', printCertificate);
+    if (downloadPdfBtn) downloadPdfBtn.addEventListener('click', downloadCertificatePDF);
+    if (closeCertificateModal) closeCertificateModal.addEventListener('click', closeCertificateModalFunc);
+}
+
+// ===== SISTEMA DE EXCEL =====
+function handleExcelUpload() {
+    const excelFileInput = document.getElementById('excelFileInput');
+    if (excelFileInput) {
+        excelFileInput.click();
+    }
+}
+
+function handleExcelFileSelect(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    if (!file.name.match(/\.(xlsx|xls)$/)) {
+        showNotification('Por favor selecciona un archivo Excel (.xlsx o .xls)', 'error');
+        return;
     }
     
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        transition: var(--transition);
-        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-        z-index: 999;
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            
+            if (jsonData.length === 0) {
+                showNotification('El archivo Excel está vacío', 'warning');
+                return;
+            }
+            
+            const certifications = convertExcelToCertifications(jsonData);
+            
+            if (certifications.length === 0) {
+                showNotification('No se pudieron procesar los datos del Excel', 'error');
+                return;
+            }
+            
+            AppState.certificationsData = certifications;
+            localStorage.setItem(CONFIG.storageKeys.certifications, JSON.stringify(certifications));
+            
+            showNotification(`✅ Se actualizaron ${certifications.length} certificados desde el Excel`, 'success');
+            
+            if (AppState.isAdminAuthenticated) {
+                loadCertificationsTable();
+            }
+            
+        } catch (error) {
+            console.error('Error procesando Excel:', error);
+            showNotification('Error al procesar el archivo Excel', 'error');
+        }
+    };
+    
+    reader.onerror = function() {
+        showNotification('Error al leer el archivo', 'error');
+    };
+    
+    reader.readAsArrayBuffer(file);
+}
+
+function convertExcelToCertifications(excelData) {
+    const certifications = [];
+    
+    excelData.forEach((row, index) => {
+        try {
+            const cedula = findColumnValue(row, ['cedula', 'cédula', 'identificación', 'dni', 'ci']);
+            const nombre = findColumnValue(row, ['nombre', 'estudiante', 'alumno', 'aprendiz', 'estudiante']);
+            const curso = findColumnValue(row, ['curso', 'programa', 'carrera', 'especialidad', 'título']);
+            const fecha = findColumnValue(row, ['fecha', 'fecha emisión', 'fecha_emision', 'emisión', 'fechaemision']);
+            const fechaExpiracion = findColumnValue(row, ['expiración', 'expiracion', 'fecha expiración', 'fecha_expiracion', 'validez', 'vigencia']);
+            
+            if (cedula && nombre && curso && fecha) {
+                certifications.push({
+                    cedula: cedula.toString().trim(),
+                    nombre: nombre.toString().trim().toUpperCase(),
+                    curso: curso.toString().trim(),
+                    fecha: formatExcelDate(fecha),
+                    fechaExpiracion: fechaExpiracion ? formatExcelDate(fechaExpiracion) : null
+                });
+            }
+        } catch (error) {
+            console.warn(`Error procesando fila ${index + 1}:`, error);
+        }
+    });
+    
+    return certifications;
+}
+
+function formatExcelDate(dateValue) {
+    try {
+        if (typeof dateValue === 'number') {
+            const excelEpoch = new Date(1900, 0, 1);
+            const excelDate = new Date(excelEpoch.getTime() + (dateValue - 1) * 24 * 60 * 60 * 1000);
+            return excelDate.toISOString().split('T')[0];
+        }
+        
+        if (typeof dateValue === 'string') {
+            const dateFormats = [
+                /(\d{4})-(\d{2})-(\d{2})/,
+                /(\d{2})\/(\d{2})\/(\d{4})/,
+                /(\d{2})-(\d{2})-(\d{4})/
+            ];
+            
+            for (const format of dateFormats) {
+                const match = dateValue.match(format);
+                if (match) {
+                    let year, month, day;
+                    
+                    if (format.source.includes('YYYY')) {
+                        year = match[1];
+                        month = match[2];
+                        day = match[3];
+                    } else {
+                        day = match[1];
+                        month = match[2];
+                        year = match[3];
+                    }
+                    
+                    const date = new Date(year, month - 1, day);
+                    if (!isNaN(date.getTime())) {
+                        return date.toISOString().split('T')[0];
+                    }
+                }
+            }
+        }
+        
+        return dateValue;
+    } catch (error) {
+        return dateValue;
+    }
+}
+
+function findColumnValue(row, possibleColumnNames) {
+    for (const colName of possibleColumnNames) {
+        const keys = Object.keys(row);
+        const foundKey = keys.find(key => 
+            key.toLowerCase().includes(colName.toLowerCase())
+        );
+        
+        if (foundKey && row[foundKey]) {
+            return row[foundKey];
+        }
+    }
+    return null;
+}
+
+// ===== MODAL DE ADMINISTRADOR - PROBLEMA 3 SOLUCIONADO =====
+function openAdminModal() {
+    const modal = document.getElementById('modal-admin');
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        AppState.isAdminAuthenticated = false;
+        showAdminLogin();
+    }
+}
+
+function closeAdminModal() {
+    const modal = document.getElementById('modal-admin');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        AppState.isAdminAuthenticated = false;
+        
+        const passwordInput = document.getElementById('adminPassword');
+        if (passwordInput) passwordInput.value = '';
+    }
+}
+
+function checkAdminPassword() {
+    const passwordInput = document.getElementById('adminPassword');
+    if (!passwordInput) return;
+    
+    const password = passwordInput.value.trim();
+    
+    if (password === ADMIN_PASSWORD) {
+        AppState.isAdminAuthenticated = true;
+        showAdminPanel();
+        showNotification('Acceso concedido 👑', 'success');
+    } else {
+        showNotification('Contraseña incorrecta ❌', 'error');
+        passwordInput.value = '';
+        passwordInput.focus();
+        
+        passwordInput.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+            passwordInput.style.animation = '';
+        }, 500);
+    }
+}
+
+function showAdminLogin() {
+    const adminLogin = document.getElementById('adminLogin');
+    const adminPanel = document.getElementById('adminPanel');
+    
+    if (adminLogin) adminLogin.style.display = 'block';
+    if (adminPanel) adminPanel.style.display = 'none';
+}
+
+function showAdminPanel() {
+    const adminLogin = document.getElementById('adminLogin');
+    const adminPanel = document.getElementById('adminPanel');
+    
+    if (adminLogin) adminLogin.style.display = 'none';
+    if (adminPanel) adminPanel.style.display = 'block';
+    
+    loadAdminData();
+}
+
+function openAdminTab(tabName, clickedBtn) {
+    document.querySelectorAll('.admin-tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) {
+        targetTab.classList.add('active');
     }
     
-    .nav-menu.active {
-        left: 0;
+    if (clickedBtn) {
+        clickedBtn.classList.add('active');
     }
     
-    .nav-menu li a {
-        padding: 15px;
-        font-size: 16px;
-        text-align: center;
-        border-radius: 10px;
-        display: block;
-        width: 100%;
+    if (tabName === 'certificationsTab') {
+        loadCertificationsTable();
+    }
+}
+
+function loadAdminData() {
+    if (!AppState.isAdminAuthenticated) return;
+    
+    loadInscriptionsTable();
+    loadTestimonialsTable();
+    loadCertificationsTable();
+}
+
+function loadInscriptionsTable() {
+    const inscriptions = loadInscriptions();
+    const tableBody = document.getElementById('inscriptionsTable');
+    
+    if (!tableBody) return;
+    
+    if (inscriptions.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #666;">No hay inscripciones registradas</td></tr>';
+        return;
     }
     
-    header {
-        padding: 8px 20px;
+    inscriptions.sort((a, b) => b.timestamp - a.timestamp);
+    
+    tableBody.innerHTML = inscriptions.map(inscription => `
+        <tr>
+            <td>${escapeHTML(inscription.firstName)} ${escapeHTML(inscription.lastName)}</td>
+            <td>${escapeHTML(inscription.email)}</td>
+            <td>${escapeHTML(inscription.phone)}</td>
+            <td>${getCourseName(inscription.course)}</td>
+            <td>${inscription.date}</td>
+            <td>
+                <button class="admin-btn view-btn" onclick="viewInscription(${inscription.id})" title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="admin-btn delete-btn" onclick="deleteInscription(${inscription.id})" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function loadTestimonialsTable() {
+    const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+    const tableBody = document.getElementById('testimonialsTable');
+    
+    if (!tableBody) return;
+    
+    if (testimonials.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px; color: #666;">No hay testimonios registrados</td></tr>';
+        return;
     }
     
-    .logo-container img {
-        height: 40px;
+    testimonials.sort((a, b) => b.timestamp - a.timestamp);
+    
+    tableBody.innerHTML = testimonials.map(testimonial => `
+        <tr>
+            <td>${escapeHTML(testimonial.name)}</td>
+            <td>${getCourseName(testimonial.course)}</td>
+            <td>${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}</td>
+            <td>${testimonial.date}</td>
+            <td>
+                <button class="admin-btn view-btn" onclick="viewTestimonial(${testimonial.id})" title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="admin-btn delete-btn" onclick="deleteTestimonial(${testimonial.id})" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function loadCertificationsTable() {
+    if (!AppState.isAdminAuthenticated) return;
+    
+    const tableBody = document.getElementById('certificationsTable');
+    if (!tableBody) return;
+    
+    if (AppState.certificationsData.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #666;">No hay certificaciones cargadas</td></tr>';
+        return;
     }
     
-    header a.logo-text {
-        font-size: 18px;
+    tableBody.innerHTML = AppState.certificationsData.map(cert => `
+        <tr>
+            <td>${escapeHTML(cert.cedula)}</td>
+            <td>${escapeHTML(cert.nombre)}</td>
+            <td>${escapeHTML(cert.curso)}</td>
+            <td>${formatDisplayDate(cert.fecha)}</td>
+            <td>${cert.fechaExpiracion ? formatDisplayDate(cert.fechaExpiracion) : 'No expira'}</td>
+            <td><span class="${checkCertificateStatus(cert.fechaExpiracion) === 'VÁLIDO' ? 'status-valid' : 'status-expired'}">${checkCertificateStatus(cert.fechaExpiracion)}</span></td>
+            <td>
+                <button class="admin-btn view-btn" onclick="openCertificateModal('${cert.cedula}')" title="Ver certificado">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// ===== MODAL DE TESTIMONIOS =====
+function openTestimonialModal() {
+    const modal = document.getElementById('testimonialModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        resetTestimonialRating();
+        resetMediaUpload();
+        
+        setTimeout(() => {
+            const nameInput = document.getElementById('testimonialName');
+            if (nameInput) nameInput.focus();
+        }, 300);
     }
 }
 
-@media (max-width: 480px) {
-    .certificado-horizontal {
-        padding: 0.5cm;
-        border-width: 5px;
-    }
-    
-    .titulo-centro h1 {
-        font-size: 14px;
-    }
-    
-    .titulo-centro h2 {
-        font-size: 12px;
-    }
-    
-    .certificado-titulo h3 {
-        font-size: 24px;
-        letter-spacing: 2px;
-    }
-    
-    .nombre-estudiante {
-        font-size: 20px;
-    }
-    
-    .programa-estudiante {
-        font-size: 18px;
-    }
-    
-    header {
-        padding: 6px 15px;
-    }
-    
-    .logo-container {
-        gap: 8px;
-        min-width: 150px;
-    }
-    
-    .logo-container img {
-        height: 35px;
-    }
-    
-    header a.logo-text {
-        font-size: 16px;
-    }
-    
-    section {
-        padding: 100px 20px;
+function closeTestimonialModal() {
+    const modal = document.getElementById('testimonialModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        const form = document.getElementById('testimonialForm');
+        if (form) form.reset();
+        resetTestimonialRating();
+        resetMediaUpload();
     }
 }
 
-/* === EFECTOS DE ANIMACIÓN MEJORADOS === */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* === SCROLLBAR PERSONALIZADO === */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
-}
-
-/* === EFECTOS DE HOVER MEJORADOS === */
-* {
-    scroll-behavior: smooth;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* === ESTILOS ESPECÍFICOS PARA CERTIFICADO MODAL === */
-#certificateModal {
-    z-index: 10000 !important;
-}
-
-.certificate-modal-content {
-    max-width: 95% !important;
-    max-height: 90vh !important;
-    margin: 20px auto !important;
-    position: relative;
-    z-index: 1000;
-    background: white !important;
-    border-radius: 10px;
-    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
-}
-
-.certificate-actions {
-    position: sticky !important;
-    bottom: 0 !important;
-    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, white 100%) !important;
-    padding: 20px !important;
-    border-top: 3px solid #1a4b8c !important;
-    z-index: 1001 !important;
-    margin-top: 30px !important;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    backdrop-filter: blur(5px);
-}
-
-.certificate-container {
-    max-height: calc(90vh - 150px) !important;
-    overflow-y: auto !important;
-    padding: 20px !important;
-    background: #f8f9fa;
-    border-radius: 8px;
-    margin: 10px;
-}
-
-.certificado-horizontal {
-    min-width: 800px !important;
-    transform-origin: top left !important;
-    background: white;
-    padding: 30px;
-    border: 15px solid #1a4b8c;
-    border-radius: 5px;
-}
-
-/* Asegurar que los botones no se superpongan */
-.btn-primary, .btn-secondary {
-    position: relative !important;
-    z-index: 1002 !important;
-    transform: none !important;
-}
-
-/* Responsive para certificado */
-@media (max-width: 900px) {
-    .certificado-horizontal {
-        min-width: 600px !important;
-        transform: scale(0.9);
-    }
-}
-
-@media (max-width: 700px) {
-    .certificado-horizontal {
-        min-width: 500px !important;
-        transform: scale(0.8);
+// ===== FUNCIONES ADMINISTRATIVAS =====
+function viewInscription(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
     }
     
-    .certificate-actions {
-        flex-direction: column;
-        gap: 10px;
+    const inscriptions = loadInscriptions();
+    const inscription = inscriptions.find(i => i.id === id);
+    
+    if (!inscription) {
+        showNotification('Inscripción no encontrada', 'error');
+        return;
+    }
+    
+    const modal = document.getElementById('viewInscriptionModal');
+    const details = document.getElementById('inscriptionDetails');
+    
+    if (modal && details) {
+        details.innerHTML = `
+            <div class="inscription-details">
+                <h3 style="color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px;">Información Personal</h3>
+                <p><strong>Nombre completo:</strong> ${escapeHTML(inscription.firstName)} ${escapeHTML(inscription.lastName)}</p>
+                <p><strong>Cédula:</strong> ${escapeHTML(inscription.cedula)}</p>
+                <p><strong>Fecha de nacimiento:</strong> ${inscription.birthdate}</p>
+                <p><strong>Teléfono:</strong> ${escapeHTML(inscription.phone)}</p>
+                <p><strong>Email:</strong> ${escapeHTML(inscription.email)}</p>
+                
+                <h3 style="color: var(--primary); margin: 30px 0 15px 0; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px;">Dirección</h3>
+                <p><strong>Provincia:</strong> ${escapeHTML(inscription.province)}</p>
+                <p><strong>Cantón:</strong> ${escapeHTML(inscription.canton)}</p>
+                <p><strong>Parroquia:</strong> ${escapeHTML(inscription.parish)}</p>
+                <p><strong>Barrio/Comunidad:</strong> ${escapeHTML(inscription.neighborhood)}</p>
+                
+                <h3 style="color: var(--primary); margin: 30px 0 15px 0; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px;">Curso Seleccionado</h3>
+                <p><strong>Programa:</strong> ${getCourseName(inscription.course)}</p>
+                ${inscription.message ? `<p><strong>Mensaje adicional:</strong> ${escapeHTML(inscription.message)}</p>` : ''}
+                
+                <p style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #f0f2f5; color: #666;"><strong>Fecha de inscripción:</strong> ${inscription.date}</p>
+            </div>
+        `;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
 }
 
-/* === ESTILOS DE NOTIFICACIONES === */
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+function viewTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+    const testimonial = testimonials.find(t => t.id === id);
+    
+    if (!testimonial) {
+        showNotification('Testimonio no encontrado', 'error');
+        return;
+    }
+    
+    const modal = document.getElementById('viewTestimonialModal');
+    const details = document.getElementById('testimonialDetails');
+    
+    if (modal && details) {
+        details.innerHTML = `
+            <div class="testimonial-details">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="author-avatar" style="width: 50px; height: 50px;">${testimonial.name.charAt(0).toUpperCase()}</div>
+                    <div>
+                        <h3 style="margin: 0; color: var(--primary);">${escapeHTML(testimonial.name)}</h3>
+                        <p style="margin: 5px 0 0 0; color: #666;">${getCourseName(testimonial.course)}</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-rating" style="margin-bottom: 20px; font-size: 18px;">
+                    ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+                
+                ${testimonial.hasMedia ? `
+                    <div class="testimonial-media" style="margin-bottom: 20px;">
+                        ${testimonial.mediaType === 'image' ? 
+                            `<img src="${testimonial.mediaUrl}" alt="Testimonio de ${escapeHTML(testimonial.name)}" style="max-width: 100%; border-radius: 8px;" onerror="this.style.display='none'">` : 
+                            `<video controls style="max-width: 100%; border-radius: 8px; background: #000;" onerror="this.style.display='none'">
+                                <source src="${testimonial.mediaUrl}" type="video/mp4">
+                                <source src="${testimonial.mediaUrl}" type="video/avi">
+                                <source src="${testimonial.mediaUrl}" type="video/mov">
+                                Tu navegador no soporta el elemento de video.
+                            </video>`
+                        }
+                    </div>
+                ` : ''}
+                
+                <div class="testimonial-text" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="margin: 0; line-height: 1.6; font-style: italic;">"${escapeHTML(testimonial.text)}"</p>
+                </div>
+                
+                <p style="color: #666; text-align: right; border-top: 1px solid #e4e6eb; padding-top: 15px;">
+                    <strong>Fecha:</strong> ${testimonial.date}
+                </p>
+            </div>
+        `;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
-@keyframes slideOutRight {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
+function deleteInscription(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de eliminar esta inscripción? Esta acción no se puede deshacer.')) {
+        try {
+            let inscriptions = loadInscriptions();
+            inscriptions = inscriptions.filter(i => i.id !== id);
+            localStorage.setItem(CONFIG.storageKeys.inscriptions, JSON.stringify(inscriptions));
+            loadInscriptionsTable();
+            showNotification('Inscripción eliminada correctamente', 'success');
+        } catch (error) {
+            console.error('Error eliminando inscripción:', error);
+            showNotification('Error al eliminar la inscripción', 'error');
+        }
+    }
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+function deleteTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de eliminar este testimonio? Esta acción no se puede deshacer.')) {
+        try {
+            let testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+            testimonials = testimonials.filter(t => t.id !== id);
+            localStorage.setItem(CONFIG.storageKeys.testimonials, JSON.stringify(testimonials));
+            loadTestimonialsTable();
+            loadTestimonials();
+            showNotification('Testimonio eliminado correctamente', 'success');
+        } catch (error) {
+            console.error('Error eliminando testimonio:', error);
+            showNotification('Error al eliminar el testimonio', 'error');
+        }
+    }
 }
 
-.notification-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s;
+function clearAllInscriptions() {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de eliminar TODAS las inscripciones? Esta acción es irreversible y eliminará todos los datos de inscripción.')) {
+        try {
+            localStorage.removeItem(CONFIG.storageKeys.inscriptions);
+            loadInscriptionsTable();
+            showNotification('Todas las inscripciones han sido eliminadas', 'success');
+        } catch (error) {
+            console.error('Error eliminando inscripciones:', error);
+            showNotification('Error al eliminar las inscripciones', 'error');
+        }
+    }
 }
 
-.notification-close:hover {
-    opacity: 0.8;
+function clearAllTestimonials() {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de eliminar TODOS los testimonios? Esta acción es irreversible y eliminará todos los testimonios de estudiantes.')) {
+        try {
+            localStorage.removeItem(CONFIG.storageKeys.testimonials);
+            loadTestimonialsTable();
+            loadTestimonials();
+            showNotification('Todos los testimonios han sido eliminados', 'success');
+        } catch (error) {
+            console.error('Error eliminando testimonios:', error);
+            showNotification('Error al eliminar los testimonios', 'error');
+        }
+    }
 }
 
-.admin-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    margin: 2px;
+// ===== EXPORTACIÓN A CSV =====
+function exportToCSV() {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    const inscriptions = loadInscriptions();
+    if (inscriptions.length === 0) {
+        showNotification('No hay datos para exportar', 'warning');
+        return;
+    }
+    
+    try {
+        const headers = ['Nombre', 'Email', 'Teléfono', 'Curso', 'Fecha', 'Cédula', 'Provincia', 'Cantón'];
+        const csvContent = [
+            headers.join(','),
+            ...inscriptions.map(inscription => [
+                `"${inscription.firstName} ${inscription.lastName}"`,
+                `"${inscription.email}"`,
+                `"${inscription.phone}"`,
+                `"${getCourseName(inscription.course)}"`,
+                `"${inscription.date}"`,
+                `"${inscription.cedula}"`,
+                `"${inscription.province}"`,
+                `"${inscription.canton}"`
+            ].join(','))
+        ].join('\n');
+        
+        downloadCSV(csvContent, `inscripciones_elite_academy_${new Date().toISOString().split('T')[0]}.csv`);
+        showNotification('Datos exportados correctamente 📊', 'success');
+    } catch (error) {
+        console.error('Error exportando CSV:', error);
+        showNotification('Error al exportar los datos', 'error');
+    }
 }
 
-.view-btn {
-    background: #3498db;
-    color: white;
+function exportTestimonialsToCSV() {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
+    if (testimonials.length === 0) {
+        showNotification('No hay testimonios para exportar', 'warning');
+        return;
+    }
+    
+    try {
+        const headers = ['Nombre', 'Curso', 'Calificación', 'Fecha', 'Testimonio'];
+        const csvContent = [
+            headers.join(','),
+            ...testimonials.map(testimonial => [
+                `"${testimonial.name}"`,
+                `"${getCourseName(testimonial.course)}"`,
+                `"${testimonial.rating}"`,
+                `"${testimonial.date}"`,
+                `"${testimonial.text.replace(/"/g, '""')}"`
+            ].join(','))
+        ].join('\n');
+        
+        downloadCSV(csvContent, `testimonios_elite_academy_${new Date().toISOString().split('T')[0]}.csv`);
+        showNotification('Testimonios exportados correctamente 📝', 'success');
+    } catch (error) {
+        console.error('Error exportando testimonios:', error);
+        showNotification('Error al exportar los testimonios', 'error');
+    }
 }
 
-.view-btn:hover {
-    background: #2980b9;
-    transform: scale(1.05);
+function exportCertificationsToCSV() {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (AppState.certificationsData.length === 0) {
+        showNotification('No hay certificaciones para exportar', 'warning');
+        return;
+    }
+    
+    try {
+        const headers = ['Cédula', 'Nombre', 'Curso', 'Fecha', 'Fecha de Expiración', 'Estado'];
+        const csvContent = [
+            headers.join(','),
+            ...AppState.certificationsData.map(cert => [
+                `"${cert.cedula}"`,
+                `"${cert.nombre}"`,
+                `"${cert.curso}"`,
+                `"${cert.fecha}"`,
+                `"${cert.fechaExpiracion || 'No expira'}"`,
+                `"${checkCertificateStatus(cert.fechaExpiracion)}"`
+            ].join(','))
+        ].join('\n');
+        
+        downloadCSV(csvContent, `certificaciones_elite_academy_${new Date().toISOString().split('T')[0]}.csv`);
+        showNotification('Certificaciones exportadas correctamente 📋', 'success');
+    } catch (error) {
+        console.error('Error exportando certificaciones:', error);
+        showNotification('Error al exportar las certificaciones', 'error');
+    }
 }
 
-.delete-btn {
-    background: #e74c3c;
-    color: white;
+function downloadCSV(content, filename) {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
-.delete-btn:hover {
-    background: #c0392b;
-    transform: scale(1.05);
+// ===== SISTEMA DE NOTIFICACIONES =====
+function showNotification(message, type = 'info') {
+    document.querySelectorAll('.notification').forEach(notification => {
+        notification.remove();
+    });
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    
+    const icons = {
+        success: '✅',
+        error: '❌',
+        warning: '⚠️',
+        info: 'ℹ️'
+    };
+    
+    notification.innerHTML = `
+        <span>${icons[type] || ''} ${message}</span>
+        <button onclick="this.parentElement.remove()" class="notification-close">×</button>
+    `;
+    
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        padding: '15px 20px',
+        background: type === 'success' ? '#27ae60' : 
+                   type === 'error' ? '#e74c3c' : 
+                   type === 'warning' ? '#f39c12' : '#3498db',
+        color: 'white',
+        borderRadius: '10px',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+        zIndex: '10000',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '15px',
+        maxWidth: '400px',
+        animation: 'slideInRight 0.3s ease',
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: '600',
+        fontSize: '14px'
+    });
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
 }
 
-.no-testimonials {
-    text-align: center;
-    padding: 60px 20px;
-    color: #666;
+// ===== UTILIDADES =====
+function getCourseName(courseKey) {
+    const courses = {
+        'farmacia': 'Auxiliar de Farmacia',
+        'enfermeria': 'Auxiliar de Enfermería',
+        'parvularia': 'Parvularia o Educación Inicial',
+        'belleza': 'Técnico en Belleza Integral',
+        'contabilidad': 'Gestión Administrativa y Contabilidad',
+        'cocteleria': 'Técnico en Coctelería',
+        'automotriz': 'Técnico en Mecánica Automotriz',
+        'motos': 'Técnico en Mecánica de Motos',
+        'fisioterapia': 'Auxiliar de Fisioterapia',
+        'soldadura': 'Técnico en Soldadura',
+        'electricidad': 'Técnico en Electricidad',
+        'uñas': 'Técnico en Uñas',
+        'forense': 'Auxiliar Forense',
+        'Celulares': 'Mantenimiento de Celulares y Computadoras',
+        'barberia': 'Barber Shop Profesional',
+        'podologia': 'Auxiliar de Podología'
+    };
+    return courses[courseKey] || 'Curso no especificado';
 }
 
-.inscription-details p {
-    margin: 10px 0;
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f2f5;
+function escapeHTML(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }
 
-.inscription-details h3 {
-    color: var(--primary);
-    margin: 25px 0 15px 0;
+function initializeIntersectionObserver() {
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    } else {
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.classList.add('visible');
+        });
+    }
 }
 
-.loading-results {
-    text-align: center;
-    padding: 40px;
-    color: var(--gray);
+function loadExistingData() {
+    loadTestimonials();
 }
 
-.loading-results .fa-spinner {
-    font-size: 36px;
-    margin-bottom: 15px;
-    color: var(--primary);
+function closeAllModals() {
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+    });
+    document.body.style.overflow = 'auto';
 }
 
-.certificate-found, .certificate-not-found {
-    text-align: center;
-    padding: 20px;
+function closeViewInscriptionModal() {
+    document.getElementById('viewInscriptionModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
-.detail-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    padding: 8px 0;
-    border-bottom: 1px solid #e4e6eb;
+function closeViewTestimonialModal() {
+    document.getElementById('viewTestimonialModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
-.detail-label {
-    font-weight: 600;
-    color: var(--dark);
+// ===== INICIALIZACIÓN FINAL =====
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApplication);
+} else {
+    initializeApplication();
 }
 
-.detail-value {
-    color: var(--text);
-}
-
-.status-valid {
-    background: var(--success);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.status-expired {
-    background: var(--error);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.certificate-actions {
-    margin-top: 20px;
-}
-
-.btn-success {
-    background: var(--success);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn-success:hover {
-    background: #229954;
-}
-
-.help-text {
-    font-size: 14px;
-    color: var(--gray);
-    margin-top: 10px;
-}
-
-.testimonial-media {
-    margin: 15px 0;
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 100%;
-}
-
-.testimonial-media img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.testimonial-media video {
-    width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    background: #000;
-}
-
-.certificate-modal-content {
-    max-width: 800px;
-    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-    border: 10px solid var(--primary);
-}
-
-.certificate-header {
-    text-align: center;
-    padding: 30px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    color: white;
-}
-
-.certificate-header img {
-    height: 80px;
-    margin-bottom: 15px;
-}
-
-.certificate-header h2 {
-    font-size: 28px;
-    margin: 0;
-    font-weight: 800;
-}
-
-.certificate-body {
-    padding: 40px;
-    text-align: center;
-}
-
-.certificate-body h3 {
-    font-size: 32px;
-    color: var(--primary);
-    margin: 20px 0;
-    font-weight: 700;
-}
-
-.certificate-body h4 {
-    font-size: 24px;
-    color: var(--dark);
-    margin: 15px 0;
-    font-weight: 600;
-}
-
-.certificate-signatures {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    gap: 50px;
-}
-
-.signature {
-    text-align: center;
-}
-
-.signature p:first-child {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-.certificate-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-top: 2px solid #e4e6eb;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    color: white;
-}
-
-.btn-secondary {
-    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
-    color: white;
-}
+console.log('🚀 Elite Academy - Sistema completo y funcional con Excel automático');
