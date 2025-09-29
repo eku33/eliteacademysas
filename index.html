@@ -104,9 +104,6 @@
                 <img src="images/nosotros.jpg" alt="Elite Academy" loading="lazy">
             </div>
             <div class="content fade-in">
-                <div class="logo-section">
-                    <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
-                </div>
                 <h3 class="title">Quiénes somos</h3>
                 <p class="justified-text">Elite Academy S.A.S. es una institución reconocida legalmente, dedicada a capacitar personal en distintas áreas técnicas y humanas, con énfasis en competencias prácticas y preparación profesional.</p>
                 <p class="justified-text">Nuestro objetivo es formar profesionales competentes, responsables y listos para enfrentar los retos laborales actuales. Contamos con instalaciones modernas, equipos de última generación y un equipo docente altamente calificado.</p>
@@ -755,6 +752,7 @@
         <p class="section-subtitle">Conoce las experiencias de nuestros estudiantes graduados</p>
         <div class="testimonial-container">
             <div class="testimonial-grid" id="testimonialGrid">
+                <!-- Los testimonios se cargarán dinámicamente aquí -->
             </div>
             
             <div class="add-testimonial">
@@ -773,7 +771,7 @@
         <div class="validation-grid">
             <div class="validation-card fade-in">
                 <div class="validation-icon">
-                    <img src="images/1.png" alt="MDT Perfil OC" loading="lazy">
+                    <img src="images/logo_ecuador.jpeg" alt="MDT Perfil OC" loading="lazy">
                 </div>
                 <h3>Certificados MDT-Perfil-OC</h3>
                 <p>Verifica tus certificados en el portal oficial del Ministerio del Trabajo</p>
@@ -785,7 +783,7 @@
             
             <div class="validation-card fade-in">
                 <div class="validation-icon">
-                    <img src="images/1.png" alt="MDT Perfil OEC" loading="lazy">
+                    <img src="images/logo_ecuador.jpeg" alt="MDT Perfil OEC" loading="lazy">
                 </div>
                 <h3>Certificados MDT-Perfil-OEC</h3>
                 <p>Consulta la legitimidad de tu certificación en el sistema oficial</p>
@@ -797,7 +795,7 @@
             
             <div class="validation-card fade-in">
                 <div class="validation-icon">
-                    <img src="images/logo-senescyt.jpg" alt="SENESCYT" loading="lazy">
+                    <img src="images/senescyt.jpeg" alt="SENESCYT" loading="lazy">
                 </div>
                 <h3>SENESCYT</h3>
                 <p>Consulta tus títulos y certificados en el sistema de educación superior</p>
@@ -809,10 +807,10 @@
             
             <div class="validation-card fade-in">
                 <div class="validation-icon">
-                    <img src="images/LOGO-ULEAM-300x216.png" alt="ULEAM" loading="lazy">
+                    <img src="images/uleam_ep.png" alt="ULEAM" loading="lazy">
                 </div>
-                <h3>ULEAM</h3>
-                <p>Certificaciones en convenio con la Universidad Laica Eloy Alfaro de Manabí</p>
+                <h3>ULEAM EP</h3>
+                <p>Certificaciones en convenio con la empresa publica de la Universidad Laica Eloy Alfaro de Manabí</p>
                 <a href="https://uleam-epec.gob.ec/certificaciones-elite-academy" 
                    class="btn btn-validation" target="_blank">
                     <i class="fas fa-external-link-alt"></i> Validar Certificado
@@ -827,19 +825,14 @@
         <p class="section-subtitle">Consulta tu certificado ingresando tu número de cédula</p>
         
         <div class="certification-container">
-            <div class="certification-logo">
-                <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" loading="lazy">
-                <h3>Sistema de Verificación de Certificados</h3>
-            </div>
-            
             <div class="certification-search">
                 <div class="search-box">
-                    <input type="text" id="cedulaSearch" placeholder="Ingresa tu número de cédula" maxlength="10">
+                    <input type="text" id="cedulaSearch" placeholder="Ingresa tu número de cédula" maxlength="10" pattern="[0-9]{10}" title="Ingresa 10 dígitos numéricos">
                     <button id="searchCertificateBtn" class="btn btn-search">
                         <i class="fas fa-search"></i> Buscar Certificado
                     </button>
                 </div>
-                <p class="search-note">Ejemplo: 1234567890 (sin guiones ni espacios)</p>
+                <p class="search-note">Ejemplo: 1234567890 (10 dígitos sin guiones ni espacios)</p>
             </div>
             
             <div class="certification-results" id="certificationResults">
@@ -876,7 +869,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cedula">Cédula de Identidad *</label>
-                        <input type="text" id="cedula" name="cedula" required>
+                        <input type="text" id="cedula" name="cedula" required pattern="[0-9]{10}" title="Ingresa 10 dígitos numéricos">
                     </div>
                     <div class="form-group">
                         <label for="birthdate">Fecha de Nacimiento *</label>
@@ -1175,7 +1168,7 @@
                 <div class="form-group">
                     <label for="testimonialMedia">Foto o Video (Opcional)</label>
                     <input type="file" id="testimonialMedia" accept="image/*,video/*">
-                    <small>Puedes subir una foto o video de tu experiencia (máx. 10MB)</small>
+                    <small>Puedes subir una foto o video de tu experiencia (máx. 50MB)</small>
                 </div>
                 
                 <div class="form-actions">
@@ -1201,32 +1194,88 @@
         </div>
     </div>
 
-    <!-- Modal para visualizar certificado -->
+    <!-- Modal para visualizar certificado HORIZONTAL -->
     <div id="certificateModal" class="modal">
         <div class="modal-content certificate-modal-content">
             <span class="close-modal" id="closeCertificateModal">&times;</span>
-            <div id="certificateContent">
-                <div class="certificate-header">
-                    <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy">
-                    <h2>Certificado de Finalización</h2>
-                </div>
-                <div class="certificate-body">
-                    <p>Se otorga el presente certificado a:</p>
-                    <h3 id="certificateStudentName">[Nombre del Estudiante]</h3>
-                    <p>Por haber completado satisfactoriamente el programa de:</p>
-                    <h4 id="certificateProgram">[Nombre del Programa]</h4>
-                    <p>Con cédula de identidad: <strong id="certificateCedula">[Cédula]</strong></p>
-                    <p>Fecha de emisión: <strong id="certificateIssueDate">[Fecha]</strong></p>
-                    <p>Tiempo de validez: <strong id="certificateExpiryDate">[Fecha]</strong></p>
-                    <div class="certificate-signatures">
-                        <div class="signature">
-                            <p>_________________________</p>
-                            <p>Director Académico</p>
-                            <p>Elite Academy</p>
+            <div class="certificate-container">
+                <!-- Certificado Horizontal Profesional -->
+                <div class="certificado-horizontal">
+                    <!-- Bordes decorativos -->
+                    <div class="certificado-borde"></div>
+                    
+                    <!-- Encabezado con logos -->
+                    <div class="certificado-header">
+                        <div class="logo-left">
+                            <img src="images/Ecuador_certificado.png" alt="Escudo del Ecuador" class="escudo-ecuador">
+                        </div>
+                        <div class="titulo-centro">
+                            <h1>ACADEMIA DE CAPACITACIÓN & INNOVACIÓN</h1>
+                            <h2>"ELITE ACADEMY" S.A.S.</h2>
+                        </div>
+                        <div class="logo-right">
+                            <img src="images/logo_elite_academy.jpg" alt="Logo Elite Academy" class="logo-academia">
+                        </div>
+                    </div>
+
+                    <!-- Contenido principal del certificado -->
+                    <div class="certificado-body">
+                        <div class="certificado-titulo">
+                            <h3>CERTIFICADO</h3>
+                            <p>Se otorga el presente certificado a:</p>
+                        </div>
+                        
+                        <div class="certificado-info">
+                            <div class="nombre-estudiante" id="certificateStudentName">
+                                [NOMBRE DEL ESTUDIANTE]
+                            </div>
+                            <div class="cedula-estudiante" id="certificateCedula">
+                                Cédula: [NÚMERO DE CÉDULA]
+                            </div>
+                            
+                            <div class="mensaje-certificado">
+                                <p>Por haber aprobado con éxito el programa de formación</p>
+                                <div class="programa-estudiante" id="certificateProgram">
+                                    [NOMBRE DEL PROGRAMA]
+                                </div>
+                            </div>
+                            
+                            <div class="fecha-certificacion" id="certificateIssueDate">
+                                Fecha de certificación: [FECHA]
+                            </div>
+                        </div>
+
+                        <!-- Firmas centradas -->
+                        <div class="certificado-firmas">
+                            <div class="firma-item">
+                                <div class="linea-firma"></div>
+                                <div class="nombre-firma">Ing. Esín Maldonado Edison R.</div>
+                                <div class="cargo-firma">Gerente General</div>
+                                <div class="institucion-firma">Elite Academy S.A.S.</div>
+                            </div>
+                            
+                            <div class="firma-item">
+                                <div class="linea-firma"></div>
+                                <div class="nombre-firma">Tnlga. López Tapia Evelyn Cristina</div>
+                                <div class="cargo-firma">Coordinación Académica</div>
+                                <div class="institucion-firma">Elite Academy</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Código QR y validación -->
+                    <div class="certificado-footer">
+                        <div class="qr-validation">
+                            <div class="qr-code">CÓDIGO QR</div>
+                            <div class="texto-validacion">
+                                Válido mediante código QR o en www.eliteacademy.edu.ec/validar
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Botones de acción -->
             <div class="certificate-actions">
                 <button class="btn btn-primary" id="printCertificateBtn">
                     <i class="fas fa-print"></i> Imprimir Certificado
@@ -1240,6 +1289,84 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- JSON de certificados integrado -->
+    <script id="certificados-data" type="application/json">
+        [
+            {
+                "cedula": "1234567890",
+                "nombre": "MARÍA FERNANDA GÓMEZ LÓPEZ",
+                "curso": "Auxiliar de Enfermería",
+                "fecha": "2024-01-15",
+                "fechaExpiracion": "2026-01-15"
+            },
+            {
+                "cedula": "0987654321",
+                "nombre": "CARLOS ANDRÉS MARTÍNEZ RÍOS",
+                "curso": "Técnico en Mecánica Automotriz",
+                "fecha": "2024-02-20",
+                "fechaExpiracion": "2026-02-20"
+            },
+            {
+                "cedula": "1122334455",
+                "nombre": "ANA LUCÍA PÉREZ GARCÍA",
+                "curso": "Parvularia o Educación Inicial",
+                "fecha": "2024-03-10",
+                "fechaExpiracion": "2026-03-10"
+            },
+            {
+                "cedula": "2233445566",
+                "nombre": "JUAN PABLO RODRÍGUEZ CASTRO",
+                "curso": "Auxiliar de Farmacia",
+                "fecha": "2024-04-05",
+                "fechaExpiracion": "2026-04-05"
+            },
+            {
+                "cedula": "3344556677",
+                "nombre": "SOFÍA ELENA MORALES VARGAS",
+                "curso": "Técnico en Belleza Integral",
+                "fecha": "2024-05-12",
+                "fechaExpiracion": "2026-05-12"
+            }
+        ]
+    </script>
+
+    <!-- JSON de testimonios de ejemplo -->
+    <script id="testimonios-data" type="application/json">
+        [
+            {
+                "id": 1,
+                "nombre": "Ana García",
+                "curso": "enfermeria",
+                "rating": 5,
+                "text": "Excelente programa de enfermería. Los instructores son muy profesionales y las prácticas en hospitales me dieron la experiencia necesaria para trabajar inmediatamente después de graduarme.",
+                "fecha": "2024-01-15",
+                "tipo": "imagen",
+                "url": "images/testimonio-enfermeria.jpg"
+            },
+            {
+                "id": 2,
+                "nombre": "Carlos Mendoza",
+                "curso": "automotriz",
+                "rating": 4,
+                "text": "El curso de mecánica automotriz superó mis expectativas. Talleres bien equipados y profesores con amplia experiencia en la industria automotriz.",
+                "fecha": "2024-02-20",
+                "tipo": "video",
+                "url": "https://www.youtube.com/embed/ejemplo123"
+            },
+            {
+                "id": 3,
+                "nombre": "María Torres",
+                "curso": "farmacia",
+                "rating": 5,
+                "text": "Gracias a Elite Academy conseguí trabajo en una farmacia reconocida. El contenido del curso es muy completo y actualizado.",
+                "fecha": "2024-03-10",
+                "tipo": "imagen",
+                "url": "images/testimonio-farmacia.jpg"
+            }
+        ]
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
