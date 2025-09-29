@@ -1,19 +1,38 @@
+/* === VARIABLES CSS MEJORADAS === */
 :root {
     --primary: #1a4b8c;
-    --secondary: #2c6cb0;
-    --accent: #e74c3c;
+    --primary-light: #2c6cb0;
+    --primary-dark: #153a6b;
+    --secondary: #e74c3c;
+    --secondary-light: #ff6b6b;
+    --secondary-dark: #c0392b;
+    --accent: #f39c12;
+    --accent-light: #f1c40f;
+    --accent-dark: #e67e22;
     --dark: #2c3e50;
+    --darker: #1a252f;
     --light: #ffffff;
+    --lighter: #f8f9fa;
     --text: #2d3748;
+    --text-light: #4a5568;
     --gray: #718096;
+    --gray-light: #a0aec0;
     --success: #27ae60;
+    --success-light: #2ecc71;
     --warning: #f39c12;
-    --border-radius: 15px;
-    --box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    --warning-light: #f1c40f;
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+    --border-radius-xl: 30px;
+    --box-shadow: 0 8px 30px rgba(26, 75, 140, 0.12);
+    --box-shadow-lg: 0 20px 50px rgba(26, 75, 140, 0.18);
+    --box-shadow-xl: 0 25px 60px rgba(26, 75, 140, 0.25);
     --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-fast: all 0.3s ease;
+    --transition-slow: all 0.6s ease;
 }
 
-/* === RESET Y ESTILOS GENERALES === */
+/* === RESET Y ESTILOS GENERALES MEJORADOS === */
 * {
     margin: 0;
     padding: 0;
@@ -33,28 +52,29 @@ body {
     overflow-x: hidden;
 }
 
-/* === HEADER MEJORADO - MÁS COMPACTO Y RESPONSIVE === */
+/* === HEADER MEJORADO - PROBLEMA 1 SOLUCIONADO === */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 12px 30px;
     background: linear-gradient(135deg, rgba(26, 75, 140, 0.98) 0%, rgba(44, 108, 176, 0.98) 100%);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     color: #fff;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
     transition: var(--transition);
-    border-bottom: 3px solid var(--accent);
+    border-bottom: 3px solid var(--secondary);
 }
 
 header.scrolled {
     padding: 8px 30px;
     background: linear-gradient(135deg, rgba(26, 75, 140, 0.99) 0%, rgba(44, 108, 176, 0.99) 100%);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
 }
 
 .logo-container {
@@ -62,19 +82,23 @@ header.scrolled {
     align-items: center;
     gap: 12px;
     flex-shrink: 0;
+    min-width: 200px;
 }
 
 .logo-container img {
     height: 45px;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: var(--transition);
-    border: 2px solid rgba(255,255,255,0.2);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.1);
 }
 
 .logo-container img:hover {
     transform: scale(1.1) rotate(3deg);
-    border-color: var(--accent);
+    border-color: var(--secondary);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+    filter: brightness(1.2);
 }
 
 header a.logo-text {
@@ -82,14 +106,22 @@ header a.logo-text {
     font-weight: 800;
     color: #fff;
     text-decoration: none;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
     white-space: nowrap;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
 }
 
-/* === NAVBAR MÁS COMPACTO === */
+header a.logo-text:hover {
+    text-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+/* === NAVBAR CORREGIDO - PROBLEMA 1 SOLUCIONADO === */
 .navbar {
     display: flex;
     align-items: center;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .nav-menu {
@@ -101,49 +133,85 @@ header a.logo-text {
     align-items: center;
 }
 
+.nav-menu li {
+    position: relative;
+}
+
 .nav-menu li a {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
     transition: var(--transition);
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 10px 16px;
+    border-radius: 25px;
     position: relative;
     font-size: 13px;
     letter-spacing: 0.3px;
     white-space: nowrap;
+    overflow: hidden;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    display: block;
+    text-align: center;
+    min-width: 80px;
 }
 
 .nav-menu li a::before {
     content: '';
     position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+}
+
+.nav-menu li a:hover::before {
+    left: 100%;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
-    height: 2px;
-    background: var(--accent);
+    height: 3px;
+    background: var(--secondary);
     transition: var(--transition);
     transform: translateX(-50%);
 }
 
-.nav-menu li a:hover::before,
-.nav-menu li a.active::before {
-    width: 60%;
+.nav-menu li a:hover::after,
+.nav-menu li a.active::after {
+    width: 70%;
 }
 
 .nav-menu li a:hover,
 .nav-menu li a.active {
-    background: rgba(255, 255, 255, 0.12);
-    text-shadow: 0 0 8px rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* === MENÚ HAMBURGUESA MEJORADO === */
+/* === MENÚ HAMBURGUESA MEJORADO - PROBLEMA 2 SOLUCIONADO === */
 .menu-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     z-index: 1001;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    transition: var(--transition);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.menu-toggle:hover {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.05);
 }
 
 .bar {
@@ -157,6 +225,7 @@ header a.logo-text {
 
 .menu-toggle.active .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
+    background: var(--secondary);
 }
 
 .menu-toggle.active .bar:nth-child(2) {
@@ -165,21 +234,22 @@ header a.logo-text {
 
 .menu-toggle.active .bar:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
+    background: var(--secondary);
 }
 
-/* === PRELOADER MEJORADO === */
+/* === PRELOADER MÁS MODERNO === */
 .preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--darker) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .preloader.hidden {
@@ -191,12 +261,26 @@ header a.logo-text {
 .loader {
     width: 80px;
     height: 80px;
-    border: 6px solid rgba(255, 255, 255, 0.2);
+    border: 4px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    border-top: 6px solid var(--accent);
-    border-right: 6px solid var(--accent);
+    border-top: 4px solid var(--secondary);
+    border-right: 4px solid var(--secondary-light);
     animation: spin 1.5s linear infinite;
-    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.6);
+    position: relative;
+}
+
+.loader::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--primary);
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
@@ -204,7 +288,7 @@ header a.logo-text {
     100% { transform: rotate(360deg); }
 }
 
-/* === SECCIONES MEJORADAS === */
+/* === SECCIONES MEJORADAS CON EFECTOS === */
 section {
     padding: 120px 50px;
     position: relative;
@@ -213,13 +297,14 @@ section {
 section h1.heading {
     text-align: center;
     font-size: 3.5rem;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     color: var(--dark);
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 section h1.heading::after {
@@ -228,25 +313,33 @@ section h1.heading::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
+    width: 200px;
     height: 6px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
     border-radius: 10px;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .section-subtitle {
     text-align: center;
     font-size: 1.3rem;
-    color: var(--gray);
+    color: var(--text-light);
     max-width: 800px;
     margin: 0 auto 60px;
     font-weight: 500;
     line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
-/* === HOME SECTION MEJORADA === */
+/* === HOME SECTION MEJORADA - PROBLEMA 2 SOLUCIONADO === */
 .home {
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(44, 108, 176, 0.8) 100%), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.95) 0%, rgba(44, 108, 176, 0.9) 100%), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -268,6 +361,7 @@ section h1.heading::after {
     height: 100%;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
     background-size: 100% 100%;
+    animation: float 6s ease-in-out infinite;
 }
 
 .home-content {
@@ -278,23 +372,49 @@ section h1.heading::after {
     padding: 0 20px;
 }
 
+.logo-home {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-home img {
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 4px solid white;
+    transition: var(--transition);
+    filter: brightness(1.1);
+}
+
+.logo-home img:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+    filter: brightness(1.2);
+}
+
 .home-content h1 {
-    font-size: 4.5rem;
+    font-size: 4rem;
     margin-bottom: 30px;
     color: #fff;
     text-shadow: 3px 3px 20px rgba(0,0,0,0.5);
     font-weight: 900;
     line-height: 1.2;
     animation: fadeInUp 1s ease;
+    background: linear-gradient(135deg, #fff 0%, var(--secondary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .home-content p {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-bottom: 50px;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     font-weight: 300;
     animation: fadeInUp 1.2s ease;
     line-height: 1.6;
+    opacity: 0.95;
 }
 
 .home-stats {
@@ -308,51 +428,71 @@ section h1.heading::after {
 
 .stat-item {
     text-align: center;
-    background: rgba(255,255,255,0.1);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.15);
+    padding: 35px 30px;
+    border-radius: var(--border-radius-xl);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255,255,255,0.3);
     transition: var(--transition);
-    min-width: 200px;
+    min-width: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.8s;
+}
+
+.stat-item:hover::before {
+    left: 100%;
 }
 
 .stat-item:hover {
-    transform: translateY(-10px) scale(1.05);
-    background: rgba(255,255,255,0.2);
-    border-color: var(--accent);
+    transform: translateY(-12px) scale(1.05);
+    background: rgba(255,255,255,0.25);
+    border-color: var(--secondary);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
 }
 
 .stat-number {
     font-size: 3.5rem;
     font-weight: 900;
-    color: var(--accent);
+    color: var(--secondary);
     margin-bottom: 15px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    position: relative;
 }
 
 .stat-text {
     font-size: 1.3rem;
-    opacity: 0.9;
+    opacity: 0.95;
     font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .cta-button {
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 22px 50px;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
     color: #fff;
     border: none;
     border-radius: 60px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 800;
     cursor: pointer;
     transition: var(--transition);
     text-decoration: none;
     display: inline-block;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 15px 35px rgba(231, 76, 60, 0.5);
+    letter-spacing: 1.5px;
+    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.5);
     position: relative;
     overflow: hidden;
     animation: fadeInUp 1.6s ease;
@@ -365,8 +505,8 @@ section h1.heading::after {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
 }
 
 .cta-button:hover::before {
@@ -374,15 +514,15 @@ section h1.heading::after {
 }
 
 .cta-button:hover {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(231, 76, 60, 0.7);
+    box-shadow: 0 30px 60px rgba(231, 76, 60, 0.7);
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
@@ -390,14 +530,14 @@ section h1.heading::after {
     }
 }
 
-/* === BOTÓN ADMIN ACCESS MEJORADO === */
+/* === BOTÓN ADMIN ACCESS MEJORADO - PROBLEMA 3 SOLUCIONADO === */
 .admin-access {
     position: fixed;
     bottom: 140px;
     right: 30px;
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -405,7 +545,7 @@ section h1.heading::after {
     justify-content: center;
     cursor: pointer;
     z-index: 1000;
-    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.5);
+    box-shadow: 0 15px 35px rgba(231, 76, 60, 0.5);
     transition: var(--transition);
     font-size: 28px;
     border: 3px solid white;
@@ -413,9 +553,9 @@ section h1.heading::after {
 }
 
 .admin-access:hover {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
     transform: scale(1.15) rotate(15deg);
-    box-shadow: 0 15px 40px rgba(231, 76, 60, 0.7);
+    box-shadow: 0 20px 45px rgba(231, 76, 60, 0.7);
     animation: none;
 }
 
@@ -438,7 +578,7 @@ section h1.heading::after {
     justify-content: center;
     color: white;
     font-size: 32px;
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
     z-index: 999;
     transition: var(--transition);
     border: 3px solid white;
@@ -447,11 +587,11 @@ section h1.heading::after {
 
 .floating-whatsapp:hover {
     transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
+    box-shadow: 0 20px 45px rgba(37, 211, 102, 0.7);
     animation: none;
 }
 
-/* === BOX CONTAINER MEJORADO === */
+/* === BOX CONTAINER MEJORADO CON EFECTOS === */
 .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -463,8 +603,8 @@ section h1.heading::after {
     background: white;
     padding: 50px 40px;
     text-align: center;
-    border-radius: 20px;
-    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--box-shadow-lg);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -477,13 +617,15 @@ section h1.heading::after {
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
 }
 
 .box:hover {
     transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-xl);
     border-color: var(--primary);
 }
 
@@ -492,10 +634,11 @@ section h1.heading::after {
     color: var(--primary);
     margin-bottom: 30px;
     transition: var(--transition);
+    position: relative;
 }
 
 .box:hover i {
-    color: var(--accent);
+    color: var(--secondary);
     transform: scale(1.2) rotate(10deg);
 }
 
@@ -504,16 +647,17 @@ section h1.heading::after {
     margin-bottom: 20px;
     color: var(--dark);
     font-weight: 700;
+    position: relative;
 }
 
 .box p {
     font-size: 17px;
-    color: var(--gray);
+    color: var(--text-light);
     line-height: 1.8;
     font-weight: 500;
 }
 
-/* === ABOUT SECTION MEJORADA === */
+/* === ABOUT SECTION MEJORADA - PROBLEMA 3 SOLUCIONADO === */
 .about .row {
     display: flex;
     flex-wrap: wrap;
@@ -524,9 +668,9 @@ section h1.heading::after {
 
 .about .image {
     flex: 1 1 450px;
-    border-radius: 25px;
+    border-radius: var(--border-radius-xl);
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-xl);
     position: relative;
 }
 
@@ -546,14 +690,35 @@ section h1.heading::after {
     height: auto;
     display: block;
     transition: transform 0.8s ease;
+    filter: brightness(1.05);
 }
 
 .about .image:hover img {
     transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 .about .content {
     flex: 1 1 550px;
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-section img {
+    height: 80px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border: 3px solid var(--primary);
+    filter: brightness(1.1);
+    transition: var(--transition);
+}
+
+.logo-section img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
 }
 
 .about .content p {
@@ -574,7 +739,7 @@ section h1.heading::after {
 
 .course-card {
     background: white;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     box-shadow: var(--box-shadow);
     overflow: hidden;
     transition: var(--transition);
@@ -584,7 +749,7 @@ section h1.heading::after {
 
 .course-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-xl);
     border-color: var(--primary);
 }
 
@@ -610,10 +775,12 @@ section h1.heading::after {
     height: 100%;
     object-fit: cover;
     transition: transform 0.8s ease;
+    filter: brightness(1.05);
 }
 
 .course-card:hover .course-image img {
     transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 .course-header {
@@ -639,7 +806,7 @@ section h1.heading::after {
 }
 
 .course-header:hover .course-icon {
-    color: var(--accent);
+    color: var(--secondary);
     transform: scale(1.1);
 }
 
@@ -704,7 +871,7 @@ section h1.heading::after {
 }
 
 .promo-price {
-    color: var(--accent);
+    color: var(--secondary);
     font-weight: 800;
     font-size: 18px;
 }
@@ -720,26 +887,7 @@ section h1.heading::after {
     line-height: 1.6;
 }
 
-/* === ICONOS ESPECÍFICOS PARA CURSOS === */
-.course-card:nth-child(14) .course-icon i.fa-search { /* Mantenimiento celulares */
-    font-family: "Font Awesome 5 Free" !important;
-    font-weight: 900 !important;
-}
-
-.course-card:nth-child(14) .course-icon i.fa-search::before {
-    content: "\f10b" !important; /* Icono de móvil */
-}
-
-.course-card:nth-child(16) .course-icon i.fa-user-md { /* Podología */
-    font-family: "Font Awesome 5 Free" !important;
-    font-weight: 900 !important;
-}
-
-.course-card:nth-child(16) .course-icon i.fa-user-md::before {
-    content: "\f54b" !important; /* Icono de pie */
-}
-
-/* === BOTONES MÁS ATRACTIVOS Y CENTRADOS === */
+/* === BOTONES MÁS ATRACTIVOS === */
 .btn-center {
     display: flex;
     justify-content: center;
@@ -766,7 +914,7 @@ section h1.heading::after {
 }
 
 .btn-inscribirse {
-    background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
     color: white;
     border: 3px solid transparent;
     font-size: 15px;
@@ -774,13 +922,13 @@ section h1.heading::after {
 }
 
 .btn-inscribirse:hover {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    background: linear-gradient(135deg, var(--secondary-light) 0%, #ff5252 100%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 15px 35px rgba(231, 76, 60, 0.6);
 }
 
 .btn-info {
-    background: linear-gradient(135deg, var(--primary) 0%, #153a6b 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
     border: 3px solid transparent;
     font-weight: 700;
@@ -788,45 +936,48 @@ section h1.heading::after {
 }
 
 .btn-info:hover {
-    background: linear-gradient(135deg, #153a6b 0%, #0f2a4d 100%);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 15px 35px rgba(26, 75, 140, 0.6);
 }
 
 .btn-testimonio {
-    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
     color: white;
     border: 3px solid transparent;
     font-weight: 700;
-    box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
 }
 
 .btn-testimonio:hover {
-    background: linear-gradient(135deg, #d35400 0%, #ba4a00 100%);
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dark) 100%);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(230, 126, 34, 0.6);
+    box-shadow: 0 15px 35px rgba(243, 156, 18, 0.6);
 }
 
-/* === TESTIMONIOS MEJORADOS CON SOPORTE PARA MEDIA === */
+/* === TESTIMONIOS MEJORADOS CON GRID RESPONSIVO === */
 .testimonial-container {
     margin-top: 40px;
 }
 
 .testimonial-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 30px;
     margin-bottom: 40px;
 }
 
 .testimonial-card {
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
     border: 2px solid #e4e6eb;
     transition: var(--transition);
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .testimonial-card::before {
@@ -834,14 +985,14 @@ section h1.heading::after {
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: 6px;
     height: 100%;
-    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
 }
 
 .testimonial-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-xl);
     border-color: var(--primary);
 }
 
@@ -852,6 +1003,7 @@ section h1.heading::after {
     gap: 15px;
     border-bottom: 2px solid #f0f2f5;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    flex-shrink: 0;
 }
 
 .author-avatar {
@@ -865,11 +1017,13 @@ section h1.heading::after {
     justify-content: center;
     font-weight: bold;
     font-size: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    flex-shrink: 0;
 }
 
 .author-info {
     flex: 1;
+    min-width: 0;
 }
 
 .author-info h4 {
@@ -877,22 +1031,32 @@ section h1.heading::after {
     color: var(--dark);
     font-size: 16px;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .testimonial-course {
     color: var(--primary);
     font-size: 14px;
     font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .testimonial-rating {
     color: #ffc107;
     font-size: 16px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    flex-shrink: 0;
 }
 
 .testimonial-content {
     padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .testimonial-text {
@@ -902,6 +1066,7 @@ section h1.heading::after {
     font-size: 15px;
     position: relative;
     padding-left: 20px;
+    flex: 1;
 }
 
 .testimonial-text::before {
@@ -920,14 +1085,18 @@ section h1.heading::after {
     font-size: 12px;
     text-align: right;
     font-style: italic;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f0f2f5;
 }
 
-/* === MEDIA EN TESTIMONIOS === */
 .testimonial-media {
     margin: 15px 0;
     border-radius: 10px;
     overflow: hidden;
     max-width: 100%;
+    flex-shrink: 0;
+    position: relative;
 }
 
 .testimonial-media img {
@@ -936,13 +1105,13 @@ section h1.heading::after {
     max-height: 300px;
     object-fit: cover;
     border-radius: 8px;
+    transition: transform 0.3s ease;
+    filter: brightness(1.05);
 }
 
-.testimonial-media video {
-    width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    background: #000;
+.testimonial-media img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
 .add-testimonial {
@@ -950,7 +1119,7 @@ section h1.heading::after {
     margin-top: 40px;
 }
 
-/* === NUEVA SECCIÓN: VALIDACIÓN DE CERTIFICADOS === */
+/* === VALIDACIÓN DE CERTIFICADOS MEJORADA - PROBLEMA 8 SOLUCIONADO === */
 .certificate-validation {
     padding: 100px 50px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -966,7 +1135,7 @@ section h1.heading::after {
 .validation-card {
     background: white;
     padding: 35px 25px;
-    border-radius: 20px;
+    border-radius: var(--border-radius-lg);
     text-align: center;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
@@ -982,18 +1151,18 @@ section h1.heading::after {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .validation-card:hover {
     transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: var(--box-shadow-lg);
     border-color: var(--primary);
 }
 
 .validation-icon {
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto 15px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     border-radius: 15px;
@@ -1004,9 +1173,11 @@ section h1.heading::after {
 }
 
 .validation-icon img {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
     border-radius: 8px;
+    filter: brightness(1.2);
+    object-fit: contain;
 }
 
 .validation-card h3 {
@@ -1024,7 +1195,7 @@ section h1.heading::after {
 }
 
 .btn-validation {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -1037,12 +1208,12 @@ section h1.heading::after {
 }
 
 .btn-validation:hover {
-    background: linear-gradient(135deg, var(--secondary) 0%, #1a4b8c 100%);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(26, 75, 140, 0.4);
 }
 
-/* === NUEVA SECCIÓN: CERTIFICACIONES ELITE ACADEMY === */
+/* === CERTIFICACIONES ELITE ACADEMY MEJORADA - PROBLEMA 6 SOLUCIONADO === */
 .elite-certifications {
     padding: 100px 50px;
     background: white;
@@ -1054,25 +1225,21 @@ section h1.heading::after {
     text-align: center;
 }
 
-.certification-logo {
+.certification-header {
+    text-align: center;
     margin-bottom: 40px;
 }
 
-.certification-logo img {
-    height: 100px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.certification-header h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
     margin-bottom: 15px;
-}
-
-.certification-logo h3 {
-    color: var(--dark);
-    font-size: 24px;
     font-weight: 700;
 }
 
 .certification-search {
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .search-box {
@@ -1092,16 +1259,18 @@ section h1.heading::after {
     width: 300px;
     max-width: 100%;
     transition: var(--transition);
+    background: white;
 }
 
 #cedulaSearch:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
     outline: none;
+    transform: translateY(-2px);
 }
 
 .btn-search {
-    background: linear-gradient(135deg, var(--success) 0%, #229954 100%);
+    background: linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%);
     color: white;
     padding: 15px 25px;
     border-radius: 50px;
@@ -1113,7 +1282,7 @@ section h1.heading::after {
 }
 
 .btn-search:hover {
-    background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+    background: linear-gradient(135deg, var(--success-light) 0%, #229954 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
 }
@@ -1122,12 +1291,14 @@ section h1.heading::after {
     color: var(--gray);
     font-size: 14px;
     font-style: italic;
+    text-align: center;
+    width: 100%;
 }
 
 .certification-results {
     min-height: 200px;
     background: #f8f9fa;
-    border-radius: 20px;
+    border-radius: var(--border-radius-lg);
     padding: 40px;
     margin-bottom: 30px;
     border: 2px dashed #e4e6eb;
@@ -1150,6 +1321,7 @@ section h1.heading::after {
     padding: 20px;
     border-radius: 15px;
     border-left: 4px solid var(--warning);
+    text-align: center;
 }
 
 .info-box {
@@ -1157,6 +1329,7 @@ section h1.heading::after {
     align-items: center;
     gap: 15px;
     color: var(--dark);
+    justify-content: center;
 }
 
 .info-box i {
@@ -1170,8 +1343,8 @@ section h1.heading::after {
     margin: 0 auto;
     background: white;
     padding: 50px;
-    border-radius: 25px;
-    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--box-shadow-xl);
     border: 3px solid #f0f2f5;
 }
 
@@ -1195,7 +1368,7 @@ section h1.heading::after {
     width: 100%;
     padding: 15px 18px;
     border: 3px solid #e4e6eb;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     transition: var(--transition);
@@ -1237,7 +1410,7 @@ section h1.heading::after {
     background: white;
     padding: 40px 30px;
     text-align: center;
-    border-radius: 20px;
+    border-radius: var(--border-radius-lg);
     box-shadow: var(--box-shadow);
     transition: var(--transition);
     border: 3px solid transparent;
@@ -1252,12 +1425,12 @@ section h1.heading::after {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .contact .box:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: var(--box-shadow-lg);
     border-color: var(--primary);
 }
 
@@ -1269,7 +1442,7 @@ section h1.heading::after {
 }
 
 .contact .box:hover i {
-    color: var(--accent);
+    color: var(--secondary);
     transform: scale(1.2) rotate(10deg);
 }
 
@@ -1285,7 +1458,7 @@ section h1.heading::after {
     background: white;
     padding: 8px;
     border-radius: 50px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--box-shadow);
     border: 2px solid #e4e6eb;
     margin-bottom: 40px;
 }
@@ -1303,7 +1476,7 @@ section h1.heading::after {
 }
 
 .location-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
     box-shadow: 0 3px 10px rgba(26, 75, 140, 0.3);
 }
@@ -1330,7 +1503,7 @@ section h1.heading::after {
 
 /* === FOOTER MEJORADO === */
 footer {
-    background: linear-gradient(135deg, var(--dark) 0%, #1a2530 100%);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
     color: white;
     text-align: center;
     padding: 50px 30px;
@@ -1345,7 +1518,7 @@ footer::before {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
 }
 
 .footer-content {
@@ -1363,16 +1536,17 @@ footer::before {
 
 .footer-logo img {
     height: 70px;
-    border-radius: 15px;
+    border-radius: var(--border-radius-lg);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     border: 3px solid white;
+    filter: brightness(1.1);
 }
 
 .footer-logo span {
     font-size: 24px;
     font-weight: bold;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 
 .social-media {
@@ -1470,7 +1644,7 @@ footer p {
 
 .modal-content {
     background: white;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
@@ -1511,7 +1685,7 @@ footer p {
 }
 
 .close-modal:hover {
-    background: var(--accent);
+    background: var(--secondary);
     color: white;
     transform: rotate(90deg);
 }
@@ -1549,7 +1723,7 @@ footer p {
     100% { transform: scale(1.3); }
 }
 
-/* === MODAL ADMINISTRADOR - CORREGIDO === */
+/* === PANEL ADMINISTRADOR - MEJORADO Y RESPONSIVE === */
 .admin-modal {
     display: none;
     position: fixed;
@@ -1570,9 +1744,9 @@ footer p {
 
 .admin-modal .modal-content {
     background: white;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     width: 95%;
-    max-width: 1000px;
+    max-width: 1200px;
     max-height: 90vh;
     overflow: hidden;
     position: relative;
@@ -1605,6 +1779,14 @@ footer p {
     display: flex;
     border-bottom: 3px solid #e4e6eb;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.admin-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-btn {
@@ -1619,6 +1801,8 @@ footer p {
     transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .tab-btn.active {
@@ -1636,19 +1820,26 @@ footer p {
     padding: 25px;
     display: none;
     animation: fadeIn 0.5s ease;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .admin-tab-content.active {
     display: block;
 }
 
+/* === TABLAS RESPONSIVE PARA ADMIN === */
+.admin-table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
 .admin-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    min-width: 800px;
 }
 
 .admin-table th,
@@ -1657,14 +1848,18 @@ footer p {
     text-align: left;
     border-bottom: 2px solid #f0f2f5;
     font-size: 14px;
+    white-space: nowrap;
 }
 
 .admin-table th {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .admin-table tr:hover {
@@ -1673,103 +1868,469 @@ footer p {
     transition: var(--transition);
 }
 
-.admin-actions {
+/* === ESTILOS PARA CERTIFICADO HORIZONTAL - PROBLEMAS 1, 4, 5, 7 SOLUCIONADOS === */
+.certificado-horizontal {
+    width: 29.7cm;
+    height: 21cm;
+    background: url('images/certificado_fondo.jpg') no-repeat center center;
+    background-size: cover;
+    border: 15px solid var(--primary);
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    padding: 1.5cm;
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    page-break-inside: avoid;
+}
+
+.certificado-borde {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid var(--secondary);
+    pointer-events: none;
+}
+
+.certificado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e4e6eb;
+}
+
+.logo-left, .logo-right {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.escudo-ecuador, .logo-academia {
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.titulo-centro {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.titulo-centro h1 {
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.titulo-centro h2 {
+    font-size: 16px;
+    color: var(--dark);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.certificado-body {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.certificado-titulo h3 {
+    font-size: 32px;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.certificado-titulo p {
+    font-size: 18px;
+    color: var(--dark);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.nombre-estudiante {
+    font-size: 24px;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 15px 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e4e6eb;
+    padding-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.cedula-estudiante {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.mensaje-certificado p {
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.programa-estudiante {
+    font-size: 22px;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 15px 0;
+    padding: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-left: 4px solid var(--secondary);
+    border-radius: 8px;
+}
+
+.fecha-certificacion {
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 30px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.certificado-firmas {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #e4e6eb;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
-.btn-admin {
-    background: linear-gradient(135deg, var(--primary) 0%, #153a6b 100%);
-    color: white;
-    border: 2px solid transparent;
+.firma-item {
+    text-align: center;
+    width: 45%;
+    margin-bottom: 10px;
+    min-width: 200px;
+}
+
+.linea-firma {
+    border-top: 2px solid var(--dark);
+    width: 80%;
+    margin: 0 auto 10px;
+    padding-top: 5px;
+}
+
+.nombre-firma {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 3px;
+    line-height: 1.2;
+}
+
+.cargo-firma {
+    font-size: 10px;
+    color: var(--text);
+    margin-bottom: 2px;
     font-weight: 600;
-    padding: 10px 20px;
-    font-size: 13px;
+    line-height: 1.2;
 }
 
-.btn-admin:hover {
-    background: linear-gradient(135deg, #153a6b 0%, #0f2a4d 100%);
-    transform: translateY(-1px);
+.institucion-firma {
+    font-size: 9px;
+    color: var(--gray);
+    font-style: italic;
+    line-height: 1.2;
 }
 
-.btn-danger {
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    color: white;
-    border: 2px solid transparent;
-    font-weight: 600;
+.certificado-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e4e6eb;
 }
 
-.btn-danger:hover {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
-    transform: translateY(-1px);
-}
-
-.btn-cancel {
-    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
-    color: white;
-    border: 2px solid transparent;
-    font-weight: 600;
-}
-
-.btn-cancel:hover {
-    background: linear-gradient(135deg, #7f8c8d 0%, #6c7b7d 100%);
-    transform: translateY(-1px);
-}
-
-.form-actions {
+.qr-validation {
     display: flex;
-    gap: 12px;
+    align-items: center;
     justify-content: flex-end;
-    margin-top: 25px;
+    gap: 15px;
 }
-.logo-home {
+
+.qr-code {
+    width: 80px;
+    height: 80px;
+    background: #f8f9fa;
+    border: 2px solid #e4e6eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--gray);
     text-align: center;
-    margin-bottom: 40px;
-    animation: float 3s ease-in-out infinite;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: 600;
 }
 
-.logo-home img {
-    height: 140px;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    border: 4px solid white;
-    transition: var(--transition);
+.texto-validacion {
+    font-size: 10px;
+    color: var(--gray);
+    text-align: right;
+    font-style: italic;
 }
 
-.logo-home img:hover {
-    transform: scale(1.08) rotate(3deg);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+/* === ESTILOS PARA IMPRESIÓN - PROBLEMA 4 SOLUCIONADO === */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .certificate-modal-content,
+    .certificate-modal-content * {
+        visibility: visible;
+    }
+    
+    .certificate-modal-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        box-shadow: none;
+        background: white;
+    }
+    
+    .certificado-horizontal {
+        width: 29.7cm !important;
+        height: 21cm !important;
+        border: 15px solid var(--primary) !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 1.5cm !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    .certificate-actions {
+        display: none !important;
+    }
+    
+    .modal-content {
+        box-shadow: none;
+        border: none;
+        max-width: none !important;
+        max-height: none !important;
+    }
+    
+    @page {
+        size: landscape;
+        margin: 0;
+    }
 }
 
-.logo-section {
-    text-align: center;
-    margin-bottom: 40px;
+/* === RESPONSIVE DESIGN MEJORADO === */
+@media (max-width: 1200px) {
+    .course-grid,
+    .validation-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .certificado-horizontal {
+        width: 100%;
+        height: auto;
+        padding: 1.5cm;
+    }
+    
+    .nav-menu {
+        gap: 12px;
+    }
+    
+    .nav-menu li a {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
 }
 
-.logo-section img {
-    height: 100px;
-    border-radius: 20px;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-    border: 3px solid var(--primary);
+@media (max-width: 992px) {
+    .course-grid,
+    .validation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .certificado-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .logo-left, .logo-right {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .nav-menu {
+        gap: 10px;
+    }
+    
+    .nav-menu li a {
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+    
+    header {
+        padding: 10px 25px;
+    }
+    
+    header.scrolled {
+        padding: 6px 25px;
+    }
 }
 
+@media (max-width: 768px) {
+    .course-grid,
+    .validation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .certificado-horizontal {
+        padding: 1cm;
+        border-width: 10px;
+    }
+    
+    .certificado-firmas {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .firma-item {
+        width: 100%;
+    }
+    
+    .certificado-titulo h3 {
+        font-size: 28px;
+    }
+    
+    .nombre-estudiante {
+        font-size: 24px;
+    }
+    
+    /* MENÚ HAMBURGUESA - PROBLEMA 2 SOLUCIONADO */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        transition: var(--transition);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li a {
+        padding: 15px;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 10px;
+        display: block;
+        width: 100%;
+    }
+    
+    header {
+        padding: 8px 20px;
+    }
+    
+    .logo-container img {
+        height: 40px;
+    }
+    
+    header a.logo-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificado-horizontal {
+        padding: 0.5cm;
+        border-width: 5px;
+    }
+    
+    .titulo-centro h1 {
+        font-size: 14px;
+    }
+    
+    .titulo-centro h2 {
+        font-size: 12px;
+    }
+    
+    .certificado-titulo h3 {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    
+    .nombre-estudiante {
+        font-size: 20px;
+    }
+    
+    .programa-estudiante {
+        font-size: 18px;
+    }
+    
+    header {
+        padding: 6px 15px;
+    }
+    
+    .logo-container {
+        gap: 8px;
+        min-width: 150px;
+    }
+    
+    .logo-container img {
+        height: 35px;
+    }
+    
+    header a.logo-text {
+        font-size: 16px;
+    }
+    
+    section {
+        padding: 100px 20px;
+    }
+}
+
+/* === EFECTOS DE ANIMACIÓN MEJORADOS === */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-}
-
-/* === ANIMACIONES ADICIONALES === */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    50% { transform: translateY(-10px); }
 }
 
 .fade-in {
@@ -1783,29 +2344,299 @@ footer p {
     transform: translateY(0);
 }
 
-/* === EFECTOS DE CARGA === */
-.loading {
+/* === SCROLLBAR PERSONALIZADO === */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+}
+
+/* === EFECTOS DE HOVER MEJORADOS === */
+* {
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* === ESTILOS ESPECÍFICOS PARA CERTIFICADO MODAL === */
+#certificateModal {
+    z-index: 10000 !important;
+}
+
+.certificate-modal-content {
+    max-width: 95% !important;
+    max-height: 90vh !important;
+    margin: 20px auto !important;
     position: relative;
+    z-index: 1000;
+    background: white !important;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+}
+
+.certificate-actions {
+    position: sticky !important;
+    bottom: 0 !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, white 100%) !important;
+    padding: 20px !important;
+    border-top: 3px solid #1a4b8c !important;
+    z-index: 1001 !important;
+    margin-top: 30px !important;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.certificate-container {
+    max-height: calc(90vh - 150px) !important;
+    overflow-y: auto !important;
+    padding: 20px !important;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.certificado-horizontal {
+    min-width: 800px !important;
+    transform-origin: top left !important;
+    background: white;
+    padding: 30px;
+    border: 15px solid #1a4b8c;
+    border-radius: 5px;
+}
+
+/* Asegurar que los botones no se superpongan */
+.btn-primary, .btn-secondary {
+    position: relative !important;
+    z-index: 1002 !important;
+    transform: none !important;
+}
+
+/* Responsive para certificado */
+@media (max-width: 900px) {
+    .certificado-horizontal {
+        min-width: 600px !important;
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 700px) {
+    .certificado-horizontal {
+        min-width: 500px !important;
+        transform: scale(0.8);
+    }
+    
+    .certificate-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* === ESTILOS DE NOTIFICACIONES === */
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+
+.notification-close:hover {
+    opacity: 0.8;
+}
+
+.admin-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    margin: 2px;
+}
+
+.view-btn {
+    background: #3498db;
+    color: white;
+}
+
+.view-btn:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+.no-testimonials {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.inscription-details p {
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.inscription-details h3 {
+    color: var(--primary);
+    margin: 25px 0 15px 0;
+}
+
+.loading-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+}
+
+.loading-results .fa-spinner {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.certificate-found, .certificate-not-found {
+    text-align: center;
+    padding: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #e4e6eb;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.detail-value {
+    color: var(--text);
+}
+
+.status-valid {
+    background: var(--success);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-expired {
+    background: var(--error);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.certificate-actions {
+    margin-top: 20px;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-success:hover {
+    background: #229954;
+}
+
+.help-text {
+    font-size: 14px;
+    color: var(--gray);
+    margin-top: 10px;
+}
+
+.testimonial-media {
+    margin: 15px 0;
+    border-radius: 10px;
     overflow: hidden;
+    max-width: 100%;
 }
 
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+.testimonial-media img {
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: loading 1.5s infinite;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-@keyframes loading {
-    0% { left: -100%; }
-    100% { left: 100%; }
+.testimonial-media video {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    background: #000;
 }
 
-/* === CERTIFICATE MODAL STYLES === */
 .certificate-modal-content {
     max-width: 800px;
     background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
@@ -1882,293 +2713,4 @@ footer p {
 .btn-secondary {
     background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
     color: white;
-}
-
-/* === RESPONSIVE DESIGN MEJORADO === */
-@media (max-width: 1200px) {
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    section {
-        padding: 100px 40px;
-    }
-    
-    .home-content h1 {
-        font-size: 4rem;
-    }
-    
-    .nav-menu {
-        gap: 12px;
-    }
-    
-    .nav-menu li a {
-        padding: 7px 12px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 992px) {
-    header {
-        padding: 8px 20px;
-    }
-    
-    .nav-menu {
-        gap: 10px;
-    }
-    
-    .nav-menu li a {
-        padding: 6px 10px;
-        font-size: 11px;
-    }
-    
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    section {
-        padding: 90px 30px;
-    }
-    
-    .home-content h1 {
-        font-size: 3.2rem;
-    }
-    
-    .home-content p {
-        font-size: 1.4rem;
-    }
-    
-    .box-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    
-    .menu-toggle {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        transition: var(--transition);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        z-index: 999;
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li a {
-        padding: 15px;
-        font-size: 16px;
-        text-align: center;
-        border-radius: 10px;
-        display: block;
-    }
-}
-
-@media (max-width: 768px) {
-    header {
-        padding: 6px 15px;
-    }
-    
-    .logo-container img {
-        height: 35px;
-    }
-    
-    header a.logo-text {
-        font-size: 16px;
-    }
-    
-    .course-grid,
-    .validation-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .search-box {
-        flex-direction: column;
-    }
-    
-    #cedulaSearch {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    section {
-        padding: 80px 20px;
-    }
-    
-    .home-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .home-content p {
-        font-size: 1.2rem;
-    }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    
-    .home-stats {
-        gap: 20px;
-    }
-    
-    .stat-item {
-        flex: 1 0 100%;
-        min-width: auto;
-    }
-    
-    .inscription-form {
-        padding: 30px 20px;
-    }
-    
-    .admin-modal .modal-content {
-        width: 95%;
-        margin: 20px;
-    }
-    
-    .floating-whatsapp,
-    .admin-access {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-        font-size: 20px;
-    }
-    
-    .admin-access {
-        bottom: 90px;
-    }
-    
-    .certificate-signatures {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        padding: 4px 10px;
-    }
-    
-    .logo-container {
-        gap: 8px;
-    }
-    
-    .logo-container img {
-        height: 30px;
-    }
-    
-    header a.logo-text {
-        font-size: 14px;
-    }
-    
-    section {
-        padding: 70px 15px;
-    }
-    
-    section h1.heading {
-        font-size: 2rem;
-    }
-    
-    .home-content h1 {
-        font-size: 2rem;
-    }
-    
-    .cta-button {
-        padding: 15px 30px;
-        font-size: 1.1rem;
-    }
-    
-    .btn {
-        padding: 12px 25px;
-        font-size: 14px;
-    }
-    
-    .box {
-        padding: 30px 20px;
-    }
-    
-    .course-header, .course-body {
-        padding: 15px;
-    }
-    
-    .social-icons {
-        gap: 12px;
-    }
-    
-    .red-social {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-    }
-    
-    .location-toggle {
-        flex-direction: column;
-        width: 100%;
-        border-radius: 15px;
-    }
-    
-    .location-btn {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-    
-    .certificate-body {
-        padding: 20px;
-    }
-    
-    .certificate-body h3 {
-        font-size: 24px;
-    }
-    
-    .certificate-body h4 {
-        font-size: 18px;
-    }
-}
-
-/* === ACCESIBILIDAD === */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-@media print {
-    .admin-access,
-    .floating-whatsapp,
-    nav,
-    .preloader {
-        display: none !important;
-    }
-}
-
-html {
-    scroll-behavior: smooth;
 }
