@@ -9,6 +9,13 @@ const CONFIG = {
         certifications: 'eliteCertifications'
     }
 };
+const SUPABASE_CONFIG = {
+    url: 'https://mgvznxviinfsevzvbsvd.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ndnpueHZpaW5mc2V2enZic3ZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxOTI0NzcsImV4cCI6MjA3NDc2ODQ3N30.D9N5_iWH9HXuXKCbagV5HCV32wCJ4SBH7CW8Mb0ENMQ'  // ← Pega tu anon key aquí cuando lo tengas
+};
+
+// Inicializar Supabase
+const supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
 
 // ===== ESTADO GLOBAL DE LA APLICACIÓN =====
 const AppState = {
@@ -17,7 +24,8 @@ const AppState = {
     testimonialMediaFile: null,
     isAdminAuthenticated: false,
     activeLocation: 'puyo',
-    certificationsData: []
+    certificationsData: [],
+    testimonials: []
 };
 
 // ===== INICIALIZACIÓN DE LA APLICACIÓN =====
@@ -492,50 +500,83 @@ function loadInscriptions() {
 }
 
 // ===== SISTEMA DE TESTIMONIOS =====
+// ===== FUNCIÓN CORREGIDA: GUARDAR TESTIMONIO =====
 async function handleTestimonialSubmit(e) {
     e.preventDefault();
     
     try {
+        console.log('🔄 Iniciando envío de testimonio...');
+        
         const testimonialData = {
-            id: Date.now(),
             name: document.getElementById('testimonialName').value.trim(),
             course: document.getElementById('testimonialCourse').value,
             rating: AppState.currentTestimonialRating,
             text: document.getElementById('testimonialText').value.trim(),
-            date: new Date().toLocaleDateString('es-EC'),
-            timestamp: Date.now(),
-            hasMedia: false,
-            mediaType: null,
-            mediaUrl: null
+            mediaUrl: null,
+            mediaType: null
         };
         
-        if (!validateTestimonial(testimonialData)) {
+        console.log('📝 Datos del testimonio:', testimonialData);
+        
+        // Validaciones básicas
+        if (!testimonialData.name || !testimonialData.course || !testimonialData.text) {
+            showNotification('❌ Por favor completa todos los campos obligatorios', 'error');
             return;
         }
         
+        if (AppState.currentTestimonialRating === 0) {
+            showNotification('❌ Por favor selecciona una calificación con las estrellas', 'error');
+            return;
+        }
+        
+        // Procesar archivo multimedia si existe
         if (AppState.testimonialMediaFile) {
+            console.log('📁 Procesando archivo multimedia...');
             try {
                 const mediaInfo = await processMediaFile(AppState.testimonialMediaFile);
-                testimonialData.hasMedia = true;
-                testimonialData.mediaType = mediaInfo.type;
                 testimonialData.mediaUrl = mediaInfo.url;
+                testimonialData.mediaType = mediaInfo.type;
+                console.log('✅ Archivo procesado:', mediaInfo);
             } catch (error) {
-                console.error('Error procesando archivo multimedia:', error);
-                showNotification('Error al procesar el archivo multimedia', 'error');
+                console.error('❌ Error procesando archivo:', error);
+                showNotification('❌ Error al procesar el archivo multimedia', 'error');
                 return;
             }
         }
         
-        saveTestimonial(testimonialData);
-        showNotification('¡Testimonio publicado correctamente! 🌟', 'success');
+        // Guardar en Supabase
+        console.log('💾 Guardando en Supabase...');
+        const { data, error } = await supabase
+            .from('testimonials')
+            .insert([{
+                student_name: testimonialData.name,
+                student_course: testimonialData.course,
+                testimonial_text: testimonialData.text,
+                rating: testimonialData.rating,
+                status: 'pending',
+                media_url: testimonialData.mediaUrl,
+                media_type: testimonialData.mediaType,
+                created_at: new Date().toISOString()
+            }])
+            .select();
+
+        if (error) {
+            console.error('❌ Error de Supabase:', error);
+            throw new Error(`Error de Supabase: ${error.message}`);
+        }
+
+        console.log('✅ Testimonio guardado exitosamente:', data);
+        
+        // Limpiar formulario
+        showNotification('✅ ¡Testimonio enviado para moderación! Los administradores lo revisarán pronto.', 'success');
         closeTestimonialModal();
         e.target.reset();
         resetTestimonialRating();
         resetMediaUpload();
         
     } catch (error) {
-        console.error('Error en testimonio:', error);
-        showNotification('Error al publicar el testimonio', 'error');
+        console.error('❌ Error crítico en testimonio:', error);
+        showNotification('❌ Error al enviar el testimonio: ' + error.message, 'error');
     }
 }
 
@@ -580,81 +621,175 @@ function validateTestimonial(data) {
     return true;
 }
 
-function saveTestimonial(testimonial) {
+// ===== FUNCIÓN CORREGIDA: GUARDAR TESTIMONIO =====
+async function handleTestimonialSubmit(e) {
+    e.preventDefault();
+    
     try {
-        let testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
-        testimonials.push(testimonial);
-        localStorage.setItem(CONFIG.storageKeys.testimonials, JSON.stringify(testimonials));
-        loadTestimonials();
-    } catch (error) {
-        console.error('Error guardando testimonio:', error);
-        throw error;
-    }
-}
-
-function loadTestimonials() {
-    try {
-        const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
-        const grid = document.getElementById('testimonialGrid');
+        console.log('🔄 Iniciando envío de testimonio...');
         
-        if (!grid) return;
+        const testimonialData = {
+            name: document.getElementById('testimonialName').value.trim(),
+            course: document.getElementById('testimonialCourse').value,
+            rating: AppState.currentTestimonialRating,
+            text: document.getElementById('testimonialText').value.trim(),
+            mediaUrl: null,
+            mediaType: null
+        };
         
-        if (testimonials.length === 0) {
-            grid.innerHTML = `
-                <div class="no-testimonials" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                    <i class="fas fa-comments" style="font-size: 4rem; color: #ccc; margin-bottom: 20px;"></i>
-                    <h3 style="color: #666; margin-bottom: 10px;">No hay testimonios aún</h3>
-                    <p style="color: #999;">Sé el primero en compartir tu experiencia</p>
-                </div>
-            `;
+        console.log('📝 Datos del testimonio:', testimonialData);
+        
+        // Validaciones básicas
+        if (!testimonialData.name || !testimonialData.course || !testimonialData.text) {
+            showNotification('❌ Por favor completa todos los campos obligatorios', 'error');
             return;
         }
         
-        testimonials.sort((a, b) => b.timestamp - a.timestamp);
+        if (AppState.currentTestimonialRating === 0) {
+            showNotification('❌ Por favor selecciona una calificación con las estrellas', 'error');
+            return;
+        }
         
-        grid.innerHTML = testimonials.map(testimonial => `
-            <div class="testimonial-card fade-in visible">
-                <div class="testimonial-header">
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            ${testimonial.name.charAt(0).toUpperCase()}
-                        </div>
-                        <div class="author-info">
-                            <h4>${escapeHTML(testimonial.name)}</h4>
-                            <span class="testimonial-course">${getCourseName(testimonial.course)}</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
-                    </div>
-                </div>
-                <div class="testimonial-content">
-                    ${testimonial.hasMedia ? `
-                        <div class="testimonial-media">
-                            ${testimonial.mediaType === 'image' ? 
-                                `<img src="${testimonial.mediaUrl}" alt="Testimonio de ${escapeHTML(testimonial.name)}" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'">` : 
-                                `<video controls style="width: 100%; max-height: 300px; border-radius: 8px; background: #000;" onerror="this.style.display='none'">
-                                    <source src="${testimonial.mediaUrl}" type="video/mp4">
-                                    <source src="${testimonial.mediaUrl}" type="video/avi">
-                                    <source src="${testimonial.mediaUrl}" type="video/mov">
-                                    Tu navegador no soporta el elemento de video.
-                                </video>`
-                            }
-                        </div>
-                    ` : ''}
-                    <div class="testimonial-text">
-                        <p>${escapeHTML(testimonial.text)}</p>
-                    </div>
-                    <div class="testimonial-date">
-                        ${testimonial.date}
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        // Procesar archivo multimedia si existe
+        if (AppState.testimonialMediaFile) {
+            console.log('📁 Procesando archivo multimedia...');
+            try {
+                const mediaInfo = await processMediaFile(AppState.testimonialMediaFile);
+                testimonialData.mediaUrl = mediaInfo.url;
+                testimonialData.mediaType = mediaInfo.type;
+                console.log('✅ Archivo procesado:', mediaInfo);
+            } catch (error) {
+                console.error('❌ Error procesando archivo:', error);
+                showNotification('❌ Error al procesar el archivo multimedia', 'error');
+                return;
+            }
+        }
+        
+        // Guardar en Supabase
+        console.log('💾 Guardando en Supabase...');
+        const { data, error } = await supabase
+            .from('testimonials')
+            .insert([{
+                student_name: testimonialData.name,
+                student_course: testimonialData.course,
+                testimonial_text: testimonialData.text,
+                rating: testimonialData.rating,
+                status: 'pending',
+                media_url: testimonialData.mediaUrl,
+                media_type: testimonialData.mediaType,
+                created_at: new Date().toISOString()
+            }])
+            .select();
+
+        if (error) {
+            console.error('❌ Error de Supabase:', error);
+            throw new Error(`Error de Supabase: ${error.message}`);
+        }
+
+        console.log('✅ Testimonio guardado exitosamente:', data);
+        
+        // Limpiar formulario
+        showNotification('✅ ¡Testimonio enviado para moderación! Los administradores lo revisarán pronto.', 'success');
+        closeTestimonialModal();
+        e.target.reset();
+        resetTestimonialRating();
+        resetMediaUpload();
         
     } catch (error) {
-        console.error('Error cargando testimonios:', error);
+        console.error('❌ Error crítico en testimonio:', error);
+        showNotification('❌ Error al enviar el testimonio: ' + error.message, 'error');
     }
+}
+
+// ===== SISTEMA DE TESTIMONIOS CON SUPABASE =====
+async function loadTestimonials() {
+    try {
+        const grid = document.getElementById('testimonialGrid');
+        if (!grid) return;
+
+        console.log('🔄 Cargando testimonios públicos...');
+
+        // Cargar SOLO testimonios aprobados de Supabase
+        const { data, error } = await supabase
+            .from('testimonials')
+            .select('*')
+            .eq('status', 'approved')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error cargando testimonios:', error);
+            throw error;
+        }
+
+        console.log('📝 Testimonios públicos cargados:', data);
+
+        AppState.testimonials = data || [];
+        renderTestimonials();
+        
+    } catch (error) {
+        console.error('❌ Error cargando testimonios:', error);
+        AppState.testimonials = [];
+        renderTestimonials();
+    }
+}
+
+function renderTestimonials() {
+    const grid = document.getElementById('testimonialGrid');
+    if (!grid) return;
+
+    if (AppState.testimonials.length === 0) {
+        grid.innerHTML = `
+            <div class="no-testimonials" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                <i class="fas fa-comments" style="font-size: 4rem; color: #ccc; margin-bottom: 20px;"></i>
+                <h3 style="color: #666; margin-bottom: 10px;">No hay testimonios aún</h3>
+                <p style="color: #999;">Sé el primero en compartir tu experiencia</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = AppState.testimonials.map(testimonial => `
+        <div class="testimonial-card fade-in visible">
+            <div class="testimonial-header">
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        ${testimonial.student_name?.charAt(0).toUpperCase() || testimonial.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                    <div class="author-info">
+                        <h4>${escapeHTML(testimonial.student_name || testimonial.name)}</h4>
+                        <span class="testimonial-course">${getCourseName(testimonial.student_course || testimonial.course)}</span>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+            </div>
+            <div class="testimonial-content">
+                ${testimonial.media_url || testimonial.hasMedia ? `
+                    <div class="testimonial-media">
+                        ${(testimonial.media_type === 'image' || testimonial.mediaType === 'image') ? 
+                            `<img src="${testimonial.media_url || testimonial.mediaUrl}" 
+                                  alt="Testimonio de ${escapeHTML(testimonial.student_name || testimonial.name)}" 
+                                  loading="lazy" 
+                                  style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;" 
+                                  onerror="this.style.display='none'">` : 
+                            `<video controls style="width: 100%; max-height: 300px; border-radius: 8px; background: #000;" 
+                                    onerror="this.style.display='none'">
+                                <source src="${testimonial.media_url || testimonial.mediaUrl}" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>`
+                        }
+                    </div>
+                ` : ''}
+                <div class="testimonial-text">
+                    <p>${escapeHTML(testimonial.testimonial_text || testimonial.text)}</p>
+                </div>
+                <div class="testimonial-date">
+                    ${new Date(testimonial.created_at || testimonial.timestamp).toLocaleDateString('es-EC')}
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
 
 // ===== SISTEMA DE UBICACIÓN (PUYO/TENA) =====
@@ -1580,35 +1715,428 @@ function loadInscriptionsTable() {
     `).join('');
 }
 
-function loadTestimonialsTable() {
-    const testimonials = JSON.parse(localStorage.getItem(CONFIG.storageKeys.testimonials)) || [];
-    const tableBody = document.getElementById('testimonialsTable');
-    
-    if (!tableBody) return;
-    
-    if (testimonials.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px; color: #666;">No hay testimonios registrados</td></tr>';
+// ===== FUNCIÓN CORREGIDA: CARGAR TESTIMONIOS EN PANEL ADMIN =====
+// ===== FUNCIÓN CORREGIDA: CARGAR TESTIMONIOS EN PANEL ADMIN =====
+async function loadTestimonialsTable() {
+    if (!AppState.isAdminAuthenticated) {
+        console.log('🔒 No autenticado para cargar testimonios');
+        return;
+    }
+
+    try {
+        console.log('🔄 Cargando testimonios para moderación...');
+        
+        const tableBody = document.getElementById('testimonialsTable');
+        if (!tableBody) {
+            console.error('❌ No se encontró la tabla de testimonios');
+            return;
+        }
+        
+        // Mostrar loading
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                    <i class="fas fa-spinner fa-spin"></i><br>
+                    Cargando testimonios...
+                </td>
+            </tr>
+        `;
+
+        // Cargar TODOS los testimonios para moderación
+        const { data, error } = await supabase
+            .from('testimonials')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('❌ Error de Supabase:', error);
+            throw error;
+        }
+
+        console.log('📊 Testimonios cargados:', data);
+
+        if (!data || data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #666;">No hay testimonios para moderar</td></tr>';
+            return;
+        }
+
+        tableBody.innerHTML = data.map(testimonial => `
+            <tr>
+                <td><strong>${escapeHTML(testimonial.student_name || 'Sin nombre')}</strong></td>
+                <td>${getCourseName(testimonial.student_course)}</td>
+                <td style="color: #ffc107; font-size: 16px;">${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}</td>
+                <td>${new Date(testimonial.created_at).toLocaleDateString('es-EC')}</td>
+                <td>
+                    <span class="status-${testimonial.status}">${testimonial.status.toUpperCase()}</span>
+                </td>
+                <td style="white-space: nowrap;">
+                    <button class="admin-btn view-btn" onclick="viewTestimonialAdmin('${testimonial.id}')" title="Ver detalles">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    ${testimonial.status === 'pending' ? `
+                        <button class="admin-btn approve-btn" onclick="approveTestimonial('${testimonial.id}')" title="Aprobar">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="admin-btn reject-btn" onclick="rejectTestimonial('${testimonial.id}')" title="Rechazar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    ` : ''}
+                    <button class="admin-btn delete-btn" onclick="deleteTestimonialAdmin('${testimonial.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+
+        console.log('✅ Tabla de testimonios cargada correctamente');
+
+    } catch (error) {
+        console.error('❌ Error cargando testimonios para admin:', error);
+        
+        const tableBody = document.getElementById('testimonialsTable');
+        if (tableBody) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: #e74c3c;">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Error al cargar testimonios<br>
+                        <small>Verifica la conexión a internet</small>
+                    </td>
+                </tr>
+            `;
+        }
+    }
+}
+// ===== FUNCIONES DE MODERACIÓN DESDE EL PANEL =====
+async function approveTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
         return;
     }
     
-    testimonials.sort((a, b) => b.timestamp - a.timestamp);
+    if (confirm('¿Estás seguro de APROBAR este testimonio? Aparecerá públicamente en el sitio.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .update({ 
+                    status: 'approved',
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('✅ Testimonio APROBADO - Ahora es público', 'success');
+            
+            // Recargar ambas tablas
+            loadTestimonialsTable(); // Tabla de moderación
+            loadTestimonials();      // Testimonios públicos
+            
+        } catch (error) {
+            console.error('Error aprobando testimonio:', error);
+            showNotification('❌ Error al aprobar el testimonio', 'error');
+        }
+    }
+}
+// ===== FUNCIONES DE MODERACIÓN DESDE EL PANEL =====
+async function approveTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
     
-    tableBody.innerHTML = testimonials.map(testimonial => `
-        <tr>
-            <td>${escapeHTML(testimonial.name)}</td>
-            <td>${getCourseName(testimonial.course)}</td>
-            <td>${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}</td>
-            <td>${testimonial.date}</td>
-            <td>
-                <button class="admin-btn view-btn" onclick="viewTestimonial(${testimonial.id})" title="Ver detalles">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="admin-btn delete-btn" onclick="deleteTestimonial(${testimonial.id})" title="Eliminar">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        </tr>
-    `).join('');
+    if (confirm('¿Estás seguro de APROBAR este testimonio? Aparecerá públicamente en el sitio.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .update({ 
+                    status: 'approved',
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('✅ Testimonio APROBADO - Ahora es público', 'success');
+            
+            // Recargar ambas tablas
+            loadTestimonialsTable(); // Tabla de moderación
+            loadTestimonials();      // Testimonios públicos
+            
+        } catch (error) {
+            console.error('Error aprobando testimonio:', error);
+            showNotification('❌ Error al aprobar el testimonio', 'error');
+        }
+    }
+}
+
+async function rejectTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de RECHAZAR este testimonio? No aparecerá en el sitio.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .update({ 
+                    status: 'rejected',
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('❌ Testimonio RECHAZADO', 'success');
+            loadTestimonialsTable(); // Recargar tabla de moderación
+            
+        } catch (error) {
+            console.error('Error rechazando testimonio:', error);
+            showNotification('❌ Error al rechazar el testimonio', 'error');
+        }
+    }
+}
+
+async function deleteTestimonialAdmin(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿ELIMINAR PERMANENTEMENTE este testimonio? Esta acción no se puede deshacer.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .delete()
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('🗑️ Testimonio ELIMINADO permanentemente', 'success');
+            loadTestimonialsTable(); // Recargar tabla de moderación
+            
+        } catch (error) {
+            console.error('Error eliminando testimonio:', error);
+            showNotification('❌ Error al eliminar el testimonio', 'error');
+        }
+    }
+}
+
+function viewTestimonialAdmin(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    // Buscar el testimonio en los datos actuales
+    const testimonial = AppState.testimonials.find(t => t.id === id);
+    
+    if (!testimonial) {
+        showNotification('Testimonio no encontrado', 'error');
+        return;
+    }
+    
+    const modal = document.getElementById('viewTestimonialModal');
+    const details = document.getElementById('testimonialDetails');
+    
+    if (modal && details) {
+        details.innerHTML = `
+            <div class="testimonial-details">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="author-avatar" style="width: 50px; height: 50px;">
+                        ${testimonial.student_name?.charAt(0).toUpperCase() || testimonial.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; color: var(--primary);">${escapeHTML(testimonial.student_name || testimonial.name)}</h3>
+                        <p style="margin: 5px 0 0 0; color: #666;">${getCourseName(testimonial.student_course || testimonial.course)}</p>
+                        <p style="margin: 2px 0 0 0; color: #999; font-size: 12px;">
+                            Estado: <span class="status-${testimonial.status}">${testimonial.status.toUpperCase()}</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-rating" style="margin-bottom: 20px; font-size: 18px;">
+                    ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+                
+                ${testimonial.media_url || testimonial.mediaUrl ? `
+                    <div class="testimonial-media" style="margin-bottom: 20px;">
+                        ${(testimonial.media_type === 'image' || testimonial.mediaType === 'image') ? 
+                            `<img src="${testimonial.media_url || testimonial.mediaUrl}" 
+                                  alt="Testimonio de ${escapeHTML(testimonial.student_name || testimonial.name)}" 
+                                  style="max-width: 100%; border-radius: 8px;" 
+                                  onerror="this.style.display='none'">` : 
+                            `<video controls style="max-width: 100%; border-radius: 8px; background: #000;" 
+                                    onerror="this.style.display='none'">
+                                <source src="${testimonial.media_url || testimonial.mediaUrl}" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>`
+                        }
+                    </div>
+                ` : ''}
+                
+                <div class="testimonial-text" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="margin: 0; line-height: 1.6; font-style: italic;">"${escapeHTML(testimonial.testimonial_text || testimonial.text)}"</p>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    ${testimonial.status === 'pending' ? `
+                        <button class="btn btn-success" onclick="approveTestimonial('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                            <i class="fas fa-check"></i> Aprobar
+                        </button>
+                        <button class="btn btn-danger" onclick="rejectTestimonial('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                            <i class="fas fa-times"></i> Rechazar
+                        </button>
+                    ` : ''}
+                    <button class="btn btn-warning" onclick="deleteTestimonialAdmin('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+                
+                <p style="color: #666; text-align: right; border-top: 1px solid #e4e6eb; padding-top: 15px; margin-top: 20px;">
+                    <strong>Fecha de envío:</strong> ${new Date(testimonial.created_at || testimonial.timestamp).toLocaleString('es-EC')}
+                </p>
+            </div>
+        `;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+async function rejectTestimonial(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de RECHAZAR este testimonio? No aparecerá en el sitio.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .update({ 
+                    status: 'rejected',
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('❌ Testimonio RECHAZADO', 'success');
+            loadTestimonialsTable(); // Recargar tabla de moderación
+            
+        } catch (error) {
+            console.error('Error rechazando testimonio:', error);
+            showNotification('❌ Error al rechazar el testimonio', 'error');
+        }
+    }
+}
+
+async function deleteTestimonialAdmin(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    if (confirm('¿ELIMINAR PERMANENTEMENTE este testimonio? Esta acción no se puede deshacer.')) {
+        try {
+            const { error } = await supabase
+                .from('testimonials')
+                .delete()
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showNotification('🗑️ Testimonio ELIMINADO permanentemente', 'success');
+            loadTestimonialsTable(); // Recargar tabla de moderación
+            
+        } catch (error) {
+            console.error('Error eliminando testimonio:', error);
+            showNotification('❌ Error al eliminar el testimonio', 'error');
+        }
+    }
+}
+
+function viewTestimonialAdmin(id) {
+    if (!AppState.isAdminAuthenticated) {
+        showNotification('Acceso no autorizado', 'error');
+        return;
+    }
+    
+    // Buscar el testimonio en los datos actuales
+    const testimonial = AppState.testimonials.find(t => t.id === id);
+    
+    if (!testimonial) {
+        showNotification('Testimonio no encontrado', 'error');
+        return;
+    }
+    
+    const modal = document.getElementById('viewTestimonialModal');
+    const details = document.getElementById('testimonialDetails');
+    
+    if (modal && details) {
+        details.innerHTML = `
+            <div class="testimonial-details">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="author-avatar" style="width: 50px; height: 50px;">
+                        ${testimonial.student_name?.charAt(0).toUpperCase() || testimonial.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; color: var(--primary);">${escapeHTML(testimonial.student_name || testimonial.name)}</h3>
+                        <p style="margin: 5px 0 0 0; color: #666;">${getCourseName(testimonial.student_course || testimonial.course)}</p>
+                        <p style="margin: 2px 0 0 0; color: #999; font-size: 12px;">
+                            Estado: <span class="status-${testimonial.status}">${testimonial.status.toUpperCase()}</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-rating" style="margin-bottom: 20px; font-size: 18px;">
+                    ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+                
+                ${testimonial.media_url || testimonial.mediaUrl ? `
+                    <div class="testimonial-media" style="margin-bottom: 20px;">
+                        ${(testimonial.media_type === 'image' || testimonial.mediaType === 'image') ? 
+                            `<img src="${testimonial.media_url || testimonial.mediaUrl}" 
+                                  alt="Testimonio de ${escapeHTML(testimonial.student_name || testimonial.name)}" 
+                                  style="max-width: 100%; border-radius: 8px;" 
+                                  onerror="this.style.display='none'">` : 
+                            `<video controls style="max-width: 100%; border-radius: 8px; background: #000;" 
+                                    onerror="this.style.display='none'">
+                                <source src="${testimonial.media_url || testimonial.mediaUrl}" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>`
+                        }
+                    </div>
+                ` : ''}
+                
+                <div class="testimonial-text" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="margin: 0; line-height: 1.6; font-style: italic;">"${escapeHTML(testimonial.testimonial_text || testimonial.text)}"</p>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    ${testimonial.status === 'pending' ? `
+                        <button class="btn btn-success" onclick="approveTestimonial('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                            <i class="fas fa-check"></i> Aprobar
+                        </button>
+                        <button class="btn btn-danger" onclick="rejectTestimonial('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                            <i class="fas fa-times"></i> Rechazar
+                        </button>
+                    ` : ''}
+                    <button class="btn btn-warning" onclick="deleteTestimonialAdmin('${testimonial.id}'); document.getElementById('viewTestimonialModal').style.display='none'">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+                
+                <p style="color: #666; text-align: right; border-top: 1px solid #e4e6eb; padding-top: 15px; margin-top: 20px;">
+                    <strong>Fecha de envío:</strong> ${new Date(testimonial.created_at || testimonial.timestamp).toLocaleString('es-EC')}
+                </p>
+            </div>
+        `;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function loadCertificationsTable() {
@@ -2104,3 +2632,31 @@ if (document.readyState === 'loading') {
 }
 
 console.log('🚀 Elite Academy - Sistema completo y funcional con Excel automático');
+async function testSupabaseConnection() {
+    try {
+        console.log('🔍 Probando conexión con Supabase...');
+        
+        const { data, error } = await supabase
+            .from('testimonials')
+            .select('count')
+            .limit(1);
+            
+        if (error) {
+            console.error('❌ Error de conexión Supabase:', error);
+            return false;
+        }
+        
+        console.log('✅ Conexión Supabase: OK');
+        return true;
+    } catch (error) {
+        console.error('❌ Error de conexión:', error);
+        return false;
+    }
+}
+
+// Llamar al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        testSupabaseConnection();
+    }, 2000);
+});
